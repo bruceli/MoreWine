@@ -19,3 +19,7 @@ DerivedData
 
 #CocoaPods
 Pods
+
+*.xcuserstate
+
+MoreWine.xcodeproj/project.xcworkspace/xcuserdata/bruceli.xcuserdatad/UserInterfaceState.xcuserstate
