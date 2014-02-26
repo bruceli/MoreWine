@@ -19,6 +19,7 @@
 		261BE08018BC0FDA00DEA46A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 261BE06818BC0FDA00DEA46A /* UIKit.framework */; };
 		261BE08818BC0FDA00DEA46A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 261BE08618BC0FDA00DEA46A /* InfoPlist.strings */; };
 		261BE08A18BC0FDA00DEA46A /* MoreWineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 261BE08918BC0FDA00DEA46A /* MoreWineTests.m */; };
+		6C0B4F440312497C81935841 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07E3BEF05D7C4A6EB32E842A /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		07E3BEF05D7C4A6EB32E842A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		261BE06118BC0FDA00DEA46A /* MoreWine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoreWine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		261BE06418BC0FDA00DEA46A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		261BE06618BC0FDA00DEA46A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -48,6 +50,7 @@
 		261BE08518BC0FDA00DEA46A /* MoreWineTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MoreWineTests-Info.plist"; sourceTree = "<group>"; };
 		261BE08718BC0FDA00DEA46A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		261BE08918BC0FDA00DEA46A /* MoreWineTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoreWineTests.m; sourceTree = "<group>"; };
+		6D3436808ED84477977515BE /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,7 @@
 				261BE06718BC0FDA00DEA46A /* CoreGraphics.framework in Frameworks */,
 				261BE06918BC0FDA00DEA46A /* UIKit.framework in Frameworks */,
 				261BE06518BC0FDA00DEA46A /* Foundation.framework in Frameworks */,
+				6C0B4F440312497C81935841 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +85,7 @@
 				261BE08318BC0FDA00DEA46A /* MoreWineTests */,
 				261BE06318BC0FDA00DEA46A /* Frameworks */,
 				261BE06218BC0FDA00DEA46A /* Products */,
+				6D3436808ED84477977515BE /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,6 +105,7 @@
 				261BE06618BC0FDA00DEA46A /* CoreGraphics.framework */,
 				261BE06818BC0FDA00DEA46A /* UIKit.framework */,
 				261BE07D18BC0FDA00DEA46A /* XCTest.framework */,
+				07E3BEF05D7C4A6EB32E842A /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -151,9 +157,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 261BE08D18BC0FDA00DEA46A /* Build configuration list for PBXNativeTarget "MoreWine" */;
 			buildPhases = (
+				708AC511914A42EE946A1736 /* Check Pods Manifest.lock */,
 				261BE05D18BC0FDA00DEA46A /* Sources */,
 				261BE05E18BC0FDA00DEA46A /* Frameworks */,
 				261BE05F18BC0FDA00DEA46A /* Resources */,
+				6E7C9E1F24B341B68C4E3B88 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -233,6 +241,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6E7C9E1F24B341B68C4E3B88 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		708AC511914A42EE946A1736 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		261BE05D18BC0FDA00DEA46A /* Sources */ = {
@@ -356,12 +397,14 @@
 		};
 		261BE08E18BC0FDA00DEA46A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6D3436808ED84477977515BE /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MoreWine/MoreWine-Prefix.pch";
 				INFOPLIST_FILE = "MoreWine/MoreWine-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -369,12 +412,14 @@
 		};
 		261BE08F18BC0FDA00DEA46A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6D3436808ED84477977515BE /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MoreWine/MoreWine-Prefix.pch";
 				INFOPLIST_FILE = "MoreWine/MoreWine-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -441,6 +486,7 @@
 				261BE08F18BC0FDA00DEA46A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		261BE09018BC0FDA00DEA46A /* Build configuration list for PBXNativeTarget "MoreWineTests" */ = {
 			isa = XCConfigurationList;
@@ -449,6 +495,7 @@
 				261BE09218BC0FDA00DEA46A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

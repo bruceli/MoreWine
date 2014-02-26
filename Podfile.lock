@@ -1,0 +1,10 @@
+PODS:
+  - RKTabView (1.0.1)
+
+DEPENDENCIES:
+  - RKTabView (~> 1.0.0)
+
+SPEC CHECKSUMS:
+  RKTabView: 921d6c44429c34fe8fbe030f684aad37392b4ab4
+
+COCOAPODS: 0.29.0
