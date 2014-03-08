@@ -28,21 +28,43 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // ContainerView
+    _headerContainerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 197)];
+    
+//    [self.view addSubview:_headerContainerView];
+
+    // height in 43 points
+    // UISearchBar Init
+    // _searchDisplayController for reference http://cocoabob.net/?p=67
+    _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    self.searchDisplayController.searchResultsDelegate = self;
+    self.searchDisplayController.searchResultsDataSource = self;
+    self.searchDisplayController.delegate = self;
+    _searchBar.showsCancelButton = true;
+    [_headerContainerView addSubview:_searchBar];
     // MaScrolling Content
-    _scrollingContentView = [[UIView alloc]initWithFrame:CGRectMake(0, self.view.frame.origin.y + 44, self.view.frame.size.width, 154)];
+    
+    _scrollingContentView = [[UIView alloc]initWithFrame:CGRectMake(0, 44, self.view.frame.size.width, 154)];
     _scrollingContentView.backgroundColor = [UIColor colorWithRed:(arc4random()%100)/(float)100 green:(arc4random()%100)/(float)100 blue:(arc4random()%100)/(float)100 alpha:0.3];
-    [self.view addSubview:_scrollingContentView];
+    [_headerContainerView addSubview:_scrollingContentView];
     
     // UITableView init
-    CGRect frame = CGRectMake(_scrollingContentView.frame.origin.x, _scrollingContentView.frame.origin.y+_scrollingContentView.frame.size.height, self.view.frame.size.width, self.view.frame.size.height-64); // navBar height
+    CGRect frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-64); // navBar height
     _tableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.rowHeight = 65.0f;
     _tableView.separatorColor = [UIColor clearColor];
+    _tableView.tableHeaderView = _headerContainerView;
+
+    //    _tableView refresh controler
+    _refreshControl = [[UIRefreshControl alloc] init];
+    [_refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
+    [_tableView addSubview:_refreshControl];
+
     [self.view addSubview:_tableView];
-    
-    // height in 43 points
+
     
     
 }
@@ -53,6 +75,21 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Table view refresh
+//http://stackoverflow.com/questions/16501781/set-color-of-uiactivityindicatorview-of-a-uirefreshcontrol
+// if need change indicator color...
+- (void)refresh:(UIRefreshControl *)refreshControl
+{
+    [refreshControl beginRefreshing];
+    
+    NSMutableAttributedString * string = [[NSMutableAttributedString alloc] initWithString:@"喵星Refresh"];
+    [string addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0,5)];
+
+    [refreshControl setAttributedTitle:string];
+    
+    NSLog(@"%@",@"SearchControl refresh");
+    [refreshControl endRefreshing];
+}
 
 
 #pragma mark - Table view data source

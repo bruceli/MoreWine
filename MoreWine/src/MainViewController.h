@@ -8,10 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MainViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface MainViewController : UIViewController <UITableViewDelegate, UITableViewDataSource,UISearchDisplayDelegate>
 {
+    UISearchBar* _searchBar;
+    
+    UIView* _headerContainerView;
+    
     UIScrollView* _scrollView;
     UITableView* _tableView;
     UIView* _scrollingContentView;
+
+    UIRefreshControl* _refreshControl;
 }
 @end
