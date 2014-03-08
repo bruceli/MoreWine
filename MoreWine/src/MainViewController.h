@@ -10,6 +10,8 @@
 
 @interface MainViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 {
+    UIScrollView* _scrollView;
     UITableView* _tableView;
+    UIView* _scrollingContentView;
 }
 @end

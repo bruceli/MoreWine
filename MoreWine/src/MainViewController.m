@@ -28,17 +28,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // MaScrolling Content
+    _scrollingContentView = [[UIView alloc]initWithFrame:CGRectMake(0, self.view.frame.origin.y + 44, self.view.frame.size.width, 154)];
+    _scrollingContentView.backgroundColor = [UIColor colorWithRed:(arc4random()%100)/(float)100 green:(arc4random()%100)/(float)100 blue:(arc4random()%100)/(float)100 alpha:0.3];
+    [self.view addSubview:_scrollingContentView];
     
-    CGRect frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height-64); // navBar height
+    // UITableView init
+    CGRect frame = CGRectMake(_scrollingContentView.frame.origin.x, _scrollingContentView.frame.origin.y+_scrollingContentView.frame.size.height, self.view.frame.size.width, self.view.frame.size.height-64); // navBar height
     _tableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.rowHeight = 65.0f;
     _tableView.separatorColor = [UIColor clearColor];
-
-    //    _tableView.backgroundColor = [UIColor colorWithRed:(arc4random()%100)/(float)100 green:(arc4random()%100)/(float)100 blue:(arc4random()%100)/(float)100 alpha:0.3];
-    
     [self.view addSubview:_tableView];
+    
+    // height in 43 points
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
