@@ -28,6 +28,21 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    // UISearchBar Init
+    // _searchDisplayController for reference http://cocoabob.net/?p=67
+    _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    self.searchDisplayController.searchResultsDelegate = self;
+    self.searchDisplayController.searchResultsDataSource = self;
+    self.searchDisplayController.delegate = self;
+    _searchBar.showsCancelButton=TRUE;
+
+    /* when tap searchBar,
+        1, hide statusBar/NavBar,
+        2, show Cancel botton,
+        3, show catgory lables,
+    */
+    
 
     CGRect frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height-64); // navBar height
     //frame	CGRect	origin=(x=0, y=0) size=(width=320, height=454) //run time
@@ -37,6 +52,8 @@
     _tableView.dataSource = self;
     _tableView.rowHeight = 110.0f;
     _tableView.separatorColor = [UIColor clearColor];
+    _tableView.tableHeaderView = _searchBar;
+    
     [self.view addSubview:_tableView];
 }
 
@@ -82,6 +99,49 @@
     // test pushViewController
     UIViewController* viewController = [[UIViewController alloc] init];
     [self.navigationController pushViewController: viewController animated:YES];
+}
+
+
+#pragma mark - UISearchDisplayDelegate
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    NSString *scope;
+    
+    NSInteger selectedScopeButtonIndex = [self.searchDisplayController.searchBar selectedScopeButtonIndex];
+    if (selectedScopeButtonIndex > 0)
+    {
+//        scope = [[APLProduct deviceTypeNames] objectAtIndex:(selectedScopeButtonIndex - 1)];
+    }
+    
+    [self updateFilteredContentForSearchString:searchString productType:scope];
+    
+    // return YES to cause the search result table view to be reloaded
+    return YES;
+}
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
+{
+    NSString *searchString = [self.searchDisplayController.searchBar text];
+    NSString *scope;
+    
+    if (searchOption > 0)
+    {
+//        scope = [[APLProduct deviceTypeNames] objectAtIndex:(searchOption - 1)];
+    }
+    
+    [self updateFilteredContentForSearchString:searchString productType:scope];
+    
+    // return YES to cause the search result table view to be reloaded
+    return YES;
+}
+
+
+#pragma mark - Content Filtering
+
+- (void)updateFilteredContentForSearchString:(NSString *)searchString productType:(NSString *)type
+{
 
 }
+
 @end

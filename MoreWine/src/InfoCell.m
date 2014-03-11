@@ -190,6 +190,8 @@
     _detailTextView.font = [UIFont systemFontOfSize:8.0f];
     _detailTextView.text = @"宇宙中的一颗类地行星，上面有高度的文明，生活着拥有极高智慧的喵星人。";
     _detailTextView.scrollEnabled = NO;
+    _detailTextView.editable = NO;
+    _detailTextView.Selectable = NO;
     [self addSubview:_detailTextView];
 }
 
