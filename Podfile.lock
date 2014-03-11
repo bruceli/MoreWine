@@ -1,10 +1,33 @@
 PODS:
-  - RKTabView (1.0.1)
+  - AFNetworking (2.2.0):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+    - AFNetworking/UIKit
+  - AFNetworking/NSURLConnection (2.2.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.2.0):
+    - AFNetworking/NSURLConnection
+  - AFNetworking/Reachability (2.2.0)
+  - AFNetworking/Security (2.2.0)
+  - AFNetworking/Serialization (2.2.0)
+  - AFNetworking/UIKit (2.2.0):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - SDWebImage (3.0):
+    - SDWebImage/Main
+  - SDWebImage/Main (3.0)
 
 DEPENDENCIES:
-  - RKTabView (~> 1.0.0)
+  - AFNetworking (~> 2.2)
+  - SDWebImage (~> 3.0.0)
 
 SPEC CHECKSUMS:
-  RKTabView: 921d6c44429c34fe8fbe030f684aad37392b4ab4
+  AFNetworking: e8cfd8f3fe3bfe19124a0cc63f4d45752d892a56
+  SDWebImage: afa3965bcb37797ba4ecac49393897b99d1b4be7
 
 COCOAPODS: 0.29.0

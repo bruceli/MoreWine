@@ -1,3 +1,3 @@
-platform :iOS, ‘6.0’
-
-pod 'RKTabView', '~> 1.0.0'
+platform :ios, '7.0'
+pod 'AFNetworking', '~> 2.2'
+pod 'SDWebImage', '~> 3.0.0'
