@@ -42,6 +42,7 @@
     self.searchDisplayController.searchResultsDataSource = self;
     self.searchDisplayController.delegate = self;
     _searchBar.showsCancelButton = true;
+	_searchBar.barStyle = UIBarStyleBlack;
     [_headerContainerView addSubview:_searchBar];
     // MaScrolling Content
     
@@ -50,12 +51,13 @@
     [_headerContainerView addSubview:_scrollingContentView];
     
     // UITableView init
-    CGRect frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-64); // navBar height
+    CGRect frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-44); // navBar height
     _tableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.rowHeight = 65.0f;
     _tableView.separatorColor = [UIColor clearColor];
+	_tableView.backgroundColor = [UIColor clearColor];
     _tableView.tableHeaderView = _headerContainerView;
 
     //    _tableView refresh controler
@@ -108,8 +110,7 @@
         
         cell = [[EzInfoCell alloc] initWithStyle:UITableViewCellStyleDefault
                                       reuseIdentifier:CellIdentifier];
-//        cell.backgroundColor = [UIColor colorWithRed:(arc4random()%100)/(float)100 green:(arc4random()%100)/(float)100 blue:(arc4random()%100)/(float)100 alpha:0.3];
-        cell.backgroundColor = [UIColor lightGrayColor];
+        cell.backgroundColor = [UIColor clearColor];
         cell.detailTextLabel.numberOfLines = 0;
         cell.accessoryType = UITableViewCellAccessoryNone;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;

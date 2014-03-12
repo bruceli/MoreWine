@@ -1,0 +1,16 @@
+/* 
+ moreWine.strings
+ MoreWine
+ 
+ Created by Thunder on 3/12/14.
+ Copyright (c) 2014 MagicApp. All rights reserved.
+ */
+//"Yesterday you sold %@ apps" = "Yesterday you sold %@ apps";
+
+
+"MA_MoreWine_TabBar_Home" = "主页";
+"MA_MoreWine_TabBar_Recommend" = "名人推荐";
+"MA_MoreWine_TabBar_Cam" = "拍照";
+"MA_MoreWine_TabBar_Search" = "搜索";
+"MA_MoreWine_TabBar_User" = "我的";
+

@@ -12,7 +12,6 @@
 {
     UITableView* _tableView;
     UISearchBar* _searchBar;
-
 }
 
 @end
