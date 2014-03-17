@@ -89,7 +89,7 @@ static CGFloat const kDefaultOpacity = 0.5f;
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    /*
+    
     // allow all layout subviews call to adjust the frame
     if ( self.gradientLayer != nil )
     {
@@ -107,21 +107,7 @@ static CGFloat const kDefaultOpacity = 0.5f;
         
         // make sure the graident layer is at position 1
         [self.layer insertSublayer:self.gradientLayer atIndex:1];
-    }*/
-	
-/*	_blurView = [[BTBlurredView alloc] init];
-	CGRect frame = CGRectMake(0, -20, self.frame.size.width, self.frame.size.height+20);
-	[_blurView setFrame:frame];
-	[self addSubview:_blurView];
-*/
-//	self.layer
-	CGFloat statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
-	CGRect frame = CGRectMake(0, 0 - statusBarHeight, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds) + statusBarHeight);
-	
-	UIView* theView = [[UIView alloc] initWithFrame:frame];
-	theView.backgroundColor = [UIColor orangeColor];
-	[self addSubview:theView];
-	
+    }
 }
 
 

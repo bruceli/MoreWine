@@ -68,7 +68,7 @@ typedef NS_ENUM(NSInteger, StartViewButtonType) {
 	}
 	[self.view addSubview:_buttonGroupView];
 }
-
+                 
 -(void)buttonAction:(UIButton*)sender
 {
 	switch(sender.tag)

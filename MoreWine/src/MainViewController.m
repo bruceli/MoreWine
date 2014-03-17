@@ -9,6 +9,8 @@
 #import "MainViewController.h"
 #import "MaNavigationBar.h"
 #import "EzInfoCell.h"
+#import "MaUtility.h"
+#import <LBBlurredImage/UIImageView+LBBlurredImage.h>
 
 @interface MainViewController ()
 
@@ -41,7 +43,9 @@
     self.searchDisplayController.searchResultsDelegate = self;
     self.searchDisplayController.searchResultsDataSource = self;
     self.searchDisplayController.delegate = self;
+	_searchBar.searchBarStyle = UISearchBarStyleMinimal;
     _searchBar.showsCancelButton = true;
+	_searchBar.translucent = YES;
 	_searchBar.barStyle = UIBarStyleBlack;
     [_headerContainerView addSubview:_searchBar];
     // MaScrolling Content
@@ -50,8 +54,25 @@
     _scrollingContentView.backgroundColor = [UIColor colorWithRed:(arc4random()%100)/(float)100 green:(arc4random()%100)/(float)100 blue:(arc4random()%100)/(float)100 alpha:0.3];
     [_headerContainerView addSubview:_scrollingContentView];
     
+	//blurImageView
+	NSString* theImageName;
+	if ([MaUtility hasFourInchDisplay]) {
+		theImageName = @"backgroundImage_586h.png";
+	}
+	else
+		theImageName = @"backgroundImage.png";
+
+	UIImage* image = [UIImage imageNamed:theImageName];
+	_bkgBlurImageView = [[UIImageView alloc] initWithFrame:self.view.frame];
+    _bkgBlurImageView.contentMode = UIViewContentModeScaleAspectFill;
+    _bkgBlurImageView.alpha = 1;
+    [_bkgBlurImageView setImageToBlur:image blurRadius:10 completionBlock:nil];
+    [self.view addSubview:_bkgBlurImageView];
+	
     // UITableView init
-    CGRect frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-44); // navBar height
+	NSLog(@"self.view frame is %@", NSStringFromCGRect(self.view.frame) );
+    CGRect frame = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 113); // navBar&tabBar height
+	NSLog(@"_tableView frame is %@", NSStringFromCGRect(frame) );
     _tableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -66,9 +87,6 @@
     [_tableView addSubview:_refreshControl];
 
     [self.view addSubview:_tableView];
-
-    
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -114,7 +132,7 @@
         cell.detailTextLabel.numberOfLines = 0;
         cell.accessoryType = UITableViewCellAccessoryNone;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
+		[cell setCellInfo:nil];
     }
     
     // Configure the cell...
@@ -127,8 +145,9 @@
     // test pushViewController
     UIViewController* viewController = [[UIViewController alloc] init];
     [self.navigationController pushViewController: viewController animated:YES];
-    
 }
+
+#pragma mark - UISearchBar delegete.
 
 
 @end

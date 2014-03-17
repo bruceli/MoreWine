@@ -19,7 +19,7 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-  
+
 //    _tabBarController = (UITabBarController *)self.window.rootViewController;
     _tabBarController = [[UITabBarController alloc] init];
     NSMutableArray *viewControllers = [NSMutableArray arrayWithCapacity:4];
@@ -30,8 +30,8 @@
     MainViewController* mainView = [[MainViewController alloc] init];
     // init Custom NavBar for MainView
     UINavigationController *mainNavController = [[UINavigationController alloc] initWithNavigationBarClass:[MaNavigationBar class] toolbarClass:nil];
-    UIColor* firstColor = [UIColor colorWithRed:100.0f/255.0f green:100.0f/255.0f blue:100.0f/255.0f alpha:1.0f];
-    UIColor* secondColor = [UIColor colorWithRed:120.0f/255.0f green:120.0f/255.0f blue:120.0f/255.0f alpha:1.0f];
+    UIColor* firstColor = [UIColor colorWithRed:64.0f/255.0f green:31.0f/255.0f blue:14.0f/255.0f alpha:1.0f];
+    UIColor* secondColor = [UIColor colorWithRed:38.0f/255.0f green:7.0f/255.0f blue:1.0f/255.0f alpha:1.0f];
     NSArray *colors = [NSArray arrayWithObjects:(id)firstColor.CGColor, (id)secondColor.CGColor, nil];
     [[MaNavigationBar appearance] setBarTintGradientColors:colors];
     [[mainNavController navigationBar] setTranslucent:YES];
@@ -68,13 +68,8 @@
     self.window.backgroundColor = [UIColor blackColor];
     self.window.rootViewController = _tabBarController;
 	
-	NSString* imageName;
-	if ([MaUtility hasFourInchDisplay]) {
-		imageName = @"backgroundImage_586h.png";
-	}
-	else
-		imageName = @"backgroundImage.png";
-	self.window.rootViewController.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:imageName]];
+//	self.window.rootViewController.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:imageName]];
+	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 
     [self.window makeKeyAndVisible];
     return YES;
@@ -161,6 +156,10 @@ typedef NS_ENUM(NSInteger, MWTabBarType) {
 
 	userItem.title = NSLocalizedString(@"MA_MoreWine_TabBar_User",nil);
 	[userItem setTitlePositionAdjustment:UIOffsetMake(0.0f, -3.0f)];
+	
+	// background image 
+	UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tabBG.png"]];
+    [tabBar insertSubview:imageView atIndex:1];
 }
 
 @end

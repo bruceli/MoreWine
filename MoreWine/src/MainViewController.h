@@ -13,7 +13,7 @@
     UISearchBar* _searchBar;
     
     UIView* _headerContainerView;
-    
+    UIImageView* _bkgBlurImageView;
     UIScrollView* _scrollView;
     UITableView* _tableView;
     UIView* _scrollingContentView;
