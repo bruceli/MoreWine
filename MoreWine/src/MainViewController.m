@@ -11,6 +11,10 @@
 #import "EzInfoCell.h"
 #import "MaUtility.h"
 #import <LBBlurredImage/UIImageView+LBBlurredImage.h>
+#import "SGFocusImageItem.h"
+//#import "SGFocusImageFrame.h"
+#import "AppDelegate.h"
+#import "MaDataSettingManager.h"
 
 @interface MainViewController ()
 
@@ -47,12 +51,13 @@
     _searchBar.showsCancelButton = true;
 	_searchBar.translucent = YES;
 	_searchBar.barStyle = UIBarStyleBlack;
+	_searchBar.delegate = self;
+	_searchBar.tintColor = [UIColor whiteColor];
     [_headerContainerView addSubview:_searchBar];
     // MaScrolling Content
     
-    _scrollingContentView = [[UIView alloc]initWithFrame:CGRectMake(0, 44, self.view.frame.size.width, 154)];
-    _scrollingContentView.backgroundColor = [UIColor colorWithRed:(arc4random()%100)/(float)100 green:(arc4random()%100)/(float)100 blue:(arc4random()%100)/(float)100 alpha:0.3];
-    [_headerContainerView addSubview:_scrollingContentView];
+	[self setupHilightImageView];
+    [_headerContainerView addSubview:_hilightImageView];
     
 	//blurImageView
 	NSString* theImageName;
@@ -93,6 +98,36 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+
+-(void)setupHilightImageView
+{
+	//    _hilightImageView = [[UIView alloc]initWithFrame:CGRectMake(0, 44, self.view.frame.size.width, 154)];
+
+	AppDelegate* app = (AppDelegate *)[[UIApplication sharedApplication] delegate];  
+/*
+if ([app.dataSettingMgr.hilightDataArray count]<1) {
+        [self loadSlides];
+        return;
+    }
+ */
+	NSMutableArray* _scrollingArray = [NSMutableArray arrayWithObjects:@"", @"", @"", nil];
+	
+	NSMutableArray* scrItemArray = [[NSMutableArray alloc] init];
+	if( [_scrollingArray count]>0){
+		for (int i = 0; i < [_scrollingArray count] ; i++) {
+          //  NSDictionary* dict = [_scrollingArray objectAtIndex:i];
+			//            NSLog(@"Item %d,%@", i,dict);
+			SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:@"title" image:@"" targetURL:@""  tag:i];
+			NSLog(@"%@",@"create SGFocusImageItem");
+		//	SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:[[dict objectForKey:@"title"] URLDecodedString] image:[[dict objectForKey:@"smallimg"] URLDecodedString] targetURL:[[dict objectForKey:@"link"] URLDecodedString]  tag:i];
+			[scrItemArray addObject:item];
+		}
+	}
+	SGFocusImageFrame *imageFrame = [[SGFocusImageFrame alloc] initWithFrame:CGRectMake(0, 44, self.view.frame.size.width, 154) delegate:self focusImageItemArray:scrItemArray];
+    _hilightImageView = imageFrame;
 }
 
 #pragma mark - Table view refresh
@@ -148,6 +183,42 @@
 }
 
 #pragma mark - UISearchBar delegete.
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar { 
+	NSLog(@"searchBarTextDidBeginEditing");
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {    
+    NSLog(@"The search text is: %@", searchText);
+}
+
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+    NSLog(@"searchBarTextDidEndEditing");
+    [searchBar resignFirstResponder];
+}
+- (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar;	// called when cancel button pressed
+{
+    NSLog(@"searchBarCancelButtonClicked");
+    [searchBar resignFirstResponder];
+}
+
+#pragma mark - SGFocusImageFrameDelegete 
+- (void)foucusImageFrame:(SGFocusImageFrame *)imageFrame didSelectItem:(SGFocusImageItem *)item
+{
+    NSLog(@"%@ ", @"FocusImage tap");
+//    NSString* urlString = [item.targetURL URLDecodedString ];
+    
+//    [self.navigationController pushViewController: bbsViewController animated:YES];
+}
+
+
+#pragma mark - UIScrollView Delegete 
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    float bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
+    if (bottomEdge >= scrollView.contentSize.height) {
+//		[self loadMore];
+    }
+}
 
 
 @end

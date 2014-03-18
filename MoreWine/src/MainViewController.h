@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SGFocusImageFrame.h"
 
-@interface MainViewController : UIViewController <UITableViewDelegate, UITableViewDataSource,UISearchDisplayDelegate>
+@interface MainViewController : UIViewController <UITableViewDelegate, UITableViewDataSource,UISearchDisplayDelegate,SGFocusImageFrameDelegate,UISearchBarDelegate>
 {
     UISearchBar* _searchBar;
     
@@ -16,8 +17,9 @@
     UIImageView* _bkgBlurImageView;
     UIScrollView* _scrollView;
     UITableView* _tableView;
-    UIView* _scrollingContentView;
-
+//    UIView* _scrollingContentView;
+	
+	SGFocusImageFrame* _hilightImageView;
     UIRefreshControl* _refreshControl;
 }
 @end
