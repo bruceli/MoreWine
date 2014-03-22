@@ -14,6 +14,7 @@
 #import "MaUtility.h"
 
 @implementation AppDelegate
+@synthesize dataSettingMgr = _dataSettingMgr;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

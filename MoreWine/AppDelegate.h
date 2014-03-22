@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class MaDataSettingManager;
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
     UITabBarController *_tabBarController;
+	MaDataSettingManager* _dataSettingMgr;
 }
 @property (strong, nonatomic) UIWindow *window;
+@property (nonatomic, retain) MaDataSettingManager *dataSettingMgr;
 
 @end

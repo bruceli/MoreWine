@@ -72,6 +72,11 @@
     return [emailTest evaluateWithObject:checkString];
 }
 
++ (UIColor*) getRandomColor
+{
+	return [UIColor colorWithRed:(arc4random()%100)/(float)100 green:(arc4random()%100)/(float)100 blue:(arc4random()%100)/(float)100 alpha:0.3];
+}
+
 /*
 +(void)showSuccessNotification:(NSString*)message inView:(UIView*)view
 {

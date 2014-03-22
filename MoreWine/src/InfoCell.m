@@ -173,7 +173,7 @@
 -(void)initNameInfoView
 {
     _nameInfoView = [[NameInfoView alloc]initWithFrame:CGRectMake(88, 45, 225, 22)];
-//    _nameInfoView.backgroundColor = [UIColor colorWithRed:(arc4random()%100)/(float)100 green:(arc4random()%100)/(float)100 blue:(arc4random()%100)/(float)100 alpha:0.3];
+    _nameInfoView.backgroundColor = [UIColor clearColor];
     [_nameInfoView setNameLable:@"喵星喵星喵星"];
     [_nameInfoView setDiscriptionLable:@"类地行星，高度文明"];
 

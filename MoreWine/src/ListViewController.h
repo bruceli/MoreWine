@@ -12,6 +12,9 @@
 {
     UITableView* _tableView;
     UISearchBar* _searchBar;
+    
+    UIImageView* _bkgBlurImageView;
+
 }
 
 @end

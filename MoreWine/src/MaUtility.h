@@ -25,6 +25,7 @@
 + (CGFloat) estimateHeightBy:(NSString*)text image:(NSString*)imageURL;
 + (CGFloat) estimateHeightBy:(NSString*)text frame:(CGRect)rect;
  */
++ (UIColor*) getRandomColor;
 
 + (BOOL)hasFourInchDisplay;
 
