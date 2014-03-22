@@ -29,11 +29,11 @@
     self = [super initWithFrame:frame];
     if (self) {
         UIView* topLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 210, 1)];
-        topLineView.backgroundColor = [UIColor whiteColor];
+        topLineView.backgroundColor = [UIColor colorWithRed:250 green:250 blue:250 alpha:0.2];
         [self addSubview:topLineView];
         
         UIView* bottomLineView = [[UIView alloc] initWithFrame:CGRectMake(0, frame.size.height - 1, 210, 1)];
-        bottomLineView.backgroundColor = [UIColor whiteColor];
+        bottomLineView.backgroundColor = [UIColor colorWithRed:250 green:250 blue:250 alpha:0.2];
         [self addSubview:bottomLineView];
     }
     return self;
@@ -54,6 +54,7 @@
     [self addSubview:_name];
     [self addSubview:_nameLable];
 }
+
 -(void)setDiscriptionLable:(NSString*)string
 {
     _discriptionLable = [[UILabel alloc] initWithFrame:CGRectMake(122, 5, self.frame.size.width - 122, self.frame.size.height - 6 )];
@@ -97,7 +98,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         UIView* topLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 1)];
-        topLineView.backgroundColor = [UIColor whiteColor];
+        topLineView.backgroundColor = [UIColor colorWithRed:250 green:250 blue:250 alpha:0.1];
         [self addSubview:topLineView];
         
         [self setupCell];
@@ -108,6 +109,8 @@
 - (void)setCellInfo:(NSDictionary*)dict
 {
     _infoDict = dict;
+    [self setImageTemp];
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -193,6 +196,17 @@
     _detailTextView.Selectable = NO;
 	_detailTextView.textColor = [UIColor whiteColor];
     [self addSubview:_detailTextView];
+}
+
+-(void) setImageTemp
+{
+	int r = arc4random() % 4;
+	NSString *noString = [NSString stringWithFormat:@"%d",r];
+	NSMutableString* imageNameString = [NSMutableString stringWithString:noString];
+	[imageNameString appendString:@"headerImage.png"];
+    //	NSLog(@"%@",imageNameString);
+	UIImage* img = [UIImage imageNamed:imageNameString];
+	_headerImageView.image = img;
 }
 
 
