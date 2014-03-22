@@ -17,9 +17,13 @@
     UIImageView* _bkgBlurImageView;
     UIScrollView* _scrollView;
     UITableView* _tableView;
+<<<<<<< HEAD
 
 	// Pre-load tableView Cells
 	NSMutableArray* _preLoadTableCellArray;
+=======
+//    UIView* _scrollingContentView;
+>>>>>>> FETCH_HEAD
 	
 	SGFocusImageFrame* _hilightImageView;
     UIRefreshControl* _refreshControl;

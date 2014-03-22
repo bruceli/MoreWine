@@ -15,8 +15,11 @@
 //#import "SGFocusImageFrame.h"
 #import "AppDelegate.h"
 #import "MaDataSettingManager.h"
+<<<<<<< HEAD
 
 #define TableView_HeaderView_Height 154
+=======
+>>>>>>> FETCH_HEAD
 
 @interface MainViewController ()
 
@@ -41,10 +44,32 @@
     // ContainerView
     _headerContainerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 153)];
 
+<<<<<<< HEAD
     // MaScrolling Content
 	[self setupHilightImageView];
     [_headerContainerView addSubview:_hilightImageView];
 
+=======
+    // height in 43 points
+    // UISearchBar Init
+    // _searchDisplayController for reference http://cocoabob.net/?p=67
+    _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    self.searchDisplayController.searchResultsDelegate = self;
+    self.searchDisplayController.searchResultsDataSource = self;
+    self.searchDisplayController.delegate = self;
+	_searchBar.searchBarStyle = UISearchBarStyleMinimal;
+    _searchBar.showsCancelButton = true;
+	_searchBar.translucent = YES;
+	_searchBar.barStyle = UIBarStyleBlack;
+	_searchBar.delegate = self;
+	_searchBar.tintColor = [UIColor whiteColor];
+    [_headerContainerView addSubview:_searchBar];
+    // MaScrolling Content
+    
+	[self setupHilightImageView];
+    [_headerContainerView addSubview:_hilightImageView];
+    
+>>>>>>> FETCH_HEAD
 	//blurImageView
 	NSString* theImageName;
 	if ([MaUtility hasFourInchDisplay])
@@ -103,7 +128,11 @@
 
 -(void)setupHilightImageView
 {
+<<<<<<< HEAD
 	//    _hilightImageView = [[UIView alloc]initWithFrame:CGRectMake(0, 44, self.view.frame.size.width, TableView_HeaderView_Height)];
+=======
+	//    _hilightImageView = [[UIView alloc]initWithFrame:CGRectMake(0, 44, self.view.frame.size.width, 154)];
+>>>>>>> FETCH_HEAD
 
 	AppDelegate* app = (AppDelegate *)[[UIApplication sharedApplication] delegate];  
 /*
@@ -125,7 +154,11 @@ if ([app.dataSettingMgr.hilightDataArray count]<1) {
 			[scrItemArray addObject:item];
 		}
 	}
+<<<<<<< HEAD
 	SGFocusImageFrame *imageFrame = [[SGFocusImageFrame alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, TableView_HeaderView_Height) delegate:self focusImageItemArray:scrItemArray];
+=======
+	SGFocusImageFrame *imageFrame = [[SGFocusImageFrame alloc] initWithFrame:CGRectMake(0, 44, self.view.frame.size.width, 154) delegate:self focusImageItemArray:scrItemArray];
+>>>>>>> FETCH_HEAD
     _hilightImageView = imageFrame;
 }
 
@@ -192,9 +225,12 @@ if ([app.dataSettingMgr.hilightDataArray count]<1) {
 
 #pragma mark - UISearchBar delegete.
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar { 
+<<<<<<< HEAD
 	[self scrollTableViewIfNeeded];
 //	- (void)setShowsCancelButton:(BOOL)showsCancelButton animated:(BOOL)animated NS_AVAILABLE_IOS(3_0);
 	[_searchBar setShowsCancelButton:YES animated:YES];
+=======
+>>>>>>> FETCH_HEAD
 	NSLog(@"searchBarTextDidBeginEditing");
 }
 
@@ -209,6 +245,7 @@ if ([app.dataSettingMgr.hilightDataArray count]<1) {
 - (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar;	// called when cancel button pressed
 {
     NSLog(@"searchBarCancelButtonClicked");
+<<<<<<< HEAD
 	[_searchBar setShowsCancelButton:NO animated:YES];
     [searchBar resignFirstResponder];
 }
@@ -273,6 +310,11 @@ if ([app.dataSettingMgr.hilightDataArray count]<1) {
 	}
 }
 
+=======
+    [searchBar resignFirstResponder];
+}
+
+>>>>>>> FETCH_HEAD
 #pragma mark - SGFocusImageFrameDelegete 
 - (void)foucusImageFrame:(SGFocusImageFrame *)imageFrame didSelectItem:(SGFocusImageItem *)item
 {
@@ -282,6 +324,18 @@ if ([app.dataSettingMgr.hilightDataArray count]<1) {
 //    [self.navigationController pushViewController: bbsViewController animated:YES];
 }
 
+<<<<<<< HEAD
+=======
+
+#pragma mark - UIScrollView Delegete 
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    float bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
+    if (bottomEdge >= scrollView.contentSize.height) {
+//		[self loadMore];
+    }
+}
+>>>>>>> FETCH_HEAD
 
 
 @end
