@@ -63,7 +63,6 @@
 		59A41F2818D039F200EA8B4C /* barIcon_User@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 59A41F1418D039F200EA8B4C /* barIcon_User@2x.png */; };
 		59A41F2918D039F200EA8B4C /* barIcon_UserHiLight.png in Resources */ = {isa = PBXBuildFile; fileRef = 59A41F1518D039F200EA8B4C /* barIcon_UserHiLight.png */; };
 		59A41F2A18D039F200EA8B4C /* barIcon_UserHiLight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 59A41F1618D039F200EA8B4C /* barIcon_UserHiLight@2x.png */; };
-		59A41F3018D03A2A00EA8B4C /* backgroundImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 59A41F2D18D03A2A00EA8B4C /* backgroundImage.png */; };
 		59A41F3118D03A2A00EA8B4C /* backgroundImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 59A41F2E18D03A2A00EA8B4C /* backgroundImage@2x.png */; };
 		59A41F3518D03ABC00EA8B4C /* MaUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 59A41F3418D03ABC00EA8B4C /* MaUtility.m */; };
 		59A41F3718D03D5E00EA8B4C /* backgroundImage_586h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 59A41F3618D03D5E00EA8B4C /* backgroundImage_586h@2x.png */; };
@@ -157,7 +156,6 @@
 		59A41F1418D039F200EA8B4C /* barIcon_User@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "barIcon_User@2x.png"; path = "resources/iconImage/barIcon_User@2x.png"; sourceTree = "<group>"; };
 		59A41F1518D039F200EA8B4C /* barIcon_UserHiLight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = barIcon_UserHiLight.png; path = resources/iconImage/barIcon_UserHiLight.png; sourceTree = "<group>"; };
 		59A41F1618D039F200EA8B4C /* barIcon_UserHiLight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "barIcon_UserHiLight@2x.png"; path = "resources/iconImage/barIcon_UserHiLight@2x.png"; sourceTree = "<group>"; };
-		59A41F2D18D03A2A00EA8B4C /* backgroundImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = backgroundImage.png; path = resources/backgroundImage/backgroundImage.png; sourceTree = "<group>"; };
 		59A41F2E18D03A2A00EA8B4C /* backgroundImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "backgroundImage@2x.png"; path = "resources/backgroundImage/backgroundImage@2x.png"; sourceTree = "<group>"; };
 		59A41F3318D03ABC00EA8B4C /* MaUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MaUtility.h; path = MoreWine/src/MaUtility.h; sourceTree = "<group>"; };
 		59A41F3418D03ABC00EA8B4C /* MaUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MaUtility.m; path = MoreWine/src/MaUtility.m; sourceTree = "<group>"; };
@@ -349,7 +347,6 @@
 			isa = PBXGroup;
 			children = (
 				59A41F3618D03D5E00EA8B4C /* backgroundImage_586h@2x.png */,
-				59A41F2D18D03A2A00EA8B4C /* backgroundImage.png */,
 				59A41F2E18D03A2A00EA8B4C /* backgroundImage@2x.png */,
 			);
 			name = backgroundImage;
@@ -457,7 +454,7 @@
 		261BE05918BC0FDA00DEA46A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = MagicApp;
 				TargetAttributes = {
 					261BE06018BC0FDA00DEA46A = {
@@ -494,7 +491,6 @@
 			files = (
 				59A41F2518D039F200EA8B4C /* barIcon_SearchHiLight.png in Resources */,
 				59A41F1718D039F200EA8B4C /* barIcon_Cam.png in Resources */,
-				59A41F3018D03A2A00EA8B4C /* backgroundImage.png in Resources */,
 				59A41F2618D039F200EA8B4C /* barIcon_SearchHiLight@2x.png in Resources */,
 				5905D70E18D1A5FF00FBA71F /* barType_coffee@2x.png in Resources */,
 				59A41F2218D039F200EA8B4C /* barIcon_RecommendHiLight@2x.png in Resources */,
@@ -653,7 +649,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -692,7 +687,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -758,7 +752,6 @@
 		261BE09118BC0FDA00DEA46A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MoreWine.app/MoreWine";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -781,7 +774,6 @@
 		261BE09218BC0FDA00DEA46A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MoreWine.app/MoreWine";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",

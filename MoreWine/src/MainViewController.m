@@ -53,10 +53,13 @@
 		theImageName = @"backgroundImage.png";
     
 	UIImage* image = [UIImage imageNamed:theImageName];
+    CGRect blurFrame =self.view.frame;
+    NSLog(@"mainView blur frame is %@", NSStringFromCGRect(blurFrame));
+    
 	_bkgBlurImageView = [[UIImageView alloc] initWithFrame:self.view.frame];
     _bkgBlurImageView.contentMode = UIViewContentModeScaleAspectFill;
     _bkgBlurImageView.alpha = 1;
-    [_bkgBlurImageView setImageToBlur:image blurRadius:10 completionBlock:nil];
+    [_bkgBlurImageView setImageToBlur:image blurRadius:1 completionBlock:nil];
     [self.view addSubview:_bkgBlurImageView];
 	
 	// height in 43 points

@@ -8,6 +8,7 @@
 
 #import "EzInfoCell.h"
 #import "StyleIndicatorView.h"
+#import "MaUtility.h"
 
 
 @implementation EzInfoCell
@@ -65,15 +66,15 @@
 -(void)initStyleIndicator
 {
 //    -(StyleIndicatorView*)initStyleIndicatorViewWithFrame:(CGRect)inFrame ByDict:(NSDictionary*)dict
-    CGRect frame = CGRectMake(190, 24, 95, 13);
+    CGRect frame = CGRectMake(190, 24, 70, 13);
     _indicatorView = [[StyleIndicatorView alloc] initStyleIndicatorViewWithFrame:frame ByDict:nil];
-    
+//    _indicatorView.backgroundColor = [MaUtility getRandomColor];
     [self addSubview:_indicatorView];
 }
 
 -(void)initDistanceLable
 {
-    _distanceLable = [[UILabel alloc] initWithFrame:CGRectMake(275, 23, 44, 14)];
+    _distanceLable = [[UILabel alloc] initWithFrame:CGRectMake(265, 23, 44, 14)];
     _distanceLable.backgroundColor = [UIColor clearColor];
     _distanceLable.font = [UIFont systemFontOfSize:8.0f];
     _distanceLable.text = @"11024.0Km";

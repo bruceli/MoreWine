@@ -14,6 +14,7 @@
     UISearchBar* _searchBar;
     
     UIImageView* _bkgBlurImageView;
+    UIRefreshControl* _refreshControl;
 
 }
 
