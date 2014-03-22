@@ -15,11 +15,8 @@
 //#import "SGFocusImageFrame.h"
 #import "AppDelegate.h"
 #import "MaDataSettingManager.h"
-<<<<<<< HEAD
 
 #define TableView_HeaderView_Height 154
-=======
->>>>>>> FETCH_HEAD
 
 @interface MainViewController ()
 
@@ -39,44 +36,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//	[self preLoadTableViewCells];
-
+    //	[self preLoadTableViewCells];
+    
     // ContainerView
     _headerContainerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 153)];
-
-<<<<<<< HEAD
+    
     // MaScrolling Content
 	[self setupHilightImageView];
     [_headerContainerView addSubview:_hilightImageView];
-
-=======
-    // height in 43 points
-    // UISearchBar Init
-    // _searchDisplayController for reference http://cocoabob.net/?p=67
-    _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
-    self.searchDisplayController.searchResultsDelegate = self;
-    self.searchDisplayController.searchResultsDataSource = self;
-    self.searchDisplayController.delegate = self;
-	_searchBar.searchBarStyle = UISearchBarStyleMinimal;
-    _searchBar.showsCancelButton = true;
-	_searchBar.translucent = YES;
-	_searchBar.barStyle = UIBarStyleBlack;
-	_searchBar.delegate = self;
-	_searchBar.tintColor = [UIColor whiteColor];
-    [_headerContainerView addSubview:_searchBar];
-    // MaScrolling Content
     
-	[self setupHilightImageView];
-    [_headerContainerView addSubview:_hilightImageView];
-    
->>>>>>> FETCH_HEAD
 	//blurImageView
 	NSString* theImageName;
 	if ([MaUtility hasFourInchDisplay])
 		theImageName = @"backgroundImage_586h.png";
 	else
 		theImageName = @"backgroundImage.png";
-
+    
 	UIImage* image = [UIImage imageNamed:theImageName];
 	_bkgBlurImageView = [[UIImageView alloc] initWithFrame:self.view.frame];
     _bkgBlurImageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -97,7 +72,7 @@
 	_searchBar.delegate = self;
 	_searchBar.tintColor = [UIColor whiteColor];
     [self.view addSubview:_searchBar];
-
+    
     // UITableView init
 	NSLog(@"self.view frame is %@", NSStringFromCGRect(self.view.frame) );
     CGRect frame = CGRectMake(0, 64+44, self.view.frame.size.width, self.view.frame.size.height - 113-44); // navBar&tabBar height
@@ -109,12 +84,12 @@
     _tableView.separatorColor = [UIColor clearColor];
 	_tableView.backgroundColor = [UIColor clearColor];
     _tableView.tableHeaderView = _headerContainerView;
-
+    
     //    _tableView refresh controler
     _refreshControl = [[UIRefreshControl alloc] init];
     [_refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
     [_tableView addSubview:_refreshControl];
-
+    
     [self.view addSubview:_tableView];
 }
 
@@ -128,37 +103,29 @@
 
 -(void)setupHilightImageView
 {
-<<<<<<< HEAD
 	//    _hilightImageView = [[UIView alloc]initWithFrame:CGRectMake(0, 44, self.view.frame.size.width, TableView_HeaderView_Height)];
-=======
-	//    _hilightImageView = [[UIView alloc]initWithFrame:CGRectMake(0, 44, self.view.frame.size.width, 154)];
->>>>>>> FETCH_HEAD
-
-	AppDelegate* app = (AppDelegate *)[[UIApplication sharedApplication] delegate];  
-/*
-if ([app.dataSettingMgr.hilightDataArray count]<1) {
-        [self loadSlides];
-        return;
-    }
- */
+    
+	AppDelegate* app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    /*
+     if ([app.dataSettingMgr.hilightDataArray count]<1) {
+     [self loadSlides];
+     return;
+     }
+     */
 	NSMutableArray* _scrollingArray = [NSMutableArray arrayWithObjects:@"", @"", @"", nil];
 	
 	NSMutableArray* scrItemArray = [[NSMutableArray alloc] init];
 	if( [_scrollingArray count]>0){
 		for (int i = 0; i < [_scrollingArray count] ; i++) {
-          //  NSDictionary* dict = [_scrollingArray objectAtIndex:i];
+            //  NSDictionary* dict = [_scrollingArray objectAtIndex:i];
 			//            NSLog(@"Item %d,%@", i,dict);
 			SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:@"title" image:@"" targetURL:@""  tag:i];
 			NSLog(@"%@",@"create SGFocusImageItem");
-		//	SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:[[dict objectForKey:@"title"] URLDecodedString] image:[[dict objectForKey:@"smallimg"] URLDecodedString] targetURL:[[dict objectForKey:@"link"] URLDecodedString]  tag:i];
+            //	SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:[[dict objectForKey:@"title"] URLDecodedString] image:[[dict objectForKey:@"smallimg"] URLDecodedString] targetURL:[[dict objectForKey:@"link"] URLDecodedString]  tag:i];
 			[scrItemArray addObject:item];
 		}
 	}
-<<<<<<< HEAD
 	SGFocusImageFrame *imageFrame = [[SGFocusImageFrame alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, TableView_HeaderView_Height) delegate:self focusImageItemArray:scrItemArray];
-=======
-	SGFocusImageFrame *imageFrame = [[SGFocusImageFrame alloc] initWithFrame:CGRectMake(0, 44, self.view.frame.size.width, 154) delegate:self focusImageItemArray:scrItemArray];
->>>>>>> FETCH_HEAD
     _hilightImageView = imageFrame;
 }
 
@@ -171,7 +138,7 @@ if ([app.dataSettingMgr.hilightDataArray count]<1) {
     
     NSMutableAttributedString * string = [[NSMutableAttributedString alloc] initWithString:@"喵星Refresh"];
     [string addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0,5)];
-
+    
     [refreshControl setAttributedTitle:string];
     
     NSLog(@"%@",@"SearchControl refresh");
@@ -188,22 +155,22 @@ if ([app.dataSettingMgr.hilightDataArray count]<1) {
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"EzCell";	
+    static NSString *CellIdentifier = @"EzCell";
 	// return pre-loaded cells
-/*	if (indexPath.row > 4 && indexPath.row < 7) {
-		EzInfoCell *cell = [_preLoadTableCellArray objectAtIndex:indexPath.row];
-		if (cell != Nil) {
-			NSLog(@"Set pre-load cells %d", indexPath.row);
-			return cell;
-		}
-	}
-*/	
+    /*	if (indexPath.row > 4 && indexPath.row < 7) {
+     EzInfoCell *cell = [_preLoadTableCellArray objectAtIndex:indexPath.row];
+     if (cell != Nil) {
+     NSLog(@"Set pre-load cells %d", indexPath.row);
+     return cell;
+     }
+     }
+     */
     EzInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//	NSLog(@"Cell for index %d", indexPath.row);
+    //	NSLog(@"Cell for index %d", indexPath.row);
     if (cell == nil) {
-
+        
         cell = [[EzInfoCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                      reuseIdentifier:CellIdentifier];
+                                 reuseIdentifier:CellIdentifier];
         cell.backgroundColor = [UIColor clearColor];
         cell.detailTextLabel.numberOfLines = 0;
         cell.accessoryType = UITableViewCellAccessoryNone;
@@ -224,17 +191,14 @@ if ([app.dataSettingMgr.hilightDataArray count]<1) {
 }
 
 #pragma mark - UISearchBar delegete.
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar { 
-<<<<<<< HEAD
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
 	[self scrollTableViewIfNeeded];
-//	- (void)setShowsCancelButton:(BOOL)showsCancelButton animated:(BOOL)animated NS_AVAILABLE_IOS(3_0);
+    //	- (void)setShowsCancelButton:(BOOL)showsCancelButton animated:(BOOL)animated NS_AVAILABLE_IOS(3_0);
 	[_searchBar setShowsCancelButton:YES animated:YES];
-=======
->>>>>>> FETCH_HEAD
 	NSLog(@"searchBarTextDidBeginEditing");
 }
 
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {    
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     NSLog(@"The search text is: %@", searchText);
 }
 
@@ -245,7 +209,6 @@ if ([app.dataSettingMgr.hilightDataArray count]<1) {
 - (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar;	// called when cancel button pressed
 {
     NSLog(@"searchBarCancelButtonClicked");
-<<<<<<< HEAD
 	[_searchBar setShowsCancelButton:NO animated:YES];
     [searchBar resignFirstResponder];
 }
@@ -253,12 +216,12 @@ if ([app.dataSettingMgr.hilightDataArray count]<1) {
 #pragma mark  Pre-load tableView cells
 -(void)preLoadTableViewCells
 {
-	// pre-load 3-7 Cell 
+	// pre-load 3-7 Cell
 	// Reload load Cells if dataSource changed
 	// return nil if cell does not exist
-//	NSArray* dataArray = [];
-//	[NSThread detachNewThreadSelector:@selector(preLoadCellWorkThread:) toTarget:self withObject:nil];
-//	performSelectorInBackground:(SEL)aSelector withObject:(id)arg 
+    //	NSArray* dataArray = [];
+    //	[NSThread detachNewThreadSelector:@selector(preLoadCellWorkThread:) toTarget:self withObject:nil];
+    //	performSelectorInBackground:(SEL)aSelector withObject:(id)arg
 	NSThread* workerThread = [[NSThread alloc] initWithTarget:self selector:@selector(preLoadCellWorkThread:) object:nil];
 	[workerThread start];
 }
@@ -268,7 +231,7 @@ if ([app.dataSettingMgr.hilightDataArray count]<1) {
 	_preLoadTableCellArray = [[NSMutableArray alloc] initWithCapacity:7];
 	
 	for (NSInteger i = 0; i<7; i++) {
-		if (i<4) 
+		if (i<4)
 		{
 			NSLog(@"Pre-load cells skip ... %d",i);
 			[_preLoadTableCellArray addObject: [NSNull null]];
@@ -290,16 +253,16 @@ if ([app.dataSettingMgr.hilightDataArray count]<1) {
 }
 
 /*
--(void)revertTableViewScrollLocation
-{
-
-}
-
--(void)saveTableViewCurrentScrollLocation
-{
-	_tableViewScrollLocation = _tableView.contentOffset.y;
-}
-*/
+ -(void)revertTableViewScrollLocation
+ {
+ 
+ }
+ 
+ -(void)saveTableViewCurrentScrollLocation
+ {
+ _tableViewScrollLocation = _tableView.contentOffset.y;
+ }
+ */
 
 -(void)scrollTableViewIfNeeded
 {
@@ -310,32 +273,15 @@ if ([app.dataSettingMgr.hilightDataArray count]<1) {
 	}
 }
 
-=======
-    [searchBar resignFirstResponder];
-}
-
->>>>>>> FETCH_HEAD
-#pragma mark - SGFocusImageFrameDelegete 
+#pragma mark - SGFocusImageFrameDelegete
 - (void)foucusImageFrame:(SGFocusImageFrame *)imageFrame didSelectItem:(SGFocusImageItem *)item
 {
     NSLog(@"%@ ", @"FocusImage tap");
-//    NSString* urlString = [item.targetURL URLDecodedString ];
+    //    NSString* urlString = [item.targetURL URLDecodedString ];
     
-//    [self.navigationController pushViewController: bbsViewController animated:YES];
+    //    [self.navigationController pushViewController: bbsViewController animated:YES];
 }
 
-<<<<<<< HEAD
-=======
-
-#pragma mark - UIScrollView Delegete 
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    float bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
-    if (bottomEdge >= scrollView.contentSize.height) {
-//		[self loadMore];
-    }
-}
->>>>>>> FETCH_HEAD
 
 
 @end
