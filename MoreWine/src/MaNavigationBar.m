@@ -8,6 +8,7 @@
 
 #import "MaNavigationBar.h"
 #import <QuartzCore/QuartzCore.h>
+//#import "BTBlurredView.h"
 
 @interface MaNavigationBar ()
 @property (nonatomic, strong) CAGradientLayer *gradientLayer;

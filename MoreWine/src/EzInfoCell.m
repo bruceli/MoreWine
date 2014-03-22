@@ -16,7 +16,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         UIView* topLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 1)];
-        topLineView.backgroundColor = [UIColor whiteColor];
+        topLineView.backgroundColor = [UIColor colorWithRed:250 green:250 blue:250 alpha:0.1];
         [self addSubview:topLineView];
 
         [self setupCell];
@@ -49,6 +49,7 @@
     [imageLayer setBorderWidth:0];
     [imageLayer setMasksToBounds:YES];
     [self addSubview:_headerImageView];
+	
 }
 
 -(void)initNameLable
@@ -57,7 +58,7 @@
     _nameLable.backgroundColor = [UIColor clearColor];
     _nameLable.font = [UIFont systemFontOfSize:14.0f];
     _nameLable.text = @"MORE WINE";
-    
+    _nameLable.textColor = [UIColor whiteColor];
     [self addSubview:_nameLable];
 }
 
@@ -77,13 +78,24 @@
     _distanceLable.font = [UIFont systemFontOfSize:8.0f];
     _distanceLable.text = @"11024.0Km";
     _distanceLable.textAlignment = NSTextAlignmentRight;
-    
+    _distanceLable.textColor = [UIColor whiteColor];
     [self addSubview:_distanceLable];
 }
 
 - (void)setCellInfo:(NSDictionary*)dict
 {
-    
+	[self setImageTemp];
+}
+
+-(void) setImageTemp
+{
+	int r = arc4random() % 4;
+	NSString *noString = [NSString stringWithFormat:@"%d",r];
+	NSMutableString* imageNameString = [NSMutableString stringWithString:noString];
+	[imageNameString appendString:@"headerImage.png"];
+//	NSLog(@"%@",imageNameString);
+	UIImage* img = [UIImage imageNamed:imageNameString];
+	_headerImageView.image = img;
 }
 
 @end

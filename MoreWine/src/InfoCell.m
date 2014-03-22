@@ -29,11 +29,11 @@
     self = [super initWithFrame:frame];
     if (self) {
         UIView* topLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 210, 1)];
-        topLineView.backgroundColor = [UIColor whiteColor];
+        topLineView.backgroundColor = [UIColor colorWithRed:250 green:250 blue:250 alpha:0.2];
         [self addSubview:topLineView];
         
         UIView* bottomLineView = [[UIView alloc] initWithFrame:CGRectMake(0, frame.size.height - 1, 210, 1)];
-        bottomLineView.backgroundColor = [UIColor whiteColor];
+        bottomLineView.backgroundColor = [UIColor colorWithRed:250 green:250 blue:250 alpha:0.2];
         [self addSubview:bottomLineView];
     }
     return self;
@@ -44,25 +44,24 @@
     _name = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, 35, self.frame.size.height-6)];
     _name.font = [UIFont systemFontOfSize:8.0f];
     _name.text = @"推荐名人:";
-//    _name.backgroundColor = [UIColor colorWithRed:(arc4random()%100)/(float)100 green:(arc4random()%100)/(float)100 blue:(arc4random()%100)/(float)100 alpha:0.3];
-
+	_name.textColor = [UIColor whiteColor];
     
     _nameLable = [[UILabel alloc] initWithFrame:CGRectMake(37, 0, 84, self.frame.size.height)];
     _nameLable.font = [UIFont systemFontOfSize:14.0f];
     _nameLable.text = string;
-//    _nameLable.backgroundColor = [UIColor colorWithRed:(arc4random()%100)/(float)100 green:(arc4random()%100)/(float)100 blue:(arc4random()%100)/(float)100 alpha:0.3];
+	_nameLable.textColor = [UIColor whiteColor];
 
     [self addSubview:_name];
     [self addSubview:_nameLable];
 }
+
 -(void)setDiscriptionLable:(NSString*)string
 {
     _discriptionLable = [[UILabel alloc] initWithFrame:CGRectMake(122, 5, self.frame.size.width - 122, self.frame.size.height - 6 )];
     _discriptionLable.font = [UIFont systemFontOfSize:8.0f];
     _discriptionLable.text = string;
     _discriptionLable.textAlignment = NSTextAlignmentRight;
-//    _discriptionLable.backgroundColor = [UIColor colorWithRed:(arc4random()%100)/(float)100 green:(arc4random()%100)/(float)100 blue:(arc4random()%100)/(float)100 alpha:0.3];
-    
+	_discriptionLable.textColor = [UIColor whiteColor];
     [self addSubview:_discriptionLable];
 }
 
@@ -99,7 +98,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         UIView* topLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 1)];
-        topLineView.backgroundColor = [UIColor whiteColor];
+        topLineView.backgroundColor = [UIColor colorWithRed:250 green:250 blue:250 alpha:0.1];
         [self addSubview:topLineView];
         
         [self setupCell];
@@ -110,6 +109,8 @@
 - (void)setCellInfo:(NSDictionary*)dict
 {
     _infoDict = dict;
+    [self setImageTemp];
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -147,7 +148,7 @@
     _nameLable.backgroundColor = [UIColor clearColor];
     _nameLable.font = [UIFont systemFontOfSize:14.0f];
     _nameLable.text = @"MORE WINE";
-    
+    _nameLable.textColor = [UIColor whiteColor];
     [self addSubview:_nameLable];
 }
 
@@ -167,7 +168,7 @@
     _distanceLable.font = [UIFont systemFontOfSize:8.0f];
     _distanceLable.text = @"11024.0Km";
     _distanceLable.textAlignment = NSTextAlignmentRight;
-    
+    _distanceLable.textColor = [UIColor whiteColor];
     [self addSubview:_distanceLable];
 }
 
@@ -175,9 +176,10 @@
 -(void)initNameInfoView
 {
     _nameInfoView = [[NameInfoView alloc]initWithFrame:CGRectMake(88, 45, 225, 22)];
-//    _nameInfoView.backgroundColor = [UIColor colorWithRed:(arc4random()%100)/(float)100 green:(arc4random()%100)/(float)100 blue:(arc4random()%100)/(float)100 alpha:0.3];
+    _nameInfoView.backgroundColor = [UIColor clearColor];
     [_nameInfoView setNameLable:@"喵星喵星喵星"];
     [_nameInfoView setDiscriptionLable:@"类地行星，高度文明"];
+
     [self addSubview:_nameInfoView];
 
 }
@@ -192,7 +194,19 @@
     _detailTextView.scrollEnabled = NO;
     _detailTextView.editable = NO;
     _detailTextView.Selectable = NO;
+	_detailTextView.textColor = [UIColor whiteColor];
     [self addSubview:_detailTextView];
+}
+
+-(void) setImageTemp
+{
+	int r = arc4random() % 4;
+	NSString *noString = [NSString stringWithFormat:@"%d",r];
+	NSMutableString* imageNameString = [NSMutableString stringWithString:noString];
+	[imageNameString appendString:@"headerImage.png"];
+    //	NSLog(@"%@",imageNameString);
+	UIImage* img = [UIImage imageNamed:imageNameString];
+	_headerImageView.image = img;
 }
 
 

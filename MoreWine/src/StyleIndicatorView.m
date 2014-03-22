@@ -26,27 +26,30 @@
 
     CGRect frame = CGRectMake(0, 0, 13, 13);
     UIImageView* imgView1 = [[UIImageView alloc] initWithFrame:frame];
-    imgView1.backgroundColor = [UIColor colorWithRed:(arc4random()%100)/(float)100 green:(arc4random()%100)/(float)100 blue:(arc4random()%100)/(float)100 alpha:0.3];
+    imgView1.backgroundColor = [UIColor clearColor];
+	imgView1.image = [UIImage imageNamed:@"barType_coffee.png"];
     [self addSubview:imgView1];
     
     frame = CGRectMake(frame.origin.x+17, frame.origin.y, 13, 13);
     UIImageView* imgView2 = [[UIImageView alloc] initWithFrame:frame];
-    imgView2.backgroundColor = [UIColor colorWithRed:(arc4random()%100)/(float)100 green:(arc4random()%100)/(float)100 blue:(arc4random()%100)/(float)100 alpha:0.3];
+    imgView2.backgroundColor = [UIColor clearColor];
+	imgView2.image = [UIImage imageNamed:@"barType_headphones.png"];
     [self addSubview:imgView2];
 
     frame = CGRectMake(frame.origin.x+17, frame.origin.y, 13, 13);
     UIImageView* imgView3 = [[UIImageView alloc] initWithFrame:frame];
-    imgView3.backgroundColor = [UIColor colorWithRed:(arc4random()%100)/(float)100 green:(arc4random()%100)/(float)100 blue:(arc4random()%100)/(float)100 alpha:0.3];
+    imgView3.backgroundColor = [UIColor clearColor];
+	imgView3.image = [UIImage imageNamed:@"barType_music.png"];
     [self addSubview:imgView3];
 
     frame = CGRectMake(frame.origin.x+17, frame.origin.y, 13, 13);
     UIImageView* imgView4 = [[UIImageView alloc] initWithFrame:frame];
-    imgView4.backgroundColor = [UIColor colorWithRed:(arc4random()%100)/(float)100 green:(arc4random()%100)/(float)100 blue:(arc4random()%100)/(float)100 alpha:0.3];
+    imgView4.backgroundColor = [UIColor clearColor];
     [self addSubview:imgView4];
 
     frame = CGRectMake(frame.origin.x+17, frame.origin.y, 13, 13);
     UIImageView* imgView5 = [[UIImageView alloc] initWithFrame:frame];
-    imgView5.backgroundColor = [UIColor colorWithRed:(arc4random()%100)/(float)100 green:(arc4random()%100)/(float)100 blue:(arc4random()%100)/(float)100 alpha:0.3];
+    imgView5.backgroundColor = [UIColor clearColor];
     [self addSubview:imgView5];
 
     

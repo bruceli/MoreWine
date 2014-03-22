@@ -13,7 +13,10 @@
 
 
 #import <UIKit/UIKit.h>
-
+@class BTBlurredView;
 @interface MaNavigationBar : UINavigationBar
+{
+	BTBlurredView* _blurView;
+}
 - (void)setBarTintGradientColors:(NSArray *)barTintGradientColors;
 @end
