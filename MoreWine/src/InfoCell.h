@@ -24,7 +24,8 @@
     UILabel* _distanceLable;
     NameInfoView* _nameInfoView;
 //    DetailView* _detailView;
-    UITextView* _detailTextView;
+    UITextField* _detailTextView;
+//    UITextField* _
     NSDictionary* _infoDict;
 }
 - (void)setCellInfo:(NSDictionary*)dict;

@@ -42,7 +42,7 @@
     ListViewController* recomView = [[ListViewController alloc] init];
     UINavigationController *recomNavController = [[UINavigationController alloc] initWithNavigationBarClass:[MaNavigationBar class] toolbarClass:nil];
     [[MaNavigationBar appearance] setBarTintGradientColors:colors];
-    [[recomNavController navigationBar] setTranslucent:NO];
+    [[recomNavController navigationBar] setTranslucent:YES];
     [recomNavController setViewControllers:@[recomView]];
     
     // init Search View

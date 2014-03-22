@@ -29,8 +29,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    //	[self preLoadTableViewCells];
     
+    // ContainerView
+//    _headerContainerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 153)];
+    
+    // MaScrolling Content
+//	[self setupHilightImageView];
+//    [_headerContainerView addSubview:_hilightImageView];
     
 	//blurImageView
 	NSString* theImageName;
@@ -40,41 +46,46 @@
 		theImageName = @"backgroundImage.png";
     
 	UIImage* image = [UIImage imageNamed:theImageName];
+    CGRect blurFrame =self.view.frame;
+    NSLog(@"mainView blur frame is %@", NSStringFromCGRect(blurFrame));
+    
 	_bkgBlurImageView = [[UIImageView alloc] initWithFrame:self.view.frame];
     _bkgBlurImageView.contentMode = UIViewContentModeScaleAspectFill;
     _bkgBlurImageView.alpha = 1;
-    [_bkgBlurImageView setImageToBlur:image blurRadius:10 completionBlock:nil];
-    [self.view addSubview:_bkgBlurImageView];    
-
+    [_bkgBlurImageView setImageToBlur:image blurRadius:1 completionBlock:nil];
+    [self.view addSubview:_bkgBlurImageView];
+	
+	// height in 43 points
     // UISearchBar Init
     // _searchDisplayController for reference http://cocoabob.net/?p=67
-    _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 64, 320, 44)];
     self.searchDisplayController.searchResultsDelegate = self;
     self.searchDisplayController.searchResultsDataSource = self;
     self.searchDisplayController.delegate = self;
-    _searchBar.searchBarStyle = UISearchBarStyleMinimal;
+	_searchBar.searchBarStyle = UISearchBarStyleMinimal;
 	_searchBar.translucent = YES;
 	_searchBar.barStyle = UIBarStyleBlack;
 	_searchBar.delegate = self;
 	_searchBar.tintColor = [UIColor whiteColor];
-
     [self.view addSubview:_searchBar];
-    /* when tap searchBar,
-     1, hide statusBar/NavBar,
-     2, show Cancel botton,
-     3, show catgory lables,
-     */
-
-//    CGRect frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height-64); // navBar height
-    //frame	CGRect	origin=(x=0, y=0) size=(width=320, height=454) //run time
-    CGRect frame = CGRectMake(self.view.frame.origin.x, 44, self.view.frame.size.width, self.view.frame.size.height-64); // navBar height
-  
+    
+    // UITableView init
+	NSLog(@"self.view frame is %@", NSStringFromCGRect(self.view.frame) );
+    CGRect frame = CGRectMake(0, 64+44, self.view.frame.size.width, self.view.frame.size.height - 113-44); // navBar&tabBar height
+	NSLog(@"_tableView frame is %@", NSStringFromCGRect(frame) );
     _tableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.rowHeight = 110.0f;
     _tableView.separatorColor = [UIColor clearColor];
-    _tableView.backgroundColor = [UIColor clearColor];
+	_tableView.backgroundColor = [UIColor clearColor];
+//    _tableView.tableHeaderView = _headerContainerView;
+    
+    //    _tableView refresh controler
+    _refreshControl = [[UIRefreshControl alloc] init];
+    [_refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
+    [_tableView addSubview:_refreshControl];
+    
     [self.view addSubview:_tableView];
 }
 
@@ -83,6 +94,23 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - Table view refresh
+//http://stackoverflow.com/questions/16501781/set-color-of-uiactivityindicatorview-of-a-uirefreshcontrol
+// if need change indicator color...
+- (void)refresh:(UIRefreshControl *)refreshControl
+{
+    [refreshControl beginRefreshing];
+    
+    NSMutableAttributedString * string = [[NSMutableAttributedString alloc] initWithString:@"喵星Refresh"];
+    [string addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0,5)];
+    
+    [refreshControl setAttributedTitle:string];
+    
+    NSLog(@"%@",@"SearchControl refresh");
+    [refreshControl endRefreshing];
+}
+
 
 
 #pragma mark - Table view data source

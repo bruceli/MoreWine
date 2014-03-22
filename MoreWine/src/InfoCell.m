@@ -9,6 +9,7 @@
 #import "InfoCell.h"
 #import <QuartzCore/QuartzCore.h>
 #import "StyleIndicatorView.h"
+#import "MaUtility.h"
 
 //===================================
 #pragma mark - InfoCell Elements == NameInfoView
@@ -28,11 +29,11 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        UIView* topLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 210, 1)];
+        UIView* topLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 220, 1)];
         topLineView.backgroundColor = [UIColor colorWithRed:250 green:250 blue:250 alpha:0.2];
         [self addSubview:topLineView];
         
-        UIView* bottomLineView = [[UIView alloc] initWithFrame:CGRectMake(0, frame.size.height - 1, 210, 1)];
+        UIView* bottomLineView = [[UIView alloc] initWithFrame:CGRectMake(0, frame.size.height - 1, 220, 1)];
         bottomLineView.backgroundColor = [UIColor colorWithRed:250 green:250 blue:250 alpha:0.2];
         [self addSubview:bottomLineView];
     }
@@ -57,7 +58,7 @@
 
 -(void)setDiscriptionLable:(NSString*)string
 {
-    _discriptionLable = [[UILabel alloc] initWithFrame:CGRectMake(122, 5, self.frame.size.width - 122, self.frame.size.height - 6 )];
+    _discriptionLable = [[UILabel alloc] initWithFrame:CGRectMake(122, 5, self.frame.size.width - 128, self.frame.size.height - 6 )];
     _discriptionLable.font = [UIFont systemFontOfSize:8.0f];
     _discriptionLable.text = string;
     _discriptionLable.textAlignment = NSTextAlignmentRight;
@@ -155,15 +156,15 @@
 -(void)initStyleIndicator
 {
     //    -(StyleIndicatorView*)initStyleIndicatorViewWithFrame:(CGRect)inFrame ByDict:(NSDictionary*)dict
-    CGRect frame = CGRectMake(190, 24, 95, 13);
+    CGRect frame = CGRectMake(190, 21, 70, 13);
     _indicatorView = [[StyleIndicatorView alloc] initStyleIndicatorViewWithFrame:frame ByDict:nil];
-    
+//    _indicatorView.backgroundColor = [MaUtility getRandomColor];
     [self addSubview:_indicatorView];
 }
 
 -(void)initDistanceLable
 {
-    _distanceLable = [[UILabel alloc] initWithFrame:CGRectMake(275, 23, 44, 14)];
+    _distanceLable = [[UILabel alloc] initWithFrame:CGRectMake(262, 23, 44, 14)];
     _distanceLable.backgroundColor = [UIColor clearColor];
     _distanceLable.font = [UIFont systemFontOfSize:8.0f];
     _distanceLable.text = @"11024.0Km";
@@ -181,20 +182,22 @@
     [_nameInfoView setDiscriptionLable:@"类地行星，高度文明"];
 
     [self addSubview:_nameInfoView];
-
 }
 
 -(void)initDetailInfoView
 {
-    _detailTextView = [[UITextView alloc] initWithFrame:CGRectMake(83, 69, 235, 35)];
-//    _detailTextView.backgroundColor = [UIColor colorWithRed:(arc4random()%100)/(float)100 green:(arc4random()%100)/(float)100 blue:(arc4random()%100)/(float)100 alpha:0.3];
-    _detailTextView.backgroundColor = [UIColor clearColor];
+    _detailTextView = [[UITextField alloc] initWithFrame:CGRectMake(83, 69, 230, 35)];
+    _detailTextView.backgroundColor = [UIColor colorWithRed:(arc4random()%100)/(float)100 green:(arc4random()%100)/(float)100 blue:(arc4random()%100)/(float)100 alpha:0.3];
+//    _detailTextView.backgroundColor = [UIColor clearColor];
     _detailTextView.font = [UIFont systemFontOfSize:8.0f];
     _detailTextView.text = @"宇宙中的一颗类地行星，上面有高度的文明，生活着拥有极高智慧的喵星人。";
-    _detailTextView.scrollEnabled = NO;
-    _detailTextView.editable = NO;
-    _detailTextView.Selectable = NO;
+//    _detailTextView.
+//    _detailTextView.
+//    _detailTextView.scrollEnabled = NO;
+//    _detailTextView.editable = NO;
+//    _detailTextView.Selectable = NO;
 	_detailTextView.textColor = [UIColor whiteColor];
+//    _detailTextView UILineBreakModeWordWrap
     [self addSubview:_detailTextView];
 }
 
