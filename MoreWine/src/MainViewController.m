@@ -15,6 +15,7 @@
 //#import "SGFocusImageFrame.h"
 #import "AppDelegate.h"
 #import "MaDataSettingManager.h"
+#import "ShopDetailViewController.h"
 
 #define TableView_HeaderView_Height 154
 
@@ -189,8 +190,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // test pushViewController
-    UIViewController* viewController = [[UIViewController alloc] init];
-    [self.navigationController pushViewController: viewController animated:YES];
+//    UIViewController* viewController = [[UIViewController alloc] init];
+//    [self.navigationController pushViewController: viewController animated:YES];
+    UIViewController* shopDetailViewController = [[ShopDetailViewController alloc] init];
+    [self.navigationController pushViewController:shopDetailViewController animated:YES];
 }
 
 #pragma mark - UISearchBar delegete.
