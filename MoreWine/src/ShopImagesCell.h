@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-@class StyleIndicatorView;
+#import "SGFocusImageFrame.h"
 
-@interface ShopImagesCell : UITableViewCell
+@interface ShopImagesCell : UITableViewCell<SGFocusImageFrameDelegate>
 {
-    StyleIndicatorView* _indicatorView;
+    SGFocusImageFrame* _shopImageView;
 }
 
 @end

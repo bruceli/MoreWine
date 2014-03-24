@@ -233,8 +233,6 @@
 		261BE06A18BC0FDA00DEA46A /* MoreWine */ = {
 			isa = PBXGroup;
 			children = (
-				2689A28918DF559C000E99BA /* ShopDetailViewController.h */,
-				2689A28A18DF559C000E99BA /* ShopDetailViewController.m */,
 				595EB1FE18D7EC3C00223E20 /* DataMgr */,
 				5982208318C109F50001C564 /* Cell */,
 				261BE07318BC0FDA00DEA46A /* AppDelegate.h */,
@@ -247,6 +245,8 @@
 				594F06BF18BC9DD700338657 /* ListViewController.m */,
 				5932FBCE18CEC058006C62D4 /* StartViewController.h */,
 				5932FBCF18CEC058006C62D4 /* StartViewController.m */,
+				2689A28918DF559C000E99BA /* ShopDetailViewController.h */,
+				2689A28A18DF559C000E99BA /* ShopDetailViewController.m */,
 				261BE07618BC0FDA00DEA46A /* Images.xcassets */,
 				261BE06B18BC0FDA00DEA46A /* Supporting Files */,
 			);
