@@ -19,13 +19,11 @@
 @interface InfoCell : UITableViewCell
 {
     UIImageView* _headerImageView;
-    UILabel* _nameLable;
+    UILabel* _nameLabel;
     StyleIndicatorView* _indicatorView;
-    UILabel* _distanceLable;
+    UILabel* _distanceLabel;
     NameInfoView* _nameInfoView;
-//    DetailView* _detailView;
-    UITextField* _detailTextView;
-//    UITextField* _
+    UILabel* _detailTextLabel;
     NSDictionary* _infoDict;
 }
 - (void)setCellInfo:(NSDictionary*)dict;

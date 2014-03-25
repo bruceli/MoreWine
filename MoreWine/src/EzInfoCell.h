@@ -12,9 +12,9 @@
 @interface EzInfoCell : UITableViewCell
 {
     UIImageView* _headerImageView;
-    UILabel* _nameLable;
+    UILabel* _nameLabel;
     StyleIndicatorView* _indicatorView;
-    UILabel* _distanceLable;
+    UILabel* _distanceLabel;
     
     NSDictionary* _infoDict;
 }

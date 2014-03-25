@@ -11,6 +11,8 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
     UITabBarController *_tabBarController;
+	UIImageView* _bkgBlurImageView;
+
 	MaDataSettingManager* _dataSettingMgr;
 }
 @property (strong, nonatomic) UIWindow *window;

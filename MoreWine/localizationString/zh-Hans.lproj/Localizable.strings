@@ -14,3 +14,9 @@
 "MA_MoreWine_TabBar_Search" = "搜索";
 "MA_MoreWine_TabBar_User" = "我的";
 
+"MA_MoreWine_Cell_Recommend" = "推荐名人:";
+
+"MA_MoreWine_ShopDetailView_Consumption" = "人均：";
+"MA_MoreWine_ShopDetailView_Address" = "地址：";
+"MA_MoreWine_ShopDetailView_Tel" = "电话：";
+"MA_MoreWine_ShopDetailView_Tag" = "标签：";

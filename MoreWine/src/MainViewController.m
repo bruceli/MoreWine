@@ -7,14 +7,15 @@
 //
 
 #import "MainViewController.h"
-#import "MaNavigationBar.h"
-#import "EzInfoCell.h"
-#import "MaUtility.h"
 #import <LBBlurredImage/UIImageView+LBBlurredImage.h>
-#import "SGFocusImageItem.h"
-//#import "SGFocusImageFrame.h"
+
 #import "AppDelegate.h"
+#import "MaUtility.h"
 #import "MaDataSettingManager.h"
+#import "ShopDetailViewController.h"
+
+#import "SGFocusImageItem.h"
+#import "EzInfoCell.h"
 
 #define TableView_HeaderView_Height 154
 
@@ -44,7 +45,7 @@
     // MaScrolling Content
 	[self setupHilightImageView];
     [_headerContainerView addSubview:_hilightImageView];
-    
+   
 	//blurImageView
 	NSString* theImageName;
 	if ([MaUtility hasFourInchDisplay])
@@ -52,10 +53,7 @@
 	else
 		theImageName = @"backgroundImage.png";
     
-	UIImage* image = [UIImage imageNamed:theImageName];
-    CGRect blurFrame =self.view.frame;
-    NSLog(@"mainView blur frame is %@", NSStringFromCGRect(blurFrame));
-    
+	UIImage* image = [UIImage imageNamed:theImageName];    
 	_bkgBlurImageView = [[UIImageView alloc] initWithFrame:self.view.frame];
     _bkgBlurImageView.contentMode = UIViewContentModeScaleAspectFill;
     _bkgBlurImageView.alpha = 1;
@@ -77,9 +75,9 @@
     [self.view addSubview:_searchBar];
     
     // UITableView init
-	NSLog(@"self.view frame is %@", NSStringFromCGRect(self.view.frame) );
+//	NSLog(@"self.view frame is %@", NSStringFromCGRect(self.view.frame) );
     CGRect frame = CGRectMake(0, 64+44, self.view.frame.size.width, self.view.frame.size.height - 113-44); // navBar&tabBar height
-	NSLog(@"_tableView frame is %@", NSStringFromCGRect(frame) );
+//	NSLog(@"_tableView frame is %@", NSStringFromCGRect(frame) );
     _tableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -108,7 +106,7 @@
 {
 	//    _hilightImageView = [[UIView alloc]initWithFrame:CGRectMake(0, 44, self.view.frame.size.width, TableView_HeaderView_Height)];
     
-	AppDelegate* app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+//	AppDelegate* app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     /*
      if ([app.dataSettingMgr.hilightDataArray count]<1) {
      [self loadSlides];
@@ -189,14 +187,14 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // test pushViewController
-    UIViewController* viewController = [[UIViewController alloc] init];
+	ShopDetailViewController* viewController = [[ShopDetailViewController alloc] init];
     [self.navigationController pushViewController: viewController animated:YES];
 }
 
-#pragma mark - UISearchBar delegete.
+#pragma mark - UISearchBar delegate.
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
 	[self scrollTableViewIfNeeded];
-    //	- (void)setShowsCancelButton:(BOOL)showsCancelButton animated:(BOOL)animated NS_AVAILABLE_IOS(3_0);
+    //	- (void)setShowsCancelButton:(BOOL)showsCancelButton animated:(BOOL)animated NS_AVAILabel_IOS(3_0);
 	[_searchBar setShowsCancelButton:YES animated:YES];
 	NSLog(@"searchBarTextDidBeginEditing");
 }
@@ -270,13 +268,13 @@
 -(void)scrollTableViewIfNeeded
 {
 	if (_tableView.contentOffset.y < TableView_HeaderView_Height) {
-		NSLog(@"TableCurrentLocation %f, --- Scrolling",_tableView.contentOffset.y);
+//		NSLog(@"TableCurrentLocation %f, --- Scrolling",_tableView.contentOffset.y);
 		[_tableView setContentOffset:CGPointMake(0, TableView_HeaderView_Height)animated:YES];
 		//- (void)setContentOffset:(CGPoint)contentOffset animated:(BOOL)animated;  // animate at constant velocity to new offset
 	}
 }
 
-#pragma mark - SGFocusImageFrameDelegete
+#pragma mark - SGFocusImageFramedelegate
 - (void)foucusImageFrame:(SGFocusImageFrame *)imageFrame didSelectItem:(SGFocusImageItem *)item
 {
     NSLog(@"%@ ", @"FocusImage tap");

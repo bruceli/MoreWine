@@ -33,7 +33,9 @@
 		5905D71018D1A5FF00FBA71F /* barType_headphones@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5905D70A18D1A5FF00FBA71F /* barType_headphones@2x.png */; };
 		5905D71118D1A5FF00FBA71F /* barType_music.png in Resources */ = {isa = PBXBuildFile; fileRef = 5905D70B18D1A5FF00FBA71F /* barType_music.png */; };
 		5905D71218D1A5FF00FBA71F /* barType_music@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5905D70C18D1A5FF00FBA71F /* barType_music@2x.png */; };
+		591ED1A818E1172700A9669F /* ShopDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 591ED1A718E1172700A9669F /* ShopDetailViewController.m */; };
 		5932FBD018CEC058006C62D4 /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5932FBCF18CEC058006C62D4 /* StartViewController.m */; };
+		5937115E18E17CB300476E2D /* MaTagButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5937115D18E17CB300476E2D /* MaTagButton.m */; };
 		594F06BA18BC9D8800338657 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 594F06B918BC9D8800338657 /* MainViewController.m */; };
 		594F06BD18BC9DB900338657 /* InfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 594F06BC18BC9DB900338657 /* InfoCell.m */; };
 		594F06C018BC9DD700338657 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 594F06BF18BC9DD700338657 /* ListViewController.m */; };
@@ -113,8 +115,12 @@
 		5905D70A18D1A5FF00FBA71F /* barType_headphones@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "barType_headphones@2x.png"; path = "resources/typeIcon/barType_headphones@2x.png"; sourceTree = "<group>"; };
 		5905D70B18D1A5FF00FBA71F /* barType_music.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = barType_music.png; path = resources/typeIcon/barType_music.png; sourceTree = "<group>"; };
 		5905D70C18D1A5FF00FBA71F /* barType_music@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "barType_music@2x.png"; path = "resources/typeIcon/barType_music@2x.png"; sourceTree = "<group>"; };
+		591ED1A618E1172700A9669F /* ShopDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShopDetailViewController.h; path = src/ShopDetailViewController.h; sourceTree = "<group>"; };
+		591ED1A718E1172700A9669F /* ShopDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShopDetailViewController.m; path = src/ShopDetailViewController.m; sourceTree = "<group>"; };
 		5932FBCE18CEC058006C62D4 /* StartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StartViewController.h; path = src/StartViewController.h; sourceTree = "<group>"; };
 		5932FBCF18CEC058006C62D4 /* StartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StartViewController.m; path = src/StartViewController.m; sourceTree = "<group>"; };
+		5937115C18E17CB300476E2D /* MaTagButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MaTagButton.h; path = src/MaTagButton.h; sourceTree = "<group>"; };
+		5937115D18E17CB300476E2D /* MaTagButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MaTagButton.m; path = src/MaTagButton.m; sourceTree = "<group>"; };
 		594F06B818BC9D8800338657 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = src/MainViewController.h; sourceTree = "<group>"; };
 		594F06B918BC9D8800338657 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = src/MainViewController.m; sourceTree = "<group>"; };
 		594F06BB18BC9DB900338657 /* InfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InfoCell.h; path = src/InfoCell.h; sourceTree = "<group>"; };
@@ -231,6 +237,10 @@
 				5982208318C109F50001C564 /* Cell */,
 				261BE07318BC0FDA00DEA46A /* AppDelegate.h */,
 				261BE07418BC0FDA00DEA46A /* AppDelegate.m */,
+				591ED1A618E1172700A9669F /* ShopDetailViewController.h */,
+				591ED1A718E1172700A9669F /* ShopDetailViewController.m */,
+				5937115C18E17CB300476E2D /* MaTagButton.h */,
+				5937115D18E17CB300476E2D /* MaTagButton.m */,
 				594F06C118BF464100338657 /* MaNavigationBar.h */,
 				594F06C218BF464100338657 /* MaNavigationBar.m */,
 				594F06B818BC9D8800338657 /* MainViewController.h */,
@@ -582,7 +592,9 @@
 				594F06C018BC9DD700338657 /* ListViewController.m in Sources */,
 				261BE07518BC0FDA00DEA46A /* AppDelegate.m in Sources */,
 				5982208618C10A800001C564 /* EzInfoCell.m in Sources */,
+				591ED1A818E1172700A9669F /* ShopDetailViewController.m in Sources */,
 				595EB1F418D7E85500223E20 /* SGFocusImageFrame.m in Sources */,
+				5937115E18E17CB300476E2D /* MaTagButton.m in Sources */,
 				5932FBD018CEC058006C62D4 /* StartViewController.m in Sources */,
 				595EB1F518D7E85500223E20 /* SGFocusImageItem.m in Sources */,
 				594F06BD18BC9DB900338657 /* InfoCell.m in Sources */,
@@ -722,11 +734,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MoreWine/MoreWine-Prefix.pch";
 				INFOPLIST_FILE = "MoreWine/MoreWine-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -739,11 +753,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MoreWine/MoreWine-Prefix.pch";
 				INFOPLIST_FILE = "MoreWine/MoreWine-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

@@ -7,9 +7,12 @@
 //
 
 #import "ListViewController.h"
-#import "InfoCell.h"
-#import "MaUtility.h"
+
 #import <LBBlurredImage/UIImageView+LBBlurredImage.h>
+#import "MaUtility.h"
+
+#import "InfoCell.h"
+#import "ShopDetailViewController.h"
 
 @interface ListViewController ()
 
@@ -70,9 +73,9 @@
     [self.view addSubview:_searchBar];
     
     // UITableView init
-	NSLog(@"self.view frame is %@", NSStringFromCGRect(self.view.frame) );
+//	NSLog(@"self.view frame is %@", NSStringFromCGRect(self.view.frame) );
     CGRect frame = CGRectMake(0, 64+44, self.view.frame.size.width, self.view.frame.size.height - 113-44); // navBar&tabBar height
-	NSLog(@"_tableView frame is %@", NSStringFromCGRect(frame) );
+//	NSLog(@"_tableView frame is %@", NSStringFromCGRect(frame) );
     _tableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -146,11 +149,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // test pushViewController
-    UIViewController* viewController = [[UIViewController alloc] init];
+	ShopDetailViewController* viewController = [[ShopDetailViewController alloc] init];
     [self.navigationController pushViewController: viewController animated:YES];
 }
 
-#pragma mark - UISearchBar delegete.
+#pragma mark - UISearchBar delegate.
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
 	[_searchBar setShowsCancelButton:YES animated:YES];
 	NSLog(@"searchBarTextDidBeginEditing");

@@ -15,12 +15,12 @@
 #pragma mark - InfoCell Elements == NameInfoView
 @interface NameInfoView : UIView
 {
-    UILabel* _nameLable;
+    UILabel* _nameLabel;
     UILabel* _name;
-    UILabel* _discriptionLable;
+    UILabel* _discriptionLabel;
 }
--(void)setNameLable:(NSString*)string;
--(void)setDiscriptionLable:(NSString*)string;
+-(void)setNameLabel:(NSString*)string;
+-(void)setDiscriptionLabel:(NSString*)string;
 
 @end
 
@@ -40,30 +40,30 @@
     return self;
 }
 
--(void)setNameLable:(NSString*)string
+-(void)setNameLabel:(NSString*)string
 {
     _name = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, 35, self.frame.size.height-6)];
     _name.font = [UIFont systemFontOfSize:8.0f];
-    _name.text = @"推荐名人:";
+    _name.text = NSLocalizedString(@"MA_MoreWine_Cell_Recommend", nil);
 	_name.textColor = [UIColor whiteColor];
     
-    _nameLable = [[UILabel alloc] initWithFrame:CGRectMake(37, 0, 84, self.frame.size.height)];
-    _nameLable.font = [UIFont systemFontOfSize:14.0f];
-    _nameLable.text = string;
-	_nameLable.textColor = [UIColor whiteColor];
+    _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(37, 0, 84, self.frame.size.height)];
+    _nameLabel.font = [UIFont systemFontOfSize:14.0f];
+    _nameLabel.text = string;
+	_nameLabel.textColor = [UIColor whiteColor];
 
     [self addSubview:_name];
-    [self addSubview:_nameLable];
+    [self addSubview:_nameLabel];
 }
 
--(void)setDiscriptionLable:(NSString*)string
+-(void)setDiscriptionLabel:(NSString*)string
 {
-    _discriptionLable = [[UILabel alloc] initWithFrame:CGRectMake(122, 5, self.frame.size.width - 128, self.frame.size.height - 6 )];
-    _discriptionLable.font = [UIFont systemFontOfSize:8.0f];
-    _discriptionLable.text = string;
-    _discriptionLable.textAlignment = NSTextAlignmentRight;
-	_discriptionLable.textColor = [UIColor whiteColor];
-    [self addSubview:_discriptionLable];
+    _discriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(122, 5, self.frame.size.width - 128, self.frame.size.height - 6 )];
+    _discriptionLabel.font = [UIFont systemFontOfSize:8.0f];
+    _discriptionLabel.text = string;
+    _discriptionLabel.textAlignment = NSTextAlignmentRight;
+	_discriptionLabel.textColor = [UIColor whiteColor];
+    [self addSubview:_discriptionLabel];
 }
 
 @end
@@ -124,9 +124,9 @@
 - (void)setupCell
 {
     [self initHeaderImageView];
-    [self initNameLable];
+    [self initNameLabel];
     [self initStyleIndicator];
-    [self initDistanceLable];
+    [self initDistanceLabel];
     [self initNameInfoView];
     [self initDetailInfoView];
 }
@@ -143,34 +143,34 @@
     [self addSubview:_headerImageView];
 }
 
--(void)initNameLable
+-(void)initNameLabel
 {
-    _nameLable = [[UILabel alloc] initWithFrame:CGRectMake(88, 20, 90, 14)];
-    _nameLable.backgroundColor = [UIColor clearColor];
-    _nameLable.font = [UIFont systemFontOfSize:14.0f];
-    _nameLable.text = @"MORE WINE";
-    _nameLable.textColor = [UIColor whiteColor];
-    [self addSubview:_nameLable];
+    _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(88, 20, 90, 14)];
+    _nameLabel.backgroundColor = [UIColor clearColor];
+    _nameLabel.font = [UIFont systemFontOfSize:14.0f];
+    _nameLabel.text = @"MORE WINE";
+    _nameLabel.textColor = [UIColor whiteColor];
+    [self addSubview:_nameLabel];
 }
 
 -(void)initStyleIndicator
 {
     //    -(StyleIndicatorView*)initStyleIndicatorViewWithFrame:(CGRect)inFrame ByDict:(NSDictionary*)dict
-    CGRect frame = CGRectMake(190, 21, 70, 13);
+    CGRect frame = CGRectMake(190, 21, 70, 14);
     _indicatorView = [[StyleIndicatorView alloc] initStyleIndicatorViewWithFrame:frame ByDict:nil];
 //    _indicatorView.backgroundColor = [MaUtility getRandomColor];
     [self addSubview:_indicatorView];
 }
 
--(void)initDistanceLable
+-(void)initDistanceLabel
 {
-    _distanceLable = [[UILabel alloc] initWithFrame:CGRectMake(262, 23, 44, 14)];
-    _distanceLable.backgroundColor = [UIColor clearColor];
-    _distanceLable.font = [UIFont systemFontOfSize:8.0f];
-    _distanceLable.text = @"11024.0Km";
-    _distanceLable.textAlignment = NSTextAlignmentRight;
-    _distanceLable.textColor = [UIColor whiteColor];
-    [self addSubview:_distanceLable];
+    _distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(262, 23, 44, 14)];
+    _distanceLabel.backgroundColor = [UIColor clearColor];
+    _distanceLabel.font = [UIFont systemFontOfSize:8.0f];
+    _distanceLabel.text = @"11024.0Km";
+    _distanceLabel.textAlignment = NSTextAlignmentRight;
+    _distanceLabel.textColor = [UIColor whiteColor];
+    [self addSubview:_distanceLabel];
 }
 
 
@@ -178,27 +178,22 @@
 {
     _nameInfoView = [[NameInfoView alloc]initWithFrame:CGRectMake(88, 45, 225, 22)];
     _nameInfoView.backgroundColor = [UIColor clearColor];
-    [_nameInfoView setNameLable:@"喵星喵星喵星"];
-    [_nameInfoView setDiscriptionLable:@"类地行星，高度文明"];
+    [_nameInfoView setNameLabel:@"喵星喵星喵星"];
+    [_nameInfoView setDiscriptionLabel:@"类地行星，高度文明"];
 
     [self addSubview:_nameInfoView];
 }
 
 -(void)initDetailInfoView
 {
-    _detailTextView = [[UITextField alloc] initWithFrame:CGRectMake(83, 69, 230, 35)];
-    _detailTextView.backgroundColor = [UIColor colorWithRed:(arc4random()%100)/(float)100 green:(arc4random()%100)/(float)100 blue:(arc4random()%100)/(float)100 alpha:0.3];
-//    _detailTextView.backgroundColor = [UIColor clearColor];
-    _detailTextView.font = [UIFont systemFontOfSize:8.0f];
-    _detailTextView.text = @"宇宙中的一颗类地行星，上面有高度的文明，生活着拥有极高智慧的喵星人。";
-//    _detailTextView.
-//    _detailTextView.
-//    _detailTextView.scrollEnabled = NO;
-//    _detailTextView.editable = NO;
-//    _detailTextView.Selectable = NO;
-	_detailTextView.textColor = [UIColor whiteColor];
-//    _detailTextView UILineBreakModeWordWrap
-    [self addSubview:_detailTextView];
+    _detailTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(88, 69, 223, 35)];
+//    _detailTextLabel.backgroundColor = [UIColor colorWithRed:(arc4random()%100)/(float)100 green:(arc4random()%100)/(float)100 blue:(arc4random()%100)/(float)100 alpha:0.3];
+    _detailTextLabel.backgroundColor = [UIColor clearColor];
+    _detailTextLabel.font = [UIFont systemFontOfSize:8.0f];
+    _detailTextLabel.text = @"宇宙中的一颗类地行星，上面有高度的文明，生活着拥有极高智慧的喵星人。";
+	_detailTextLabel.numberOfLines = 0;
+	_detailTextLabel.textColor = [UIColor whiteColor];
+    [self addSubview:_detailTextLabel];
 }
 
 -(void) setImageTemp
@@ -211,15 +206,6 @@
 	UIImage* img = [UIImage imageNamed:imageNameString];
 	_headerImageView.image = img;
 }
-
-
-/*
-UIImageView* _headerImageView;
-UILabel* _nameLable;
-StyleIndicatorView* _indicatorView;
-UILabel* _distanceLable;
-*/
-
 
 
 @end

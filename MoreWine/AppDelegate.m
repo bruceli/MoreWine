@@ -7,11 +7,12 @@
 //
 
 #import "AppDelegate.h"
+#import "MaUtility.h"
+
 #import "MainViewController.h"
 #import "ListViewController.h"
 #import "MaNavigationBar.h"
 #import "StartViewController.h"
-#import "MaUtility.h"
 
 @implementation AppDelegate
 @synthesize dataSettingMgr = _dataSettingMgr;
@@ -56,7 +57,7 @@
 	
 	UIViewController* camViewController = [[UIViewController alloc] init];   
 	UIViewController* searchViewController = [[UIViewController alloc] init];   
-	UIViewController* userViewController = [[UIViewController alloc] init];
+//	UIViewController* userViewController = [[UIViewController alloc] init];
 
     [viewControllers addObject:mainNavController]; // MainView with custom Nav
     [viewControllers addObject:recomNavController];
@@ -65,7 +66,7 @@
 	[viewControllers addObject:startViewController];
 
 	[self setupTabBarController:viewControllers];
-		
+
     self.window.backgroundColor = [UIColor blackColor];
     self.window.rootViewController = _tabBarController;
 	
