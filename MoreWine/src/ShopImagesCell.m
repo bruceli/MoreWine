@@ -52,6 +52,10 @@
     [self.contentView addSubview:_shopImageView];
 }
 
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
+}
 
 #pragma mark - SGFocusImageFrameDelegate
 

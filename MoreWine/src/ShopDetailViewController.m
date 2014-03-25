@@ -65,7 +65,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -75,22 +75,26 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"ShopImageCell";
-    ShopImagesCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        
-        cell = [[ShopImagesCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                 reuseIdentifier:CellIdentifier];
-        //        cell.backgroundColor = [UIColor colorWithRed:(arc4random()%100)/(float)100 green:(arc4random()%100)/(float)100 blue:(arc4random()%100)/(float)100 alpha:0.3];
-        cell.backgroundColor = [UIColor lightGrayColor];
-        cell.detailTextLabel.numberOfLines = 0;
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        
+//    static NSString *CellIdentifier = @"ShopImageCell";
+    UITableViewCell *cell; // = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (indexPath.section == 0) {
+        NSLog(@"first cell");
+        if (cell == nil) {
+            cell = [[ShopImagesCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                         reuseIdentifier:nil];
+            //        cell.backgroundColor = [UIColor colorWithRed:(arc4random()%100)/(float)100 green:(arc4random()%100)/(float)100 blue:(arc4random()%100)/(float)100 alpha:0.3];
+            cell.backgroundColor = [UIColor lightGrayColor];
+            cell.detailTextLabel.numberOfLines = 0;
+        }
+    } else {
+        NSLog(@"other cells");
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        cell.backgroundColor = [UIColor greenColor];
     }
     
     // Configure the cell...
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.text = @"test";
     return cell;
 }
@@ -102,6 +106,15 @@
 //    UIViewController* viewController = [[UIViewController alloc] init];
 //    [self.navigationController pushViewController: viewController animated:YES];
     
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        return 200;
+    } else {
+        return 44;
+    }
 }
 
 @end
