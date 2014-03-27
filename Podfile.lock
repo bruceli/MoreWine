@@ -19,6 +19,9 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - LBBlurredImage (0.2.0)
+  - Mantle (1.4.1):
+    - Mantle/extobjc
+  - Mantle/extobjc (1.4.1)
   - SDWebImage (3.0):
     - SDWebImage/Main
   - SDWebImage/Main (3.0)
@@ -26,11 +29,13 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 2.2)
   - LBBlurredImage (~> 0.2.0)
+  - Mantle
   - SDWebImage (~> 3.0.0)
 
 SPEC CHECKSUMS:
   AFNetworking: e8cfd8f3fe3bfe19124a0cc63f4d45752d892a56
   LBBlurredImage: 26bacd10063a6e886de6a374f4727c3cefb22fc2
+  Mantle: 0714cdb2b8559d9e6c2410d6a8529e3307bff189
   SDWebImage: afa3965bcb37797ba4ecac49393897b99d1b4be7
 
 COCOAPODS: 0.29.0
