@@ -20,3 +20,10 @@
 "MA_MoreWine_ShopDetailView_Address" = "地址：";
 "MA_MoreWine_ShopDetailView_Tel" = "电话：";
 "MA_MoreWine_ShopDetailView_Tag" = "标签：";
+
+"MA_MoreWine_LoginView_3rdLogin" = "使用第三方登录";
+"MA_MoreWine_LoginView_SignUp" = "注册";
+"MA_MoreWine_LoginView_SignIn" = "登录";
+"MA_MoreWine_LoginView_Cancel" = "取消";
+"MA_MoreWine_LoginView_UserName" = "用户名";
+"MA_MoreWine_LoginView_Password" = "密码";

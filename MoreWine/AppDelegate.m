@@ -13,6 +13,7 @@
 #import "ListViewController.h"
 #import "MaNavigationBar.h"
 #import "StartViewController.h"
+#import "LoginViewController.h"
 
 @implementation AppDelegate
 @synthesize dataSettingMgr = _dataSettingMgr;
@@ -53,7 +54,12 @@
     [[searchNavController navigationBar] setTranslucent:NO];
     [searchNavController setViewControllers:@[searchView]];
 	
-	StartViewController* startViewController = [[StartViewController alloc] init];   
+//	StartViewController* startViewController = [[StartViewController alloc] init];   
+	LoginViewController* loginViewController = [[LoginViewController alloc] init];
+	UINavigationController *loginNavController = [[UINavigationController alloc] initWithNavigationBarClass:[MaNavigationBar class] toolbarClass:nil];
+    [[MaNavigationBar appearance] setBarTintGradientColors:colors];
+    [[loginNavController navigationBar] setTranslucent:YES];
+    [loginNavController setViewControllers:@[loginViewController]];	
 	
 	UIViewController* camViewController = [[UIViewController alloc] init];   
 	UIViewController* searchViewController = [[UIViewController alloc] init];   
@@ -63,7 +69,7 @@
     [viewControllers addObject:recomNavController];
     [viewControllers addObject:camViewController];
 	[viewControllers addObject:searchViewController];
-	[viewControllers addObject:startViewController];
+	[viewControllers addObject:loginNavController];
 
 	[self setupTabBarController:viewControllers];
 
