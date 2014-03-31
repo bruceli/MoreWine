@@ -66,6 +66,12 @@
 		59A41F3118D03A2A00EA8B4C /* backgroundImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 59A41F2E18D03A2A00EA8B4C /* backgroundImage@2x.png */; };
 		59A41F3518D03ABC00EA8B4C /* MaUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 59A41F3418D03ABC00EA8B4C /* MaUtility.m */; };
 		59A41F3718D03D5E00EA8B4C /* backgroundImage_586h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 59A41F3618D03D5E00EA8B4C /* backgroundImage_586h@2x.png */; };
+		59F7D1B418E96AF0008430FD /* ADDropDownMenuItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 59F7D1B118E96AF0008430FD /* ADDropDownMenuItemView.m */; };
+		59F7D1B518E96AF0008430FD /* ADDropDownMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 59F7D1B318E96AF0008430FD /* ADDropDownMenuView.m */; };
+		59F7D1C018E96DE3008430FD /* FPPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59F7D1BB18E96DE3008430FD /* FPPopoverController.m */; };
+		59F7D1C118E96DE3008430FD /* FPPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 59F7D1BD18E96DE3008430FD /* FPPopoverView.m */; };
+		59F7D1C218E96DE3008430FD /* FPTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 59F7D1BF18E96DE3008430FD /* FPTouchView.m */; };
+		59F7D1C718E96E5F008430FD /* MaPopupMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59F7D1C618E96E5F008430FD /* MaPopupMenuController.m */; };
 		59FE62AC18CFFC5E00534539 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 59FE62AE18CFFC5E00534539 /* Localizable.strings */; };
 		80FC4B355FDD4D61B67BEBAE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07E3BEF05D7C4A6EB32E842A /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -169,6 +175,19 @@
 		59A41F3318D03ABC00EA8B4C /* MaUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MaUtility.h; path = MoreWine/src/MaUtility.h; sourceTree = "<group>"; };
 		59A41F3418D03ABC00EA8B4C /* MaUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MaUtility.m; path = MoreWine/src/MaUtility.m; sourceTree = "<group>"; };
 		59A41F3618D03D5E00EA8B4C /* backgroundImage_586h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "backgroundImage_586h@2x.png"; path = "resources/backgroundImage/backgroundImage_586h@2x.png"; sourceTree = "<group>"; };
+		59F7D1B018E96AF0008430FD /* ADDropDownMenuItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ADDropDownMenuItemView.h; path = MoreWine/src/3rd/ADDropDownMenu/ADDropDownMenuItemView.h; sourceTree = "<group>"; };
+		59F7D1B118E96AF0008430FD /* ADDropDownMenuItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ADDropDownMenuItemView.m; path = MoreWine/src/3rd/ADDropDownMenu/ADDropDownMenuItemView.m; sourceTree = "<group>"; };
+		59F7D1B218E96AF0008430FD /* ADDropDownMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ADDropDownMenuView.h; path = MoreWine/src/3rd/ADDropDownMenu/ADDropDownMenuView.h; sourceTree = "<group>"; };
+		59F7D1B318E96AF0008430FD /* ADDropDownMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ADDropDownMenuView.m; path = MoreWine/src/3rd/ADDropDownMenu/ADDropDownMenuView.m; sourceTree = "<group>"; };
+		59F7D1B918E96DE3008430FD /* ARCMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARCMacros.h; path = MoreWine/src/3rd/FPPopover/ARCMacros.h; sourceTree = "<group>"; };
+		59F7D1BA18E96DE3008430FD /* FPPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FPPopoverController.h; path = MoreWine/src/3rd/FPPopover/FPPopoverController.h; sourceTree = "<group>"; };
+		59F7D1BB18E96DE3008430FD /* FPPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FPPopoverController.m; path = MoreWine/src/3rd/FPPopover/FPPopoverController.m; sourceTree = "<group>"; };
+		59F7D1BC18E96DE3008430FD /* FPPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FPPopoverView.h; path = MoreWine/src/3rd/FPPopover/FPPopoverView.h; sourceTree = "<group>"; };
+		59F7D1BD18E96DE3008430FD /* FPPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FPPopoverView.m; path = MoreWine/src/3rd/FPPopover/FPPopoverView.m; sourceTree = "<group>"; };
+		59F7D1BE18E96DE3008430FD /* FPTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FPTouchView.h; path = MoreWine/src/3rd/FPPopover/FPTouchView.h; sourceTree = "<group>"; };
+		59F7D1BF18E96DE3008430FD /* FPTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FPTouchView.m; path = MoreWine/src/3rd/FPPopover/FPTouchView.m; sourceTree = "<group>"; };
+		59F7D1C518E96E5F008430FD /* MaPopupMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MaPopupMenuController.h; path = src/MaPopupMenuController.h; sourceTree = "<group>"; };
+		59F7D1C618E96E5F008430FD /* MaPopupMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MaPopupMenuController.m; path = src/MaPopupMenuController.m; sourceTree = "<group>"; };
 		59FE62AD18CFFC5E00534539 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -245,8 +264,7 @@
 				591ED1A718E1172700A9669F /* ShopDetailViewController.m */,
 				5925737618E52A4900CE3AC9 /* CheckInViewController.h */,
 				5925737718E52A4900CE3AC9 /* CheckInViewController.m */,
-				59192CF118E543AD0030810F /* ShakeViewController.h */,
-				59192CF218E543AD0030810F /* ShakeViewController.m */,
+				59F7D1C418E96E17008430FD /* Shake */,
 				59A108F018E2727B00CF59DD /* UserInfo */,
 				594F06C118BF464100338657 /* MaNavigationBar.h */,
 				594F06C218BF464100338657 /* MaNavigationBar.m */,
@@ -337,6 +355,8 @@
 		5982207818C0FBCC0001C564 /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				59F7D1C318E96DF0008430FD /* FPPopover */,
+				59F7D1B618E96AF7008430FD /* ADDropDownMenu */,
 				595EB1F618D7E85800223E20 /* SGFocus */,
 			);
 			name = 3rd;
@@ -423,6 +443,42 @@
 			);
 			name = Resources;
 			path = MoreWine;
+			sourceTree = "<group>";
+		};
+		59F7D1B618E96AF7008430FD /* ADDropDownMenu */ = {
+			isa = PBXGroup;
+			children = (
+				59F7D1B018E96AF0008430FD /* ADDropDownMenuItemView.h */,
+				59F7D1B118E96AF0008430FD /* ADDropDownMenuItemView.m */,
+				59F7D1B218E96AF0008430FD /* ADDropDownMenuView.h */,
+				59F7D1B318E96AF0008430FD /* ADDropDownMenuView.m */,
+			);
+			name = ADDropDownMenu;
+			sourceTree = "<group>";
+		};
+		59F7D1C318E96DF0008430FD /* FPPopover */ = {
+			isa = PBXGroup;
+			children = (
+				59F7D1B918E96DE3008430FD /* ARCMacros.h */,
+				59F7D1BA18E96DE3008430FD /* FPPopoverController.h */,
+				59F7D1BB18E96DE3008430FD /* FPPopoverController.m */,
+				59F7D1BC18E96DE3008430FD /* FPPopoverView.h */,
+				59F7D1BD18E96DE3008430FD /* FPPopoverView.m */,
+				59F7D1BE18E96DE3008430FD /* FPTouchView.h */,
+				59F7D1BF18E96DE3008430FD /* FPTouchView.m */,
+			);
+			name = FPPopover;
+			sourceTree = "<group>";
+		};
+		59F7D1C418E96E17008430FD /* Shake */ = {
+			isa = PBXGroup;
+			children = (
+				59F7D1C518E96E5F008430FD /* MaPopupMenuController.h */,
+				59F7D1C618E96E5F008430FD /* MaPopupMenuController.m */,
+				59192CF118E543AD0030810F /* ShakeViewController.h */,
+				59192CF218E543AD0030810F /* ShakeViewController.m */,
+			);
+			name = Shake;
 			sourceTree = "<group>";
 		};
 		59FE62A918CFFBC900534539 /* LocalizationStrings */ = {
@@ -614,23 +670,29 @@
 			files = (
 				5910371518E2C8BD0084BC29 /* SignUpView.m in Sources */,
 				59192CF318E543AD0030810F /* ShakeViewController.m in Sources */,
+				59F7D1C018E96DE3008430FD /* FPPopoverController.m in Sources */,
 				5925737418E522BD00CE3AC9 /* SignInView.m in Sources */,
 				594F06C018BC9DD700338657 /* ListViewController.m in Sources */,
 				261BE07518BC0FDA00DEA46A /* AppDelegate.m in Sources */,
+				59F7D1C118E96DE3008430FD /* FPPopoverView.m in Sources */,
 				5982208618C10A800001C564 /* EzInfoCell.m in Sources */,
 				591ED1A818E1172700A9669F /* ShopDetailViewController.m in Sources */,
 				595EB1F418D7E85500223E20 /* SGFocusImageFrame.m in Sources */,
 				5937115E18E17CB300476E2D /* MaTagButton.m in Sources */,
+				59F7D1B518E96AF0008430FD /* ADDropDownMenuView.m in Sources */,
 				5932FBD018CEC058006C62D4 /* StartViewController.m in Sources */,
 				595EB1F518D7E85500223E20 /* SGFocusImageItem.m in Sources */,
 				59A108E718E2705700CF59DD /* LoginViewController.m in Sources */,
 				59A108F318E2729800CF59DD /* UserInfoManager.m in Sources */,
+				59F7D1C218E96DE3008430FD /* FPTouchView.m in Sources */,
 				594F06BD18BC9DB900338657 /* InfoCell.m in Sources */,
 				594F06C318BF464100338657 /* MaNavigationBar.m in Sources */,
 				59A41F3518D03ABC00EA8B4C /* MaUtility.m in Sources */,
 				59A108FB18E27F6600CF59DD /* MaTextField.m in Sources */,
+				59F7D1C718E96E5F008430FD /* MaPopupMenuController.m in Sources */,
 				5925737818E52A4900CE3AC9 /* CheckInViewController.m in Sources */,
 				595EB20118D7EC8200223E20 /* MaDataSettingManager.m in Sources */,
+				59F7D1B418E96AF0008430FD /* ADDropDownMenuItemView.m in Sources */,
 				5982208918C126D10001C564 /* StyleIndicatorView.m in Sources */,
 				594F06BA18BC9D8800338657 /* MainViewController.m in Sources */,
 				261BE07118BC0FDA00DEA46A /* main.m in Sources */,

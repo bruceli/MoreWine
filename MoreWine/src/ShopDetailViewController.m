@@ -16,7 +16,7 @@
 #import "SGFocusImageItem.h"
 #import "StyleIndicatorView.h"
 #import "CheckInViewController.h"
-
+#import "ShakeViewController.h"
 #import "MaTagButton.h"
 
 
@@ -396,7 +396,8 @@
 
 -(void)shake:(id)sender
 {
-
+    ShakeViewController* viewController = [[ShakeViewController alloc] init];
+    [self.navigationController pushViewController: viewController animated:YES];
 }
 
 -(void)buttonHighlight:(id)sender
