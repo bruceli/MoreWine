@@ -16,7 +16,8 @@ typedef enum FPPopoverArrowDirection: NSUInteger {
     FPPopoverArrowDirectionLeft = 1UL << 2,
     FPPopoverArrowDirectionRight = 1UL << 3,
     FPPopoverNoArrow = 1UL << 4,
-    
+	FPPopoverMaCustom = 1UL << 5,
+
     FPPopoverArrowDirectionVertical = FPPopoverArrowDirectionUp | FPPopoverArrowDirectionDown | FPPopoverNoArrow,
     FPPopoverArrowDirectionHorizontal = FPPopoverArrowDirectionLeft | FPPopoverArrowDirectionRight,
     

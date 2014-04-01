@@ -7,11 +7,13 @@
 //
 
 #import "ShakeViewController.h"
-#import "ADDropDownMenuView.h"
-#import "ADDropDownMenuItemView.h"
+//#import "ADDropDownMenuView.h"
+//#import "ADDropDownMenuItemView.h"
 #import "MaPopupMenuController.h"
+#import "FPPopoverController.h"
+#import "MaUtility.h"
 
-@interface ShakeViewController () <ADDropDownMenuDelegate>
+@interface ShakeViewController ()
 
 @end
 
@@ -29,7 +31,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor blueColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     [self setupHeaderViews];
     [self setupDropDownMenus];
     // Do any additional setup after loading the view.
@@ -47,26 +49,76 @@
 
 -(void)setupDropDownMenus
 {
-    /*
-    NSArray* baseLiqTitleArray = [NSArray arrayWithObjects:@"基酒",@"酒1",@"酒2",@"酒3"@"基酒",@"酒1",@"酒2",@"酒3",@"酒2",@"酒3"@"基酒",@"酒2",@"酒3"@"基酒",@"酒2",@"酒3"@"基酒",@"酒2",@"酒3"@"基酒",nil];
-    NSArray* baseLiqItemArray = [self dropDownItemsWithTitleArray:baseLiqTitleArray];
-    _baseLiqMenu = [self dropDownMenuWithPoint:CGPointMake(0, 64) menuArray:baseLiqItemArray];
-    NSLog(@"baseLiq at %@",NSStringFromCGRect(_baseLiqMenu.frame));
-    [self.view addSubview:_baseLiqMenu];
-    
-    NSArray* tastTitleArray = [NSArray arrayWithObjects:@"tast",@"12%",@"36%",@"50%",nil];
-    NSArray* tastLiqItemArray = [self dropDownItemsWithTitleArray:tastTitleArray];
-    _tastMenu = [self dropDownMenuWithPoint:CGPointMake(160, 64) menuArray:tastLiqItemArray];
-     NSLog(@"tast at %@",NSStringFromCGRect(_tastMenu.frame));
-    [self.view addSubview:_tastMenu];
-    
- */
-    
-    
-    
-    MaPopupMenuController *controller = [[MaPopupMenuController alloc] initWithStyle:UITableViewStylePlain];
+	/*    UIButton* _baseLiqButton;
+	 UIButton* _tastButton;
+	 UIButton* _tempButton;
+	 UIButton* _keyWordsButton;
+	 UIButton* _alcoholButton;
+	 UIButton* _typeButton;
+	 UIButton* _colorButton;
+	 UIButton* _whatEverButton;
+*/
+	_baseLiqButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 64, 160, 44)];
+	_baseLiqButton.backgroundColor = [MaUtility getRandomColor];
+	[_baseLiqButton addTarget:self action:@selector(popDropDownMenu:) forControlEvents:UIControlEventTouchUpInside];
+	[self.view addSubview:_baseLiqButton];
+	
+	_tastButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 108, 160, 44)];
+	_tastButton.backgroundColor = [MaUtility getRandomColor];
+	[_tastButton addTarget:self action:@selector(popDropDownMenu:) forControlEvents:UIControlEventTouchUpInside];
+	[self.view addSubview:_tastButton];
 
+	_tempButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 152, 160, 44)];
+	_tempButton.backgroundColor = [MaUtility getRandomColor];
+	[_tempButton addTarget:self action:@selector(popDropDownMenu:) forControlEvents:UIControlEventTouchUpInside];
+	[self.view addSubview:_tempButton];
+
+	_keyWordsButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 196, 160, 44)];
+	_keyWordsButton.backgroundColor = [MaUtility getRandomColor];
+	[_keyWordsButton addTarget:self action:@selector(popDropDownMenu:) forControlEvents:UIControlEventTouchUpInside];
+	[self.view addSubview:_keyWordsButton];
+
+	_alcoholButton = [[UIButton alloc]initWithFrame:CGRectMake(160, 64, 160, 44)];
+	_alcoholButton.backgroundColor = [MaUtility getRandomColor];
+	[_alcoholButton addTarget:self action:@selector(popDropDownMenu:) forControlEvents:UIControlEventTouchUpInside];
+	[self.view addSubview:_alcoholButton];
+
+	_typeButton = [[UIButton alloc]initWithFrame:CGRectMake(160, 108, 160, 44)];
+	_typeButton.backgroundColor = [MaUtility getRandomColor];
+	[_typeButton addTarget:self action:@selector(popDropDownMenu:) forControlEvents:UIControlEventTouchUpInside];
+	[self.view addSubview:_typeButton];
+	
+	_colorButton = [[UIButton alloc]initWithFrame:CGRectMake(160, 152, 160, 44)];
+	_colorButton.backgroundColor = [MaUtility getRandomColor];
+	[_colorButton addTarget:self action:@selector(popDropDownMenu:) forControlEvents:UIControlEventTouchUpInside];
+	[self.view addSubview:_colorButton];
+
+	_whatEverButton = [[UIButton alloc]initWithFrame:CGRectMake(160, 196, 160, 44)];
+	_whatEverButton.backgroundColor = [MaUtility getRandomColor];
+	[_whatEverButton addTarget:self action:@selector(popDropDownMenu:) forControlEvents:UIControlEventTouchUpInside];
+	[self.view addSubview:_whatEverButton];	
 }
+
+-(void)popDropDownMenu:(id)sender
+{
+	MaPopupMenuController *controller = [[MaPopupMenuController alloc] initWithStyle:UITableViewStylePlain];
+    controller.delegate = self;
+	
+	_popover = [[FPPopoverController alloc] initWithViewController:controller];
+    _popover.tint = FPPopoverLightGrayTint;
+	_popover.border = NO;
+    _popover.contentSize = CGSizeMake(160, 300);
+    _popover.arrowDirection = FPPopoverMaCustom;
+    CGPoint point = ((UIButton*)sender).frame.origin;
+	NSLog(@"Pop up menu from point %@",NSStringFromCGPoint(point));
+
+    [_popover presentPopoverFromPoint: point];    
+}
+
+
+
+
+/*
 
 -(NSArray*)dropDownItemsWithTitleArray:(NSArray*)array
 {
@@ -79,14 +131,13 @@
     
     return itemsArray;
 }
-
 -(ADDropDownMenuView*)dropDownMenuWithPoint:(CGPoint)point menuArray:(NSArray*)menuItemArray
 {
     ADDropDownMenuView *dropDownMenuView = [[ADDropDownMenuView alloc] initAtOrigin:point withItemsViews:menuItemArray];
     dropDownMenuView.delegate = self;
     dropDownMenuView.separatorColor = [UIColor blackColor];
     
-   /* NSArray* subViewArray =  [dropDownMenuView subviews];
+    NSArray* subViewArray =  [dropDownMenuView subviews];
     for (UIView* theSubView in subViewArray) {
         if (theSubView.tag == 1919101910)
         { // #define DIM_VIEW_TAG 1919101910  == the dim view was defined in ADDropDownMenuView.m
@@ -94,7 +145,6 @@
             theSubView.backgroundColor = [UIColor clearColor];
             }
     }
-   */
     return dropDownMenuView;
 }
 
@@ -114,7 +164,7 @@
     NSLog(@"%@ selected", item.titleLabel.text);
 }
 
-
+*/
 /*
 #pragma mark - Navigation
 

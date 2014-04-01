@@ -355,6 +355,8 @@
 {
     [super drawRect:rect];
     
+	if(_arrowDirection == FPPopoverMaCustom)
+		return;
 
     CGGradientRef gradient = [self newGradient];
     
@@ -372,7 +374,7 @@
     //  Draw a linear gradient from top to bottom
     CGPoint start;
     CGPoint end;
-    if(_arrowDirection == FPPopoverArrowDirectionUp || _arrowDirection == FPPopoverNoArrow)
+    if(_arrowDirection == FPPopoverArrowDirectionUp || _arrowDirection == FPPopoverNoArrow ||_arrowDirection == FPPopoverMaCustom)
     {
         start = CGPointMake(self.bounds.size.width/2.0, 0);
         end = CGPointMake(self.bounds.size.width/2.0,40);
@@ -453,7 +455,7 @@
 {
     //content posizion and size
     CGRect contentRect = _contentView.frame;
-	
+
     if(_arrowDirection == FPPopoverArrowDirectionUp)
     {
         contentRect.origin = CGPointMake(10, 60);  
@@ -508,7 +510,16 @@
 			contentRect.size = CGSizeMake(self.bounds.size.width-20, self.bounds.size.height-40);
 		}
     }
-
+    
+    else if(_arrowDirection == FPPopoverMaCustom)
+    {
+        contentRect.origin = CGPointMake(relativeOrigin.x, relativeOrigin.y+44);
+//		_titleLabel.frame = CGRectMake(10, 10, self.bounds.size.width-20, 20);
+		_contentView.layer.cornerRadius = 0;
+        self.layer.shadowOpacity = 0;
+    }
+	
+	NSLog(@"_contentView frame is %@",NSStringFromCGRect(contentRect));
     _contentView.frame = contentRect;
     _titleLabel.text = self.title;    
     

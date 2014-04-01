@@ -7,16 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-@class MaSaleViewController;
+@protocol MaPopupMenuControllerDelegate <NSObject>
+@required
+- (void) processCompleted;
+@end
 
 @interface MaPopupMenuController : UITableViewController
 {
-    NSMutableArray* _dataSourceArray;
-    NSString* _selectedType;
-    
-    NSMutableDictionary* _paramDict;
+
 }
-@property(nonatomic, assign) MaSaleViewController *delegate;
+
+@property (nonatomic, assign)   id <MaPopupMenuControllerDelegate>   delegate;
 @property(nonatomic, retain) NSMutableArray *dataSourceArray;
 @property(nonatomic, retain) NSString *selectedType;
 

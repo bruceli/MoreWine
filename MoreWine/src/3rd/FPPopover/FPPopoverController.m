@@ -16,7 +16,6 @@
     FPPopoverView *_contentView;
     UIViewController *_viewController;
     UIWindow *_window;
-    UIView *_parentView;
     UIView *_fromView;
     UIDeviceOrientation _deviceOrientation;
     
@@ -64,6 +63,7 @@
      selector:@selector(deviceOrientationDidChange:) 
      name:@"UIDeviceOrientationDidChangeNotification" 
      object:nil]; 
+
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(willPresentNewPopover:) name:@"FPNewPopoverPresented" object:nil];
@@ -176,9 +176,10 @@
 
 -(void)setupView
 {
+	NSLog(@"%@",@"setupView");
     self.view.frame = CGRectMake(0, 0, [self parentWidth], [self parentHeight]);
     _touchView.frame = self.view.bounds;
-    
+	
     //view position, size and best arrow direction
     [self bestArrowDirectionAndFrameFromView:_fromView];
 
@@ -281,7 +282,7 @@
 {
     CGPoint p;
     if([_contentView arrowDirection] == FPPopoverArrowDirectionUp ||
-       [_contentView arrowDirection] == FPPopoverNoArrow)
+       [_contentView arrowDirection] == FPPopoverNoArrow || [_contentView arrowDirection] == FPPopoverMaCustom)
     {
         p.x = fromView.frame.origin.x + fromView.frame.size.width/2.0;
         p.y = fromView.frame.origin.y + fromView.frame.size.height;
@@ -321,6 +322,7 @@
     }
      _window=nil;
      _parentView=nil;
+    
 }
 
 -(void)dismissPopoverAnimated:(BOOL)animated {
@@ -427,6 +429,13 @@
     // thanks @Niculcea
     // If we presentFromPoint with _fromView nil will calculate based on self.orgin with 2x2 size.
     // Fix for presentFromPoint from avolovoy's FPPopover fork
+	/*
+	if (_arrowDirection == FPPopoverMaCustom) {
+		CGPoint point = [_parentView convertPoint:self.origin toView:_contentView];
+		_contentView.relativeOrigin = [_parentView convertPoint:self.origin toView:_contentView];
+		return CGRectMake(0, 0, 160, 300);
+	}
+	*/
     float width = 2.0f;
     float height = 2.0f;
     CGPoint p = CGPointMake(self.origin.x, self.origin.y);
@@ -544,17 +553,23 @@
         if(r.origin.y <= 20) r.origin.y += 20;
     }
 
-    //check if the developer wants and arrow
-    if(self.arrowDirection != FPPopoverNoArrow)
-        _contentView.arrowDirection = bestDirection;
-    
-    //no arrow
-    else _contentView.arrowDirection = FPPopoverNoArrow;
-
+	if (self.arrowDirection == FPPopoverMaCustom) {
+		_contentView.arrowDirection = FPPopoverMaCustom;	
+	}
+	else{
+		//check if the developer wants and arrow
+		if(self.arrowDirection != FPPopoverNoArrow)
+			_contentView.arrowDirection = bestDirection;
+		
+		//no arrow
+		else _contentView.arrowDirection = FPPopoverNoArrow;
+	}
     //using the frame calculated
     _contentView.frame = r;
 
     self.origin = CGPointMake(p.x + v.frame.size.width/2.0, p.y + v.frame.size.height/2.0);
+	CGPoint point = [_parentView convertPoint:self.origin toView:_contentView];
+//	NSLog(@"_parentView Point is %@", NSStringFromCGPoint(point));
     _contentView.relativeOrigin = [_parentView convertPoint:self.origin toView:_contentView];
 
     return r;
@@ -601,5 +616,8 @@
     _alpha = alpha;
     self.view.alpha = alpha;
 }
+
+
+
 
 @end

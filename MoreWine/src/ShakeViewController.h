@@ -7,19 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
-@class ADDropDownMenuView;
+//@class ADDropDownMenuView;
+@class FPPopoverController;
+@protocol FPPopoverControllerDelegate,MaPopupMenuControllerDelegate;
 
-@interface ShakeViewController : UIViewController
+@interface ShakeViewController : UIViewController <MaPopupMenuControllerDelegate>
 {
-    ADDropDownMenuView* _baseLiqMenu;
-    ADDropDownMenuView* _tastMenu;
-    ADDropDownMenuView* _tempMenu;
-    ADDropDownMenuView* _keyWordsMenu;
-    ADDropDownMenuView* _alcoholMenu;
-    ADDropDownMenuView* _typeMenu;
-    ADDropDownMenuView* _colorMenu;
-    ADDropDownMenuView* _whatEverMenu;
-    
-    
+	
+    UIButton* _baseLiqButton;
+    UIButton* _tastButton;
+    UIButton* _tempButton;
+    UIButton* _keyWordsButton;
+    UIButton* _alcoholButton;
+    UIButton* _typeButton;
+    UIButton* _colorButton;
+    UIButton* _whatEverButton;
+
+	FPPopoverController *_popover;
+
 }
 @end
