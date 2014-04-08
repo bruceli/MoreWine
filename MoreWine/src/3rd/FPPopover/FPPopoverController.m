@@ -249,7 +249,7 @@
             [_viewController viewDidAppear:YES];
         }
         
-   }
+    }
     else
     {
         [self dismissPopoverAnimated:NO];

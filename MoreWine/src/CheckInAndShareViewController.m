@@ -1,20 +1,21 @@
 //
-//  CheckInViewController.m
+//  CheckInAndShareViewController.m
 //  MoreWine
 //
 //  Created by Thunder on 3/28/14.
 //  Copyright (c) 2014 MagicApp. All rights reserved.
 //
 
-#import "CheckInViewController.h"
+#import "CheckInAndShareViewController.h"
+//#import "UIBarButtonItem+StyledButton.h"
 
 #import "MaUtility.h"
 
-@interface CheckInViewController ()
+@interface CheckInAndShareViewController ()
 
 @end
 
-@implementation CheckInViewController
+@implementation CheckInAndShareViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,7 +29,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [MaUtility getRandomColor];
+	
+    UIImage *backImage = [UIImage imageNamed:@"navigation_Back_Icon"];
+	UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(40.0f, 0.0f, backImage.size.width, backImage.size.height)];
+	button.backgroundColor = [MaUtility getRandomColor];
+	[button addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
+	[button setBackgroundImage:backImage forState:UIControlStateNormal];
+//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+	UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+	negativeSpacer.width = -16;// it was -6 in iOS 6
+	[self.navigationItem setLeftBarButtonItems:[NSArray arrayWithObjects:negativeSpacer, [[UIBarButtonItem alloc] initWithCustomView:button]/*this will be the button which u actually need*/, nil] animated:NO];
+
+	self.view.backgroundColor = [MaUtility getRandomColor];
     _infoTextView = [[UITextView alloc] initWithFrame:CGRectMake(0, 64, 320, 155)];
     _infoTextView.backgroundColor = [MaUtility getRandomColor];
     _infoTextView.contentInset = UIEdgeInsetsMake(-64.0f, 10.0f, 0.0f ,10.0f);
@@ -37,9 +49,7 @@
     _infoTextView.textAlignment = NSTextAlignmentLeft;
     [self.view addSubview:_infoTextView];
     
-    [self setupShareView];
-    
-    
+    [self setupShareView];    
     // Do any additional setup after loading the view.
 }
 
@@ -84,6 +94,16 @@
 	[shareView addSubview:weiboButton];
     
     [self.view addSubview:shareView];
+}
+
+-(void)cancel
+{
+	[self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)share
+{
+
 }
 
 /*

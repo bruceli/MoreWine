@@ -12,6 +12,8 @@
 #import "MaPopupMenuController.h"
 #import "FPPopoverController.h"
 #import "MaUtility.h"
+#import "MaDropDownMenuController.h"
+#import "ShakeResultViewController.h"
 
 @interface ShakeViewController ()
 
@@ -31,9 +33,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor darkGrayColor];
+	
+	_scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+	_scrollView.alwaysBounceVertical = YES;
+	_scrollView.backgroundColor = [MaUtility getRandomColor];
+	_scrollView.contentSize = CGSizeMake(320, 455);
+	[self.view addSubview:_scrollView];
+	
     [self setupHeaderViews];
     [self setupDropDownMenus];
+	[self setupShakeButtonView];
+	[self setupRecommedTitleView];
     // Do any additional setup after loading the view.
 }
 
@@ -49,72 +60,175 @@
 
 -(void)setupDropDownMenus
 {
-	/*    UIButton* _baseLiqButton;
-	 UIButton* _tastButton;
-	 UIButton* _tempButton;
-	 UIButton* _keyWordsButton;
-	 UIButton* _alcoholButton;
-	 UIButton* _typeButton;
-	 UIButton* _colorButton;
-	 UIButton* _whatEverButton;
-*/
-	_baseLiqButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 64, 160, 44)];
-	_baseLiqButton.backgroundColor = [MaUtility getRandomColor];
-	[_baseLiqButton addTarget:self action:@selector(popDropDownMenu:) forControlEvents:UIControlEventTouchUpInside];
-	[self.view addSubview:_baseLiqButton];
+/*    _baseLiqButton = [self setupButtonByFrame:CGRectMake(0, 64, 160, 44)];
+	[self setupButton:_baseLiqButton title:@"基酒"];
+	[self addRightEdge:_baseLiqButton];
 	
-	_tastButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 108, 160, 44)];
-	_tastButton.backgroundColor = [MaUtility getRandomColor];
-	[_tastButton addTarget:self action:@selector(popDropDownMenu:) forControlEvents:UIControlEventTouchUpInside];
-	[self.view addSubview:_tastButton];
+	_tastButton = [self setupButtonByFrame:CGRectMake(0, 108, 160, 44)];
+	[self setupButton:_tastButton title:@"口味"];
+	[self addRightEdge:_tastButton];
 
-	_tempButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 152, 160, 44)];
-	_tempButton.backgroundColor = [MaUtility getRandomColor];
-	[_tempButton addTarget:self action:@selector(popDropDownMenu:) forControlEvents:UIControlEventTouchUpInside];
-	[self.view addSubview:_tempButton];
+    _tempButton = [self setupButtonByFrame:CGRectMake(0, 152, 160, 44)];
+	[self setupButton:_tempButton title:@"温度"];
+	[self addRightEdge:_tempButton];
 
-	_keyWordsButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 196, 160, 44)];
-	_keyWordsButton.backgroundColor = [MaUtility getRandomColor];
-	[_keyWordsButton addTarget:self action:@selector(popDropDownMenu:) forControlEvents:UIControlEventTouchUpInside];
-	[self.view addSubview:_keyWordsButton];
+    _keyWordsButton = [self setupButtonByFrame:CGRectMake(0, 196, 160, 44)];
+	[self setupButton:_keyWordsButton title:@"关键字"];
+	[self addRightEdge:_keyWordsButton];
+	[self addBottonEdge:_keyWordsButton];
 
-	_alcoholButton = [[UIButton alloc]initWithFrame:CGRectMake(160, 64, 160, 44)];
-	_alcoholButton.backgroundColor = [MaUtility getRandomColor];
-	[_alcoholButton addTarget:self action:@selector(popDropDownMenu:) forControlEvents:UIControlEventTouchUpInside];
-	[self.view addSubview:_alcoholButton];
+    _alcoholButton = [self setupButtonByFrame:CGRectMake(160, 64, 160, 44)];
+	[self setupButton:_alcoholButton title:@"酒精度"];
 
-	_typeButton = [[UIButton alloc]initWithFrame:CGRectMake(160, 108, 160, 44)];
-	_typeButton.backgroundColor = [MaUtility getRandomColor];
-	[_typeButton addTarget:self action:@selector(popDropDownMenu:) forControlEvents:UIControlEventTouchUpInside];
-	[self.view addSubview:_typeButton];
+    _typeButton = [self setupButtonByFrame:CGRectMake(160, 108, 160, 44)];
+	[self setupButton:_typeButton title:@"类型"];
+
+	_colorButton = [self setupButtonByFrame:CGRectMake(160, 152, 160, 44)];
+	[self setupButton:_colorButton title:@"颜色"];
 	
-	_colorButton = [[UIButton alloc]initWithFrame:CGRectMake(160, 152, 160, 44)];
-	_colorButton.backgroundColor = [MaUtility getRandomColor];
-	[_colorButton addTarget:self action:@selector(popDropDownMenu:) forControlEvents:UIControlEventTouchUpInside];
-	[self.view addSubview:_colorButton];
+	_whatEverButton = [self setupButtonByFrame:CGRectMake(160, 196, 160, 44)];
+	[self setupButton:_whatEverButton title:@"随便"];
+	[self addBottonEdge:_whatEverButton];
+ */
+	_baseLiqButton = [self setupButtonByFrame:CGRectMake(0, 0, 160, 44)];
+	[self setupButton:_baseLiqButton title:@"基酒"];
+	[self addRightEdge:_baseLiqButton];
+	
+	_tastButton = [self setupButtonByFrame:CGRectMake(0, 44, 160, 44)];
+	[self setupButton:_tastButton title:@"口味"];
+	[self addRightEdge:_tastButton];
+	
+    _tempButton = [self setupButtonByFrame:CGRectMake(0, 88, 160, 44)];
+	[self setupButton:_tempButton title:@"温度"];
+	[self addRightEdge:_tempButton];
+	
+    _keyWordsButton = [self setupButtonByFrame:CGRectMake(0, 132, 160, 44)];
+	[self setupButton:_keyWordsButton title:@"关键字"];
+	[self addRightEdge:_keyWordsButton];
+	[self addBottonEdge:_keyWordsButton];
+	
+    _alcoholButton = [self setupButtonByFrame:CGRectMake(160, 0, 160, 44)];
+	[self setupButton:_alcoholButton title:@"酒精度"];
+	
+    _typeButton = [self setupButtonByFrame:CGRectMake(160, 44, 160, 44)];
+	[self setupButton:_typeButton title:@"类型"];
+	
+	_colorButton = [self setupButtonByFrame:CGRectMake(160, 88, 160, 44)];
+	[self setupButton:_colorButton title:@"颜色"];
+	
+	_whatEverButton = [self setupButtonByFrame:CGRectMake(160, 132, 160, 44)];
+	[self setupButton:_whatEverButton title:@"随便"];
+	[self addBottonEdge:_whatEverButton];
 
-	_whatEverButton = [[UIButton alloc]initWithFrame:CGRectMake(160, 196, 160, 44)];
-	_whatEverButton.backgroundColor = [MaUtility getRandomColor];
-	[_whatEverButton addTarget:self action:@selector(popDropDownMenu:) forControlEvents:UIControlEventTouchUpInside];
-	[self.view addSubview:_whatEverButton];	
 }
 
--(void)popDropDownMenu:(id)sender
+-(void)setupShakeButtonView
 {
-	MaPopupMenuController *controller = [[MaPopupMenuController alloc] initWithStyle:UITableViewStylePlain];
-    controller.delegate = self;
-	
-	_popover = [[FPPopoverController alloc] initWithViewController:controller];
-    _popover.tint = FPPopoverLightGrayTint;
-	_popover.border = NO;
-    _popover.contentSize = CGSizeMake(160, 300);
-    _popover.arrowDirection = FPPopoverMaCustom;
-    CGPoint point = ((UIButton*)sender).frame.origin;
-	NSLog(@"Pop up menu from point %@",NSStringFromCGPoint(point));
-
-    [_popover presentPopoverFromPoint: point];    
+	_shakeButton = [[UIButton alloc] initWithFrame:CGRectMake(98, 216, 124, 124)];
+	_shakeButton.backgroundColor = [UIColor clearColor];
+	[_shakeButton addTarget:self action:@selector(pushShakeResult:) forControlEvents:UIControlEventTouchDown];
+	[_shakeButton setImage:[UIImage imageNamed:@"shakeView_shakeButton"] forState:UIControlStateNormal];
+	[_shakeButton setImage:[UIImage imageNamed:@"shakeView_shakeButton_hilight"] forState:UIControlStateSelected];
+	[_scrollView addSubview:_shakeButton];
 }
 
+-(void)pushShakeResult:(id)sender
+{
+	//ShakeResultViewController
+	ShakeResultViewController* viewController = [[ShakeResultViewController alloc] init];
+    [self.navigationController pushViewController: viewController animated:YES];
+
+}
+
+-(void)setupRecommedTitleView
+{
+	UIView* theView = [[UIView alloc] initWithFrame:CGRectMake(0, 380, 320, 24)];
+
+	UIView* topLine = [[UIView alloc] initWithFrame:CGRectMake(17, 0, 286, 1)];
+	topLine.backgroundColor = [UIColor whiteColor];
+	[theView addSubview:topLine];
+
+	UIView* bottomLine = [[UIView alloc] initWithFrame:CGRectMake(17, 24, 286, 1)];
+	bottomLine.backgroundColor = [UIColor whiteColor];
+	[theView addSubview:bottomLine];
+
+	UILabel* theLable = [[UILabel alloc] initWithFrame:CGRectMake(17, 0, 286, 24)];
+	theLable.backgroundColor = [MaUtility getRandomColor];
+	theLable.text = @"不知道喝什么？ 选择您喜欢的类型，让我为您推荐！";
+	theLable.font = [UIFont systemFontOfSize:11];
+	theLable.textColor = [UIColor whiteColor];
+	[theView addSubview:theLable];
+	
+	[_scrollView addSubview:theView];
+}
+
+-(UIButton*)setupButtonByFrame:(CGRect)frame
+{
+    UIButton* theButton = [[UIButton alloc]initWithFrame:frame];
+    theButton.backgroundColor = [MaUtility getRandomColor];
+	[theButton addTarget:self action:@selector(popMaMenu:) forControlEvents:UIControlEventTouchUpInside];
+	[_scrollView addSubview:theButton];
+    return theButton;
+}
+
+-(void)addRightEdge:(UIButton*)theButton
+{
+	UIView* rightLine = [[UIView alloc] initWithFrame:CGRectMake(160, 0, 1, 44)];
+	rightLine.backgroundColor = [UIColor whiteColor];
+	[theButton addSubview:rightLine];
+}
+
+-(void)addBottonEdge:(UIButton*)theButton
+{
+	UIView* bottonLine = [[UIView alloc] initWithFrame:CGRectMake(0, 44, 160, 1)];
+	bottonLine.backgroundColor = [UIColor whiteColor];
+	[theButton addSubview:bottonLine];
+}
+
+-(void)setupButton:(UIButton*)theButton title:(NSString*)theTitle
+{
+	//- (void)setTitle:(NSString *)title forState:(UIControlState)state;                     // default is nil. title is assumed to be single line
+	UIView* topLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 160, 1)];
+	topLine.backgroundColor = [UIColor whiteColor];
+	[theButton addSubview:topLine];
+	
+	[theButton setTitle:theTitle forState:UIControlStateNormal];
+	theButton.titleLabel.font = [UIFont systemFontOfSize:14];
+	theButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+	theButton.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
+	
+	[theButton setImage:[UIImage imageNamed:@"shakeMenuArrow"] forState:UIControlStateNormal];
+	[theButton setImageEdgeInsets:UIEdgeInsetsMake(0, 119, 0, 0)];	
+}
+
+-(void)popMaMenu:(id)sender
+{
+ 	_dropDownController = [[MaDropDownMenuController alloc] initWithViewController:self];
+    //    controller.delegate = self;
+//	CGPoint point = ((UIButton*)sender).frame.origin;
+//	NSLog(@"sender from point %@",NSStringFromCGPoint(point));
+
+//	CGPoint thePoint = [self.view convertPoint:((UIButton*)sender).frame.origin toView:_scrollView];
+//	CGPoint thePoint = _scrollView.contentOffset;
+//	NSLog(@"contentOffect %@",NSStringFromCGPoint(thePoint));
+
+    [self.view addSubview:_dropDownController.view];
+    [self addChildViewController:_dropDownController];
+    [self didMoveToParentViewController:self];
+    
+	CGPoint popPoint = CGPointMake(((UIButton*)sender).frame.origin.x, ((UIButton*)sender).frame.origin.y-_scrollView.contentOffset.y+44);// +44 pop menu from bottom of menu;
+//	NSLog(@"popPoint %@",NSStringFromCGPoint(popPoint));
+
+    [_dropDownController presentPopoverFromPoint: popPoint];
+}
+
+-(void)dismissDropDownMenuWithSelection:(id)item
+{
+//    NSLog(@"%@",@"dismiss drop down menu from shake view");
+    [_dropDownController.view removeFromSuperview];
+    [_dropDownController removeFromParentViewController];
+    _dropDownController = nil;
+}
 
 
 

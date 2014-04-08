@@ -12,9 +12,10 @@
 - (void) processCompleted;
 @end
 
+@class MaTouchView;
 @interface MaPopupMenuController : UITableViewController
 {
-
+    MaTouchView* _touchView;
 }
 
 @property (nonatomic, assign)   id <MaPopupMenuControllerDelegate>   delegate;

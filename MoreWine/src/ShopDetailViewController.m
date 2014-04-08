@@ -15,10 +15,10 @@
 
 #import "SGFocusImageItem.h"
 #import "StyleIndicatorView.h"
-#import "CheckInViewController.h"
+#import "CheckInAndShareViewController.h"
 #import "ShakeViewController.h"
 #import "MaTagButton.h"
-
+#import "MaNavigationBar.h"
 
 @interface DetailNameView : UIView
 {
@@ -389,8 +389,13 @@
 -(void)checkIn:(id)sender
 {
     // test pushViewController
-	CheckInViewController* viewController = [[CheckInViewController alloc] init];
-    [self.navigationController pushViewController: viewController animated:YES];
+	CheckInAndShareViewController* controller = [[CheckInAndShareViewController alloc] init];
+    UINavigationController *navController = [[UINavigationController alloc] initWithNavigationBarClass:[MaNavigationBar class] toolbarClass:nil];
+	[navController setViewControllers:@[controller]];
+	[self presentViewController:navController animated:YES completion:nil];	
+	
+//	CheckInAndShareViewController* viewController = [[CheckInAndShareViewController alloc] init];
+//    [self.navigationController pushViewController: viewController animated:YES];
 
 }
 

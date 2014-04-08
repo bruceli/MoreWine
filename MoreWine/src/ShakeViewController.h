@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 //@class ADDropDownMenuView;
-@class FPPopoverController;
-@protocol FPPopoverControllerDelegate,MaPopupMenuControllerDelegate;
+@class MaDropDownMenuController;
+@protocol MaPopupMenuControllerDelegate;
 
-@interface ShakeViewController : UIViewController <MaPopupMenuControllerDelegate>
+@interface ShakeViewController : UIViewController //<MaPopupMenuControllerDelegate>
 {
+	UIScrollView* _scrollView;
 	
     UIButton* _baseLiqButton;
     UIButton* _tastButton;
@@ -22,8 +23,12 @@
     UIButton* _typeButton;
     UIButton* _colorButton;
     UIButton* _whatEverButton;
-
-	FPPopoverController *_popover;
-
+	
+	UIButton* _shakeButton;
+	
+    MaDropDownMenuController *_dropDownController;
 }
+
+-(void)dismissDropDownMenuWithSelection:(id)item;
+
 @end

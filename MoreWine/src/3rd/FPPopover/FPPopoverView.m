@@ -519,7 +519,7 @@
         self.layer.shadowOpacity = 0;
     }
 	
-	NSLog(@"_contentView frame is %@",NSStringFromCGRect(contentRect));
+//	NSLog(@"_contentView frame is %@",NSStringFromCGRect(contentRect));
     _contentView.frame = contentRect;
     _titleLabel.text = self.title;    
     

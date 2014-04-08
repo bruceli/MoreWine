@@ -8,6 +8,7 @@
 
 #import "MaUtility.h"
 #import "MaPopupMenuController.h"
+#import "MaTouchView.h"
 
 
 @interface MaPopupMenuController ()
@@ -32,6 +33,13 @@
 {
     [super viewDidLoad];
 	self.view.backgroundColor = [UIColor orangeColor];
+    
+    _touchView = [[MaTouchView alloc] initWithFrame:self.view.bounds];
+    _touchView.backgroundColor = [MaUtility getRandomColor];
+    _touchView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    _touchView.clipsToBounds = NO;
+    [self.view addSubview:_touchView];
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -44,6 +52,17 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+/*
+{
+    [UIView animateWithDuration:0.2 animations:^{
+        
+        self.view.alpha = self.alpha;
+    }];
+
+}
+*/
+
 
 #pragma mark - Table view data source
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

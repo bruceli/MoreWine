@@ -1,5 +1,5 @@
 //
-//  CheckInViewController.h
+//  CheckInAndShareViewController.h
 //  MoreWine
 //
 //  Created by Thunder on 3/28/14.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CheckInViewController : UIViewController
+@interface CheckInAndShareViewController : UIViewController
 {
     UITextView* _infoTextView;
     
