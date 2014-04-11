@@ -43,9 +43,19 @@
 
 -(void)setupViews
 {
-	self.contentSize = CGSizeMake(0, MA_LoginView_Content_Height);
+ /*   _touchView = [[UIView alloc] initWithFrame: self.bounds];
+    _touchView.backgroundColor = [UIColor clearColor];
+    _touchView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    _touchView.clipsToBounds = NO;
+    [self setupTouchViewTap:_touchView];
+
+*/
+	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    [self addGestureRecognizer:tap];
+
+    self.contentSize = CGSizeMake(0, MA_LoginView_Content_Height);
 	
-	self.backgroundColor = [MaUtility getRandomColor];
+	self.backgroundColor = [UIColor clearColor];
 	UIImageView* logoView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 183)];
 	logoView.image = [UIImage imageNamed:@"loginView_logo"];
 	[self addSubview:logoView];
@@ -146,7 +156,27 @@
 {
     [sender resignFirstResponder];
 }
+/*
+-(void)setupTouchViewTap:(UIView*)view
+{
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchViewTap:)];
+	singleTap.numberOfTapsRequired = 1;
+	[view setUserInteractionEnabled:YES];
+    [view addGestureRecognizer:singleTap];
+}
 
+-(void)touchViewTap:(id)sender
+{
+    NSLog(@"%@",@"handle dissmiss touch");
+    //    [_baseViewController dismissDropDownMenu];
+    [self dismissKeyboard];
+    //    [((ShakeViewController*)_baseViewController) dismissDropDownMenuWithSelection:nil];
+}
+*/
+-(void)dismissKeyboard
+{
+    [self endEditing:YES];
+}
 
 -(void)buttonHighlight:(id)sender
 {

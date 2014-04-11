@@ -7,10 +7,6 @@
 //
 
 #import "ShakeViewController.h"
-//#import "ADDropDownMenuView.h"
-//#import "ADDropDownMenuItemView.h"
-#import "MaPopupMenuController.h"
-#import "FPPopoverController.h"
 #import "MaUtility.h"
 #import "MaDropDownMenuController.h"
 #import "ShakeResultViewController.h"
@@ -33,11 +29,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor darkGrayColor];
-	
-	_scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+    //self.view.backgroundColor = [UIColor clearColor];
+	//blurImageView
+	NSString* theImageName;
+	if ([MaUtility hasFourInchDisplay])
+		theImageName = @"backgroundImage_586h.png";
+	else
+		theImageName = @"backgroundImage.png";
+    
+	UIImage* image = [UIImage imageNamed:theImageName];    
+	UIImageView* _bkgBlurImageView = [[UIImageView alloc] initWithFrame:self.view.frame];
+	_bkgBlurImageView.image = image;
+    [self.view addSubview:_bkgBlurImageView];
+
+	_scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.view.frame.origin.y+64, 320, self.view.frame.size.height-64)];
+	_scrollView.backgroundColor = [UIColor clearColor];
 	_scrollView.alwaysBounceVertical = YES;
-	_scrollView.backgroundColor = [MaUtility getRandomColor];
 	_scrollView.contentSize = CGSizeMake(320, 455);
 	[self.view addSubview:_scrollView];
 	
@@ -126,7 +133,8 @@
 {
 	_shakeButton = [[UIButton alloc] initWithFrame:CGRectMake(98, 216, 124, 124)];
 	_shakeButton.backgroundColor = [UIColor clearColor];
-	[_shakeButton addTarget:self action:@selector(pushShakeResult:) forControlEvents:UIControlEventTouchDown];
+
+	[_shakeButton addTarget:self action:@selector(pushShakeResult:) forControlEvents:UIControlEventTouchUpInside];
 	[_shakeButton setImage:[UIImage imageNamed:@"shakeView_shakeButton"] forState:UIControlStateNormal];
 	[_shakeButton setImage:[UIImage imageNamed:@"shakeView_shakeButton_hilight"] forState:UIControlStateSelected];
 	[_scrollView addSubview:_shakeButton];
@@ -153,7 +161,7 @@
 	[theView addSubview:bottomLine];
 
 	UILabel* theLable = [[UILabel alloc] initWithFrame:CGRectMake(17, 0, 286, 24)];
-	theLable.backgroundColor = [MaUtility getRandomColor];
+	theLable.backgroundColor = [UIColor clearColor];
 	theLable.text = @"不知道喝什么？ 选择您喜欢的类型，让我为您推荐！";
 	theLable.font = [UIFont systemFontOfSize:11];
 	theLable.textColor = [UIColor whiteColor];
@@ -165,7 +173,7 @@
 -(UIButton*)setupButtonByFrame:(CGRect)frame
 {
     UIButton* theButton = [[UIButton alloc]initWithFrame:frame];
-    theButton.backgroundColor = [MaUtility getRandomColor];
+    theButton.backgroundColor = [UIColor clearColor];
 	[theButton addTarget:self action:@selector(popMaMenu:) forControlEvents:UIControlEventTouchUpInside];
 	[_scrollView addSubview:theButton];
     return theButton;
@@ -216,7 +224,7 @@
     [self addChildViewController:_dropDownController];
     [self didMoveToParentViewController:self];
     
-	CGPoint popPoint = CGPointMake(((UIButton*)sender).frame.origin.x, ((UIButton*)sender).frame.origin.y-_scrollView.contentOffset.y+44);// +44 pop menu from bottom of menu;
+	CGPoint popPoint = CGPointMake(((UIButton*)sender).frame.origin.x, ((UIButton*)sender).frame.origin.y-_scrollView.contentOffset.y+64+44);// +44 pop menu from bottom of menu;
 //	NSLog(@"popPoint %@",NSStringFromCGPoint(popPoint));
 
     [_dropDownController presentPopoverFromPoint: popPoint];

@@ -7,14 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-@class SignInView;
-@class SignUpView;
+@class SignInView,SignUpView,UserInfoView;
 
 @interface LoginViewController : UIViewController
 {
 	SignInView* _signInView;
 	SignUpView* _signUpView;
-	
+	UserInfoView* _userInfoView;
 }
 -(void)didSelectSignUp;
 -(void)signUpCancel;

@@ -28,7 +28,7 @@
 
 -(void)setupViews
 {
-	self.backgroundColor = [MaUtility getRandomColor];
+	self.backgroundColor = [UIColor clearColor];
 	
     CGRect frame = CGRectMake(17, 112, 286, 40);
     _newUserNameField = [self setupFieldByFrame:frame];

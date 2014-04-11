@@ -30,11 +30,19 @@
 {
     [super viewDidLoad];
 	
-	
-	_scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+	_scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.view.frame.origin.y+64, 320, self.view.frame.size.height-64)];
+	NSString* theImageName;
+	if ([MaUtility hasFourInchDisplay])
+		theImageName = @"backgroundImage_586h.png";
+	else
+		theImageName = @"backgroundImage.png";
+    
+	UIImage* image = [UIImage imageNamed:theImageName];    
+	UIImageView* _bkgBlurImageView = [[UIImageView alloc] initWithFrame:self.view.frame];
+	_bkgBlurImageView.image = image;
+    [self.view addSubview:_bkgBlurImageView];
 	_scrollView.alwaysBounceVertical = YES;
-	_scrollView.backgroundColor = [MaUtility getRandomColor];
-	_scrollView.contentSize = CGSizeMake(320, 455);
+	_scrollView.contentSize = CGSizeMake(320, 455+64);
 	[self.view addSubview:_scrollView];
 
 	[self setupViews];
@@ -99,15 +107,15 @@
 {
 	UIView* buttonView = [[UIView alloc] initWithFrame:CGRectMake(0, 377, 320, 50)];
 	_favButton = [self setupButtonByFrame:CGRectMake(39, 26, 75, 30) name:@"收藏"];
-	[_favButton addTarget:self action:@selector(addFavorite:) forControlEvents:UIControlEventTouchDown];
+	[_favButton addTarget:self action:@selector(addFavorite:) forControlEvents:UIControlEventTouchUpInside];
 	[buttonView addSubview:_favButton];
 	
 	_shareButton = [self setupButtonByFrame:CGRectMake(121, 26, 75, 30) name:@"分享"];
-	[_shareButton addTarget:self action:@selector(share:) forControlEvents:UIControlEventTouchDown];
+	[_shareButton addTarget:self action:@selector(share:) forControlEvents:UIControlEventTouchUpInside];
 	[buttonView addSubview:_shareButton];
 
 	_oneMoreButton = [self setupButtonByFrame:CGRectMake(203, 26, 75, 30) name:@"再来一次"];
-	[_oneMoreButton addTarget:self action:@selector(oneMore:) forControlEvents:UIControlEventTouchDown];
+	[_oneMoreButton addTarget:self action:@selector(oneMore:) forControlEvents:UIControlEventTouchUpInside];
 	[buttonView addSubview:_oneMoreButton];
 
 	[_scrollView addSubview:buttonView];
@@ -137,6 +145,8 @@
 
 -(void)share:(id)sender
 {
+	[self buttonNormal:sender];
+		
 	CheckInAndShareViewController* controller = [[CheckInAndShareViewController alloc] init];
     UINavigationController *navController = [[UINavigationController alloc] initWithNavigationBarClass:[MaNavigationBar class] toolbarClass:nil];
 	[navController setViewControllers:@[controller]];

@@ -9,6 +9,9 @@
 #import "LoginViewController.h"
 #import "SignInView.h"
 #import "SignUpView.h"
+#import "UserInfoView.h"
+#import "AppDelegate.h"
+#import "UserInfoManager.h"
 
 @interface LoginViewController ()
 
@@ -28,6 +31,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    AppDelegate* app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [self setupUserInfoView];
+
+    if (![app.userInfoMgr isLogIn]) {
+        [self needSignIn];
+    }
+    
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+-(void)setupSignInView
+{
     CGRect frame = CGRectMake(0, 0, 320, self.view.frame.size.height);
 	_signInView = [[SignInView alloc] initWithFrame:frame];
 	_signInView.loginController = self;
@@ -35,10 +55,13 @@
 	[self.view addSubview:_signInView];
 }
 
-- (void)didReceiveMemoryWarning
+-(void)setupUserInfoView
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    CGRect frame = CGRectMake(0, 0, 320, self.view.frame.size.height);
+	_userInfoView = [[UserInfoView alloc] initWithFrame:frame];
+	_userInfoView.loginController = self;
+	
+	[self.view addSubview:_userInfoView];
 }
 
 -(void)didSelectSignUp
@@ -93,6 +116,35 @@
                      completion:^(BOOL finished){
                          _signUpView = nil;
                      }];
+}
+
+-(void)needSignIn
+{
+    // need login ,show  signinView Here
+    CGRect signInDestFrame = CGRectMake(0, 0, 320, self.view.frame.size.height);
+    CGRect signInOrigFrame = CGRectMake(0, self.view.frame.size.height, 320, self.view.frame.size.height);
+
+    CGRect userInfoDestFrame = CGRectMake(0, -self.view.frame.size.height, 320, self.view.frame.size.height);
+
+	_signInView = [[SignInView alloc] initWithFrame:signInOrigFrame];
+	_signInView.loginController = self;
+	
+	[self.view addSubview:_signInView];
+    
+    [UIView animateWithDuration:0.2f delay:0.4f
+                        options: UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+						 _signInView.frame = signInDestFrame;
+                         _userInfoView.frame = userInfoDestFrame;
+                     }
+                     completion:^(BOOL finished){
+                         _signUpView = nil;
+                     }];    
+}
+
+-(void)didSignIn
+{
+
 }
 
 /*

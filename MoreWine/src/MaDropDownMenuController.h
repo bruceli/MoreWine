@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-//@class MaTouchView;
+@class FXBlurView;
 @interface MaDropDownMenuController : UIViewController <UITableViewDataSource,UITableViewDelegate>
 {
     UIView* _touchView;
     UITableView* _tableView;
-
+	FXBlurView* _blurView;
     NSArray* _dataSourceArray;
     UIViewController* _baseViewController;
 }

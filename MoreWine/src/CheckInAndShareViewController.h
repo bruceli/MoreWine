@@ -8,9 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@class FXBlurView;
+
 @interface CheckInAndShareViewController : UIViewController
 {
     UITextView* _infoTextView;
-    
+    UIView* _baseView;
+	UIViewController* _parentVC;
+	
+	FXBlurView* _blurView;
 }
+@property (nonatomic, retain) FXBlurView *blurView;
+- (void)showOnViewController:(UIViewController *)vc;
 @end

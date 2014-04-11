@@ -7,15 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-@class MaDataSettingManager;
+@class MaDataSettingManager,UserInfoManager;
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
     UITabBarController *_tabBarController;
 	UIImageView* _bkgBlurImageView;
-
+    UserInfoManager* _userInfoMgr;
 	MaDataSettingManager* _dataSettingMgr;
 }
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic, retain) MaDataSettingManager *dataSettingMgr;
-
+@property (nonatomic, retain) UserInfoManager *userInfoMgr;
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "MainViewController.h"
-#import <LBBlurredImage/UIImageView+LBBlurredImage.h>
+//#import <LBBlurredImage/UIImageView+LBBlurredImage.h>
 
 #import "AppDelegate.h"
 #import "MaUtility.h"
@@ -38,7 +38,7 @@
 {
     [super viewDidLoad];
     //	[self preLoadTableViewCells];
-    
+    self.view.backgroundColor = [UIColor clearColor];
     // ContainerView
     _headerContainerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 153)];
     
@@ -46,20 +46,7 @@
 	[self setupHilightImageView];
     [_headerContainerView addSubview:_hilightImageView];
    
-	//blurImageView
-	NSString* theImageName;
-	if ([MaUtility hasFourInchDisplay])
-		theImageName = @"backgroundImage_586h.png";
-	else
-		theImageName = @"backgroundImage.png";
-    
-	UIImage* image = [UIImage imageNamed:theImageName];    
-	_bkgBlurImageView = [[UIImageView alloc] initWithFrame:self.view.frame];
-    _bkgBlurImageView.contentMode = UIViewContentModeScaleAspectFill;
-    _bkgBlurImageView.alpha = 1;
-    [_bkgBlurImageView setImageToBlur:image blurRadius:1 completionBlock:nil];
-    [self.view addSubview:_bkgBlurImageView];
-	
+
 	// height in 43 points
     // UISearchBar Init
     // _searchDisplayController for reference http://cocoabob.net/?p=67

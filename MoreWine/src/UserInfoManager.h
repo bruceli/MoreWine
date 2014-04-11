@@ -9,5 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @interface UserInfoManager : NSObject
+{
+}
+
+-(BOOL)isLogIn;
+
 
 @end

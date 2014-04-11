@@ -8,7 +8,7 @@
 
 #import "ShopDetailViewController.h"
 #import <QuartzCore/QuartzCore.h>
-#import <LBBlurredImage/UIImageView+LBBlurredImage.h>
+//#import <LBBlurredImage/UIImageView+LBBlurredImage.h>
 
 #import "MaUtility.h"
 #import "AppDelegate.h"
@@ -145,9 +145,7 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-	self.view.backgroundColor = [UIColor brownColor];
-	
+    [super viewDidLoad];	
 	//blurImageView
 	NSString* theImageName;
 	if ([MaUtility hasFourInchDisplay])
@@ -157,9 +155,7 @@
     
 	UIImage* image = [UIImage imageNamed:theImageName];    
 	_bkgBlurImageView = [[UIImageView alloc] initWithFrame:self.view.frame];
-    _bkgBlurImageView.contentMode = UIViewContentModeScaleAspectFill;
-    _bkgBlurImageView.alpha = 1;
-    [_bkgBlurImageView setImageToBlur:image blurRadius:1 completionBlock:nil];
+	_bkgBlurImageView.image = image;
     [self.view addSubview:_bkgBlurImageView];
 	
 	_scrollView = [[UIScrollView alloc] initWithFrame:self.view.frame];
@@ -388,15 +384,25 @@
 
 -(void)checkIn:(id)sender
 {
-    // test pushViewController
+    // Orignal 
 	CheckInAndShareViewController* controller = [[CheckInAndShareViewController alloc] init];
     UINavigationController *navController = [[UINavigationController alloc] initWithNavigationBarClass:[MaNavigationBar class] toolbarClass:nil];
 	[navController setViewControllers:@[controller]];
 	[self presentViewController:navController animated:YES completion:nil];	
-	
-//	CheckInAndShareViewController* viewController = [[CheckInAndShareViewController alloc] init];
-//    [self.navigationController pushViewController: viewController animated:YES];
 
+	// blur style
+//	CheckInAndShareViewController* controller = [[CheckInAndShareViewController alloc] init];
+//	[controller showOnViewController:self];
+	
+
+}
+
+-(void)popCheckInView
+{
+	[UIView animateWithDuration:0.5 animations:^{
+     //   BOOL open = self.blurView.frame.size.height > 200;
+       // self.blurView.frame = CGRectMake(0, open? 568: 143, 320, open? 0: 425);
+    }];
 }
 
 -(void)shake:(id)sender

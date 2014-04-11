@@ -15,19 +15,24 @@
 #import "StartViewController.h"
 #import "LoginViewController.h"
 
+#import "MaDataSettingManager.h"
+#import "UserInfoManager.h"
+
 @implementation AppDelegate
 @synthesize dataSettingMgr = _dataSettingMgr;
+@synthesize userInfoMgr = _userInfoMgr;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
 
-//    _tabBarController = (UITabBarController *)self.window.rootViewController;
+    // init Mgrs
+    _dataSettingMgr = [[MaDataSettingManager alloc] init];
+    _userInfoMgr = [[UserInfoManager alloc] init];
+    
     _tabBarController = [[UITabBarController alloc] init];
     NSMutableArray *viewControllers = [NSMutableArray arrayWithCapacity:4];
-
-    //    UINavigationController* webNavController = [[UINavigationController alloc] initWithRootViewController:webViewController];
 
     // init mainView
     MainViewController* mainView = [[MainViewController alloc] init];
@@ -73,8 +78,16 @@
 
 	[self setupTabBarController:viewControllers];
 
-    self.window.backgroundColor = [UIColor blackColor];
-    self.window.rootViewController = _tabBarController;
+	
+	//blurImageView
+	NSString* theImageName;
+	if ([MaUtility hasFourInchDisplay])
+		theImageName = @"backgroundImage_586h.png";
+	else
+		theImageName = @"backgroundImage.png";
+    self.window.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:theImageName]];
+	
+	self.window.rootViewController = _tabBarController;
 	
 //	self.window.rootViewController.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:imageName]];
 	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];

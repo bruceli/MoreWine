@@ -7,9 +7,9 @@
 //
 
 #import "MaDropDownMenuController.h"
-#import "MaTouchView.h"
 #import "MaUtility.h"
 #import "ShakeViewController.h"
+#import "FXBlurView.h"
 
 @interface MaDropDownMenuController ()
 
@@ -43,14 +43,15 @@
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 160, 300)];
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    _tableView.backgroundColor = [UIColor darkGrayColor];
+    _tableView.backgroundColor = [UIColor clearColor];
+	
+//	_blurView = [[FXBlurView alloc] initWithFrame:_tableView.frame];
+//	_blurView.backgroundColor = [UIColor yellowColor];
+
     _touchView = [[UIView alloc] initWithFrame: self.view.bounds];
     _touchView.backgroundColor = [UIColor clearColor];
     _touchView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     _touchView.clipsToBounds = NO;
-
-	
-	
 }
 
 - (void)didReceiveMemoryWarning
@@ -151,23 +152,19 @@
     cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.textLabel.font = [UIFont systemFontOfSize:13.0f];
         cell.textLabel.textColor = [UIColor whiteColor];
-		cell.backgroundColor = [UIColor blackColor];
-        cell.selectionStyle = UITableViewCellSelectionStyleGray;
+		cell.backgroundColor = [UIColor colorWithRed:0.6f green:0.4f blue:0.2f alpha:0.7];
+		//+ (UIColor *)brownColor;      // 0.6, 0.4, 0.2 RGB 
         cell.textLabel.text = @"TEST";
 		cell.textLabel.textAlignment = NSTextAlignmentCenter;
 		[self addCheckMark:cell];
 		
     }
-    if (indexPath.row == 0) {
-        cell.backgroundColor = [MaUtility getRandomColor];
-        
-    }
-    
+  
     return cell;
 }
+
 
 -(void)addCheckMark:(UITableViewCell*)theCell
 {

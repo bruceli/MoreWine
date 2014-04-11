@@ -1,22 +1,21 @@
 //
-//  LoginView.h
+//  UserInfoView.h
 //  MoreWine
 //
-//  Created by Thunder on 3/26/14.
+//  Created by Thunder on 4/10/14.
 //  Copyright (c) 2014 MagicApp. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 @class LoginViewController;
-
-@interface SignInView : UIScrollView <UITextFieldDelegate>
+@interface UserInfoView : UIScrollView
 {
-	UITextField* _nameField;
-	UITextField* _pswField;
-	UITextField* _newUserNameField;
-    UIView* _touchView;
-
 	LoginViewController* _loginController;
+
+    UIImageView* _headerView;
+    UILabel* _nameLabel;
+    UIButton* _checkInStatusButton;
+    UIButton* _favoritStatusButton;
 }
 
 @property (nonatomic, retain) LoginViewController *loginController;
