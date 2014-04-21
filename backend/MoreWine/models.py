@@ -218,3 +218,30 @@ class Province_city(Base):
 
     def __repr__(self):
         return '<Province %r has city %r>' % self.province_id % self.city_id
+
+class Recommender(Base):
+    __tablename__ = "recommender"
+    id = Column(Integer, primary_key=True)
+    name = Column(String(100))
+    intro = Column(String(500))
+    image_urls = Column(String(1000))
+
+    def __init__(self, name, intro, image_urls=None):
+        self.name = name
+        self.intro = intro
+        self.image_urls = image_urls
+
+    def __repr__(self):
+        return '<Recommender %r>' % self.name
+
+class Recommendation(Base):
+    __tablename__ = "recommendation"
+    recommender_id = Column(Integer, ForeignKey("recommender.id"), primary_key=True)
+    wine_id = Column(Integer, ForeignKey("wine.id"), primary_key=True)
+
+    def __init__(self, recommender_id, wine_id):
+        self.recommender_id = recommender_id
+        self.wine_id = wine_id
+
+    def __repr__(self):
+        return '<Recommender %r recommended wine %r>' % self.recommender_id % self.wine_id
