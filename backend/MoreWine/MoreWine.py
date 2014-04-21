@@ -6,6 +6,7 @@ from flask import jsonify
 from flask import request
 from flask import json
 from security import requires_auth
+from flask.ext.restful import abort
 
 app = Flask(__name__)
 
@@ -41,7 +42,7 @@ def add_user():
     if (user_json):
         print(user_json)
         user = User(name=user_json.get("name"), email=user_json.get("email"), password=user_json.get("password"))
-        user.hash_password(user.getPassword())
+        user.hash_password(user.password)
     else:
         user = User('admin', 'admin@localhost')
 
@@ -50,7 +51,7 @@ def add_user():
         db_session.commit()
     except Exception as ex:
         print(ex)
-    return 'user added: ' + user.get_name()
+    return 'user added: ' + user.name
 
 
 # Querying is simple as well:
@@ -59,9 +60,12 @@ def add_user():
 def query_user():
     User.query.all()
     admin_user = User.query.filter(User.name == 'admin').first()
-    print 'user name is: ' + admin_user.get_name()
+    if admin_user:
+        print 'user name is: ' + admin_user.name
 
-    return jsonify(username=admin_user.get_name(), email=admin_user.email)
+        return jsonify(username=admin_user.name, email=admin_user.email)
+    else:
+        abort(404)
     # return admin_user.getName()
 
 
@@ -77,4 +81,4 @@ def remove_user():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True, port=5000)
