@@ -117,7 +117,7 @@ class Wine_tags(Base):
         self.tag_id = tag_id
 
     def __repr__(self):
-        return '<Wine %r has Tag %r>' % self.wine_id % self.tag_id
+        return '<Wine %r has tag %r>' % self.wine_id % self.tag_id
 
 class Material(Base):
     __tablename__ = "material"
@@ -165,7 +165,7 @@ class User_fav_shops(Base):
         self.shop_id = shop_id
 
     def __repr__(self):
-        return '<User %r favorited Shop %r>' % self.user_id % self.shop_id
+        return '<User %r favorited shop %r>' % self.user_id % self.shop_id
 
 class User_fav_wines(Base):
     __tablename__ = "user_fav_wines"
@@ -179,4 +179,42 @@ class User_fav_wines(Base):
         self.shop_id = shop_id
 
     def __repr__(self):
-        return '<User %r favorited Wine %r>' % self.user_id % self.wine_id
+        return '<User %r favorited wine %r>' % self.user_id % self.wine_id
+
+class City(Base):
+    __tablename__ = "city"
+    id = Column(Integer, primary_key=True)
+    name_en = Column(String(100), unique=True)
+    name_cn = Column(String(100), unique=True)
+
+    def __init__(self, name_cn, name_en):
+        self.name_cn = name_cn
+        self.name_en = name_en
+
+    def __repr__(self):
+        return '<City %r>' % self.name_cn
+
+class Province(Base):
+    __tablename__ = "province"
+    id = Column(Integer, primary_key=True)
+    name_en = Column(String(100), unique=True)
+    name_cn = Column(String(100), unique=True)
+
+    def __init__(self, name_cn, name_en):
+        self.name_cn = name_cn
+        self.name_en = name_en
+
+    def __repr__(self):
+        return '<Province %r>' % self.name_cn
+
+class Province_city(Base):
+    __tablename__ = "province_city"
+    province_id = Column(Integer, ForeignKey("province.id"), primary_key=True)
+    city_id = Column(Integer, ForeignKey("city.id"), primary_key=True)
+
+    def __init__(self, province_id, city_id):
+        self.province_id = province_id
+        self.city_id = city_id
+
+    def __repr__(self):
+        return '<Province %r has city %r>' % self.province_id % self.city_id
