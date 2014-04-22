@@ -19,4 +19,5 @@
 	BTBlurredView* _blurView;
 }
 - (void)setBarTintGradientColors:(NSArray *)barTintGradientColors;
+- (int)backgroundBackdropStyle;
 @end

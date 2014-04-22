@@ -30,7 +30,7 @@
 {
     [super viewDidLoad];
 	
-	_scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.view.frame.origin.y+64, 320, self.view.frame.size.height-64)];
+	_scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.view.frame.origin.y, 320, self.view.frame.size.height)];
 	NSString* theImageName;
 	if ([MaUtility hasFourInchDisplay])
 		theImageName = @"backgroundImage_586h.png";
@@ -42,7 +42,7 @@
 	_bkgBlurImageView.image = image;
     [self.view addSubview:_bkgBlurImageView];
 	_scrollView.alwaysBounceVertical = YES;
-	_scrollView.contentSize = CGSizeMake(320, 455+64);
+	_scrollView.contentSize = CGSizeMake(320, 455);
 	[self.view addSubview:_scrollView];
 
 	[self setupViews];

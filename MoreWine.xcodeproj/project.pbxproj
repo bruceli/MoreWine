@@ -26,6 +26,7 @@
 		5905D70E18D1A5FF00FBA71F /* barType_coffee@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5905D70818D1A5FF00FBA71F /* barType_coffee@2x.png */; };
 		5905D71018D1A5FF00FBA71F /* barType_headphones@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5905D70A18D1A5FF00FBA71F /* barType_headphones@2x.png */; };
 		5905D71218D1A5FF00FBA71F /* barType_music@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5905D70C18D1A5FF00FBA71F /* barType_music@2x.png */; };
+		590F17CB190125E000469DFA /* CamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 590F17CA190125E000469DFA /* CamViewController.m */; };
 		5910371518E2C8BD0084BC29 /* SignUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5910371418E2C8BD0084BC29 /* SignUpView.m */; };
 		59192CF318E543AD0030810F /* ShakeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59192CF218E543AD0030810F /* ShakeViewController.m */; };
 		591ED1A818E1172700A9669F /* ShopDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 591ED1A718E1172700A9669F /* ShopDetailViewController.m */; };
@@ -34,6 +35,7 @@
 		5925737418E522BD00CE3AC9 /* SignInView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5925737318E522BD00CE3AC9 /* SignInView.m */; };
 		5932FBD018CEC058006C62D4 /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5932FBCF18CEC058006C62D4 /* StartViewController.m */; };
 		5937115E18E17CB300476E2D /* MaTagButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5937115D18E17CB300476E2D /* MaTagButton.m */; };
+		5947DE1718FCD67900E23AB8 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5947DE1618FCD67900E23AB8 /* SearchViewController.m */; };
 		594F06BA18BC9D8800338657 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 594F06B918BC9D8800338657 /* MainViewController.m */; };
 		594F06BD18BC9DB900338657 /* InfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 594F06BC18BC9DB900338657 /* InfoCell.m */; };
 		594F06C018BC9DD700338657 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 594F06BF18BC9DD700338657 /* ListViewController.m */; };
@@ -77,8 +79,6 @@
 		59A41F3518D03ABC00EA8B4C /* MaUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 59A41F3418D03ABC00EA8B4C /* MaUtility.m */; };
 		59A41F3718D03D5E00EA8B4C /* backgroundImage_586h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 59A41F3618D03D5E00EA8B4C /* backgroundImage_586h@2x.png */; };
 		59CC1BAB18F66D2A0052A030 /* UserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 59CC1BAA18F66D2A0052A030 /* UserInfoView.m */; };
-		59F7D1B418E96AF0008430FD /* ADDropDownMenuItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 59F7D1B118E96AF0008430FD /* ADDropDownMenuItemView.m */; };
-		59F7D1B518E96AF0008430FD /* ADDropDownMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 59F7D1B318E96AF0008430FD /* ADDropDownMenuView.m */; };
 		59F7D1CE18ED5F9C008430FD /* MaDropDownMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59F7D1CD18ED5F9C008430FD /* MaDropDownMenuController.m */; };
 		59FE62AC18CFFC5E00534539 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 59FE62AE18CFFC5E00534539 /* Localizable.strings */; };
 		80FC4B355FDD4D61B67BEBAE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07E3BEF05D7C4A6EB32E842A /* libPods.a */; };
@@ -120,6 +120,8 @@
 		5905D70818D1A5FF00FBA71F /* barType_coffee@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "barType_coffee@2x.png"; path = "resources/typeIcon/barType_coffee@2x.png"; sourceTree = "<group>"; };
 		5905D70A18D1A5FF00FBA71F /* barType_headphones@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "barType_headphones@2x.png"; path = "resources/typeIcon/barType_headphones@2x.png"; sourceTree = "<group>"; };
 		5905D70C18D1A5FF00FBA71F /* barType_music@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "barType_music@2x.png"; path = "resources/typeIcon/barType_music@2x.png"; sourceTree = "<group>"; };
+		590F17C9190125E000469DFA /* CamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CamViewController.h; path = src/CamViewController.h; sourceTree = "<group>"; };
+		590F17CA190125E000469DFA /* CamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CamViewController.m; path = src/CamViewController.m; sourceTree = "<group>"; };
 		5910371318E2C8BD0084BC29 /* SignUpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignUpView.h; path = src/SignUpView.h; sourceTree = "<group>"; };
 		5910371418E2C8BD0084BC29 /* SignUpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignUpView.m; path = src/SignUpView.m; sourceTree = "<group>"; };
 		59192CF118E543AD0030810F /* ShakeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShakeViewController.h; path = src/ShakeViewController.h; sourceTree = "<group>"; };
@@ -135,6 +137,8 @@
 		5932FBCF18CEC058006C62D4 /* StartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StartViewController.m; path = src/StartViewController.m; sourceTree = "<group>"; };
 		5937115C18E17CB300476E2D /* MaTagButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MaTagButton.h; path = src/MaTagButton.h; sourceTree = "<group>"; };
 		5937115D18E17CB300476E2D /* MaTagButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MaTagButton.m; path = src/MaTagButton.m; sourceTree = "<group>"; };
+		5947DE1518FCD67900E23AB8 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchViewController.h; path = src/SearchViewController.h; sourceTree = "<group>"; };
+		5947DE1618FCD67900E23AB8 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchViewController.m; path = src/SearchViewController.m; sourceTree = "<group>"; };
 		594F06B818BC9D8800338657 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = src/MainViewController.h; sourceTree = "<group>"; };
 		594F06B918BC9D8800338657 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = src/MainViewController.m; sourceTree = "<group>"; };
 		594F06BB18BC9DB900338657 /* InfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InfoCell.h; path = src/InfoCell.h; sourceTree = "<group>"; };
@@ -199,10 +203,6 @@
 		59A41F3618D03D5E00EA8B4C /* backgroundImage_586h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "backgroundImage_586h@2x.png"; path = "resources/backgroundImage/backgroundImage_586h@2x.png"; sourceTree = "<group>"; };
 		59CC1BA918F66D2A0052A030 /* UserInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserInfoView.h; path = src/UserInfoView.h; sourceTree = "<group>"; };
 		59CC1BAA18F66D2A0052A030 /* UserInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserInfoView.m; path = src/UserInfoView.m; sourceTree = "<group>"; };
-		59F7D1B018E96AF0008430FD /* ADDropDownMenuItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ADDropDownMenuItemView.h; path = MoreWine/src/3rd/ADDropDownMenu/ADDropDownMenuItemView.h; sourceTree = "<group>"; };
-		59F7D1B118E96AF0008430FD /* ADDropDownMenuItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ADDropDownMenuItemView.m; path = MoreWine/src/3rd/ADDropDownMenu/ADDropDownMenuItemView.m; sourceTree = "<group>"; };
-		59F7D1B218E96AF0008430FD /* ADDropDownMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ADDropDownMenuView.h; path = MoreWine/src/3rd/ADDropDownMenu/ADDropDownMenuView.h; sourceTree = "<group>"; };
-		59F7D1B318E96AF0008430FD /* ADDropDownMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ADDropDownMenuView.m; path = MoreWine/src/3rd/ADDropDownMenu/ADDropDownMenuView.m; sourceTree = "<group>"; };
 		59F7D1CC18ED5F9C008430FD /* MaDropDownMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MaDropDownMenuController.h; path = src/MaDropDownMenuController.h; sourceTree = "<group>"; };
 		59F7D1CD18ED5F9C008430FD /* MaDropDownMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MaDropDownMenuController.m; path = src/MaDropDownMenuController.m; sourceTree = "<group>"; };
 		59FE62AD18CFFC5E00534539 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -280,6 +280,8 @@
 				59F7D1C818ED3E2F008430FD /* Detail & CheckIn */,
 				59F7D1C418E96E17008430FD /* Shake */,
 				59A108F018E2727B00CF59DD /* UserInfo */,
+				5947DE1418FCD5D700E23AB8 /* Search */,
+				590F17C8190125C500469DFA /* CamView */,
 				594F06C118BF464100338657 /* MaNavigationBar.h */,
 				594F06C218BF464100338657 /* MaNavigationBar.m */,
 				594F06B818BC9D8800338657 /* MainViewController.h */,
@@ -344,6 +346,15 @@
 			name = typeIcon;
 			sourceTree = "<group>";
 		};
+		590F17C8190125C500469DFA /* CamView */ = {
+			isa = PBXGroup;
+			children = (
+				590F17C9190125E000469DFA /* CamViewController.h */,
+				590F17CA190125E000469DFA /* CamViewController.m */,
+			);
+			name = CamView;
+			sourceTree = "<group>";
+		};
 		5920A5B818F4E63900685819 /* FXBlurView */ = {
 			isa = PBXGroup;
 			children = (
@@ -351,6 +362,15 @@
 				5920A5B618F4E63400685819 /* FXBlurView.m */,
 			);
 			name = FXBlurView;
+			sourceTree = "<group>";
+		};
+		5947DE1418FCD5D700E23AB8 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				5947DE1518FCD67900E23AB8 /* SearchViewController.h */,
+				5947DE1618FCD67900E23AB8 /* SearchViewController.m */,
+			);
+			name = Search;
 			sourceTree = "<group>";
 		};
 		595EB1F618D7E85800223E20 /* SGFocus */ = {
@@ -398,7 +418,6 @@
 			isa = PBXGroup;
 			children = (
 				5920A5B818F4E63900685819 /* FXBlurView */,
-				59F7D1B618E96AF7008430FD /* ADDropDownMenu */,
 				595EB1F618D7E85800223E20 /* SGFocus */,
 			);
 			name = 3rd;
@@ -494,17 +513,6 @@
 			);
 			name = Resources;
 			path = MoreWine;
-			sourceTree = "<group>";
-		};
-		59F7D1B618E96AF7008430FD /* ADDropDownMenu */ = {
-			isa = PBXGroup;
-			children = (
-				59F7D1B018E96AF0008430FD /* ADDropDownMenuItemView.h */,
-				59F7D1B118E96AF0008430FD /* ADDropDownMenuItemView.m */,
-				59F7D1B218E96AF0008430FD /* ADDropDownMenuView.h */,
-				59F7D1B318E96AF0008430FD /* ADDropDownMenuView.m */,
-			);
-			name = ADDropDownMenu;
 			sourceTree = "<group>";
 		};
 		59F7D1C418E96E17008430FD /* Shake */ = {
@@ -735,9 +743,9 @@
 				59CC1BAB18F66D2A0052A030 /* UserInfoView.m in Sources */,
 				596AA7DE18F3C2C7008DBDE2 /* ShakeResultViewController.m in Sources */,
 				595EB1F418D7E85500223E20 /* SGFocusImageFrame.m in Sources */,
+				5947DE1718FCD67900E23AB8 /* SearchViewController.m in Sources */,
 				5920A5B718F4E63400685819 /* FXBlurView.m in Sources */,
 				5937115E18E17CB300476E2D /* MaTagButton.m in Sources */,
-				59F7D1B518E96AF0008430FD /* ADDropDownMenuView.m in Sources */,
 				5932FBD018CEC058006C62D4 /* StartViewController.m in Sources */,
 				595EB1F518D7E85500223E20 /* SGFocusImageItem.m in Sources */,
 				59A108E718E2705700CF59DD /* LoginViewController.m in Sources */,
@@ -750,9 +758,9 @@
 				59A108FB18E27F6600CF59DD /* MaTextField.m in Sources */,
 				595EB20118D7EC8200223E20 /* MaDataSettingManager.m in Sources */,
 				59F7D1CE18ED5F9C008430FD /* MaDropDownMenuController.m in Sources */,
-				59F7D1B418E96AF0008430FD /* ADDropDownMenuItemView.m in Sources */,
 				5982208918C126D10001C564 /* StyleIndicatorView.m in Sources */,
 				594F06BA18BC9D8800338657 /* MainViewController.m in Sources */,
+				590F17CB190125E000469DFA /* CamViewController.m in Sources */,
 				261BE07118BC0FDA00DEA46A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -839,7 +847,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -871,7 +879,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

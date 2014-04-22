@@ -7,7 +7,6 @@
 //
 
 #import "MainViewController.h"
-//#import <LBBlurredImage/UIImageView+LBBlurredImage.h>
 
 #import "AppDelegate.h"
 #import "MaUtility.h"
@@ -29,7 +28,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -37,6 +35,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     //	[self preLoadTableViewCells];
     self.view.backgroundColor = [UIColor clearColor];
     // ContainerView
@@ -45,30 +44,33 @@
     // MaScrolling Content
 	[self setupHilightImageView];
     [_headerContainerView addSubview:_hilightImageView];
-   
-
+    
 	// height in 43 points
     // UISearchBar Init
     // _searchDisplayController for reference http://cocoabob.net/?p=67
-    _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 64, 320, 44)];
-    self.searchDisplayController.searchResultsDelegate = self;
-    self.searchDisplayController.searchResultsDataSource = self;
-    self.searchDisplayController.delegate = self;
-	_searchBar.searchBarStyle = UISearchBarStyleMinimal;
-	_searchBar.translucent = YES;
-	_searchBar.barStyle = UIBarStyleBlack;
+    _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    _searchBar.searchBarStyle = UISearchBarStyleMinimal;
 	_searchBar.delegate = self;
-	_searchBar.tintColor = [UIColor whiteColor];
+
+	_schDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:_searchBar contentsController:self];
+    _schDisplayController.searchResultsDelegate = self;
+    _schDisplayController.searchResultsDataSource = self;
+    _schDisplayController.delegate = self;
+    _schDisplayController.searchResultsTableView.backgroundColor = [UIColor darkGrayColor];
+    _schDisplayController.searchResultsTableView.rowHeight = 70.0f;
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.navigationController.navigationBar.translucent = NO;
+    self.searchDisplayController.searchBar.translucent = NO;
     [self.view addSubview:_searchBar];
-    
+
     // UITableView init
 //	NSLog(@"self.view frame is %@", NSStringFromCGRect(self.view.frame) );
-    CGRect frame = CGRectMake(0, 64+44, self.view.frame.size.width, self.view.frame.size.height - 113-44); // navBar&tabBar height
+    CGRect frame = CGRectMake(0, 44, self.view.frame.size.width, self.view.frame.size.height - 113-44); // navBar&tabBar height
 //	NSLog(@"_tableView frame is %@", NSStringFromCGRect(frame) );
     _tableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    _tableView.rowHeight = 65.0f;
+    _tableView.rowHeight = 70.0f;
     _tableView.separatorColor = [UIColor clearColor];
 	_tableView.backgroundColor = [UIColor clearColor];
     _tableView.tableHeaderView = _headerContainerView;
@@ -77,8 +79,26 @@
     _refreshControl = [[UIRefreshControl alloc] init];
     [_refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
     [_tableView addSubview:_refreshControl];
-    
+//    id dele = self.navigationController.delegate;
     [self.view addSubview:_tableView];
+}
+
+-(UIButton*)setupButtonBy:(CGRect)frame
+{
+    UIButton *theButton = [[UIButton alloc] initWithFrame:frame];
+	theButton.layer.cornerRadius=4.0f;
+    theButton.layer.masksToBounds=YES;
+    theButton.layer.borderColor=[[UIColor colorWithWhite:1.0 alpha:0.3]CGColor];
+    theButton.layer.borderWidth= 1.0f;
+    theButton.titleLabel.font = [UIFont systemFontOfSize:15.0f];
+    
+    return theButton;
+}
+
+
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -137,26 +157,24 @@
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    return 12;
+	NSInteger count = 0;
+	if (tableView == _tableView) {
+		count = 12;
+    }
+    else if (tableView == self.searchDisplayController.searchResultsTableView) {
+		count = 0;
+        NSLog(@"%@",@"searchDisplayController CELL");
+	}
+	
+	return count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"EzCell";
-	// return pre-loaded cells
-    /*	if (indexPath.row > 4 && indexPath.row < 7) {
-     EzInfoCell *cell = [_preLoadTableCellArray objectAtIndex:indexPath.row];
-     if (cell != Nil) {
-     NSLog(@"Set pre-load cells %d", indexPath.row);
-     return cell;
-     }
-     }
-     */
+
     EzInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    //	NSLog(@"Cell for index %d", indexPath.row);
-    if (cell == nil) {
-        
+	if (cell == nil) {
         cell = [[EzInfoCell alloc] initWithStyle:UITableViewCellStyleDefault
                                  reuseIdentifier:CellIdentifier];
         cell.backgroundColor = [UIColor clearColor];
@@ -165,7 +183,13 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
 		[cell setCellInfo:nil];
     }
-    
+
+	if (tableView == _tableView) {
+    }
+    else if (tableView == self.searchDisplayController.searchResultsTableView) {
+        NSLog(@"%@",@"searchDisplayController CELL");
+		[cell setCellInfo:nil];
+    }
     // Configure the cell...
     
     return cell;
@@ -180,9 +204,11 @@
 
 #pragma mark - UISearchBar delegate.
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
-	[self scrollTableViewIfNeeded];
+//	[self scrollTableViewIfNeeded];
+//    [self.searchDisplayController setActive:YES animated:YES];
+
     //	- (void)setShowsCancelButton:(BOOL)showsCancelButton animated:(BOOL)animated NS_AVAILabel_IOS(3_0);
-	[_searchBar setShowsCancelButton:YES animated:YES];
+//	[_searchBar setShowsCancelButton:YES animated:YES];
 	NSLog(@"searchBarTextDidBeginEditing");
 }
 
@@ -190,7 +216,7 @@
     NSLog(@"The search text is: %@", searchText);
 }
 
-- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+- (void)searchBaqrTextDidEndEditing:(UISearchBar *)searchBar {
     NSLog(@"searchBarTextDidEndEditing");
     [searchBar resignFirstResponder];
 }
@@ -201,57 +227,6 @@
     [searchBar resignFirstResponder];
 }
 
-#pragma mark  Pre-load tableView cells
--(void)preLoadTableViewCells
-{
-	// pre-load 3-7 Cell
-	// Reload load Cells if dataSource changed
-	// return nil if cell does not exist
-    //	NSArray* dataArray = [];
-    //	[NSThread detachNewThreadSelector:@selector(preLoadCellWorkThread:) toTarget:self withObject:nil];
-    //	performSelectorInBackground:(SEL)aSelector withObject:(id)arg
-	NSThread* workerThread = [[NSThread alloc] initWithTarget:self selector:@selector(preLoadCellWorkThread:) object:nil];
-	[workerThread start];
-}
-
--(void)preLoadCellWorkThread:(NSArray*)dataArray
-{
-	_preLoadTableCellArray = [[NSMutableArray alloc] initWithCapacity:7];
-	
-	for (NSInteger i = 0; i<7; i++) {
-		if (i<4)
-		{
-			NSLog(@"Pre-load cells skip ... %d",i);
-			[_preLoadTableCellArray addObject: [NSNull null]];
-		}
-		else
-		{
-			NSLog(@"Pre-load cells... %d",i);
-			static NSString *CellIdentifier = @"EzCell";
-			EzInfoCell* cell = [[EzInfoCell alloc] initWithStyle:UITableViewCellStyleDefault
-												 reuseIdentifier:CellIdentifier];
-			cell.backgroundColor = [UIColor clearColor];
-			cell.detailTextLabel.numberOfLines = 0;
-			cell.accessoryType = UITableViewCellAccessoryNone;
-			cell.selectionStyle = UITableViewCellSelectionStyleNone;
-			[cell setCellInfo:nil];
-			[_preLoadTableCellArray addObject:cell];
-		}
-	}
-}
-
-/*
- -(void)revertTableViewScrollLocation
- {
- 
- }
- 
- -(void)saveTableViewCurrentScrollLocation
- {
- _tableViewScrollLocation = _tableView.contentOffset.y;
- }
- */
-
 -(void)scrollTableViewIfNeeded
 {
 	if (_tableView.contentOffset.y < TableView_HeaderView_Height) {
@@ -261,6 +236,15 @@
 	}
 }
 
+
+- (void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller
+{
+}
+- (void)searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller
+{
+}
+
+
 #pragma mark - SGFocusImageFramedelegate
 - (void)foucusImageFrame:(SGFocusImageFrame *)imageFrame didSelectItem:(SGFocusImageItem *)item
 {
@@ -269,6 +253,8 @@
     
     //    [self.navigationController pushViewController: bbsViewController animated:YES];
 }
+
+
 
 
 

@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "SGFocusImageFrame.h"
 
-@interface MainViewController : UIViewController <UITableViewDelegate, UITableViewDataSource,UISearchDisplayDelegate,SGFocusImageFrameDelegate,UISearchBarDelegate>
+@interface MainViewController : UIViewController <UITableViewDelegate, UITableViewDataSource,UISearchDisplayDelegate,SGFocusImageFrameDelegate,UISearchBarDelegate,UIScrollViewDelegate>
 {
     UISearchBar* _searchBar;
+	UISearchDisplayController* _schDisplayController;
 
     UIView* _headerContainerView;
     UIImageView* _bkgBlurImageView;
@@ -20,5 +21,6 @@
 	NSMutableArray* _preLoadTableCellArray;
 	SGFocusImageFrame* _hilightImageView;
     UIRefreshControl* _refreshControl;
+	
 }
 @end

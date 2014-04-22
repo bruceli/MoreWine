@@ -42,7 +42,7 @@
 
 -(void)initHeaderImageView
 {
-    _headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 6, 53, 53)];
+    _headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 11, 53, 53)];
 //    _headerImageView.backgroundColor = [UIColor colorWithRed:(arc4random()%100)/(float)100 green:(arc4random()%100)/(float)100 blue:(arc4random()%100)/(float)100 alpha:0.3];
     
     CALayer *imageLayer = _headerImageView.layer;
@@ -55,7 +55,7 @@
 
 -(void)initNameLabel
 {
-    _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(88, 23, 90, 14)];
+    _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(88, 28, 90, 14)];
     _nameLabel.backgroundColor = [UIColor clearColor];
     _nameLabel.font = [UIFont systemFontOfSize:14.0f];
     _nameLabel.text = @"MORE WINE";
@@ -66,7 +66,7 @@
 -(void)initStyleIndicator
 {
 //    -(StyleIndicatorView*)initStyleIndicatorViewWithFrame:(CGRect)inFrame ByDict:(NSDictionary*)dict
-    CGRect frame = CGRectMake(190, 24, 70, 14);
+    CGRect frame = CGRectMake(190, 29, 70, 14);
     _indicatorView = [[StyleIndicatorView alloc] initStyleIndicatorViewWithFrame:frame ByDict:nil];
 //    _indicatorView.backgroundColor = [MaUtility getRandomColor];
     [self addSubview:_indicatorView];
@@ -74,7 +74,7 @@
 
 -(void)initDistanceLabel
 {
-    _distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(265, 23, 44, 14)];
+    _distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(265, 28, 44, 14)];
     _distanceLabel.backgroundColor = [UIColor clearColor];
     _distanceLabel.font = [UIFont systemFontOfSize:8.0f];
     _distanceLabel.text = @"11024.0Km";
@@ -86,6 +86,9 @@
 - (void)setCellInfo:(NSDictionary*)dict
 {
 	[self setImageTemp];
+	if (dict != nil) {
+		_nameLabel.text = @"searchResult";
+	}
 }
 
 -(void) setImageTemp

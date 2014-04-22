@@ -42,7 +42,7 @@
 	_bkgBlurImageView.image = image;
     [self.view addSubview:_bkgBlurImageView];
 
-	_scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.view.frame.origin.y+64, 320, self.view.frame.size.height-64)];
+	_scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.view.frame.origin.y, 320, self.view.frame.size.height)];
 	_scrollView.backgroundColor = [UIColor clearColor];
 	_scrollView.alwaysBounceVertical = YES;
 	_scrollView.contentSize = CGSizeMake(320, 455);
@@ -224,7 +224,7 @@
     [self addChildViewController:_dropDownController];
     [self didMoveToParentViewController:self];
     
-	CGPoint popPoint = CGPointMake(((UIButton*)sender).frame.origin.x, ((UIButton*)sender).frame.origin.y-_scrollView.contentOffset.y+64+44);// +44 pop menu from bottom of menu;
+	CGPoint popPoint = CGPointMake(((UIButton*)sender).frame.origin.x, ((UIButton*)sender).frame.origin.y-_scrollView.contentOffset.y+44);// +44 pop menu from bottom of menu;
 //	NSLog(@"popPoint %@",NSStringFromCGPoint(popPoint));
 
     [_dropDownController presentPopoverFromPoint: popPoint];
@@ -238,55 +238,6 @@
     _dropDownController = nil;
 }
 
-
-
-/*
-
--(NSArray*)dropDownItemsWithTitleArray:(NSArray*)array
-{
-    NSMutableArray* itemsArray = [[NSMutableArray alloc] init];
-    
-    for (NSString* theTitle in array) {
-        ADDropDownMenuItemView* menuItem = [self dropDownItemWithTitle:theTitle];
-        [itemsArray addObject:menuItem];
-    }
-    
-    return itemsArray;
-}
--(ADDropDownMenuView*)dropDownMenuWithPoint:(CGPoint)point menuArray:(NSArray*)menuItemArray
-{
-    ADDropDownMenuView *dropDownMenuView = [[ADDropDownMenuView alloc] initAtOrigin:point withItemsViews:menuItemArray];
-    dropDownMenuView.delegate = self;
-    dropDownMenuView.separatorColor = [UIColor blackColor];
-    
-    NSArray* subViewArray =  [dropDownMenuView subviews];
-    for (UIView* theSubView in subViewArray) {
-        if (theSubView.tag == 1919101910)
-        { // #define DIM_VIEW_TAG 1919101910  == the dim view was defined in ADDropDownMenuView.m
-            NSLog(@"%@", @"dimView found");
-            theSubView.backgroundColor = [UIColor clearColor];
-            }
-    }
-    return dropDownMenuView;
-}
-
-- (ADDropDownMenuItemView *)dropDownItemWithTitle:(NSString *)title{
-    ADDropDownMenuItemView *item = [[ADDropDownMenuItemView alloc] initWithSize: CGSizeMake(160, 40)];
-    item.titleLabel.text = title;
-    [item setTitleColor:[UIColor colorWithRed:161./255. green:163./255. blue:163./255. alpha:1.] forState:ADDropDownMenuItemViewStateNormal];
-    //    [item setBackgroundImage:[UIImage imageNamed:@"ADDropDownMenuItemNormalImage"] forState:ADDropDownMenuItemViewStateNormal];
-    //    [item setBackgroundImage:[UIImage imageNamed:@"ADDropDownMenuItemSelectedImage"] forState:ADDropDownMenuItemViewStateSelected];
-    //    [item setBackgroundImage:[UIImage imageNamed:@"ADDropDownMenuItemHighlightedImage"] forState:ADDropDownMenuItemViewStateHighlighted];
-    return item;
-}
-
-#pragma mark - ADDropDownMenuDelegate
-
-- (void)ADDropDownMenu:(ADDropDownMenuView *)view didSelectItem:(ADDropDownMenuItemView *)item{
-    NSLog(@"%@ selected", item.titleLabel.text);
-}
-
-*/
 /*
 #pragma mark - Navigation
 

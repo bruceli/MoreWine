@@ -34,24 +34,24 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor clearColor];
-	
-	// height in 43 points
-    // UISearchBar Init
-    // _searchDisplayController for reference http://cocoabob.net/?p=67
-    _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 64, 320, 44)];
-    self.searchDisplayController.searchResultsDelegate = self;
-    self.searchDisplayController.searchResultsDataSource = self;
-    self.searchDisplayController.delegate = self;
-	_searchBar.searchBarStyle = UISearchBarStyleMinimal;
-	_searchBar.translucent = YES;
-	_searchBar.barStyle = UIBarStyleBlack;
+    _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    _searchBar.searchBarStyle = UISearchBarStyleMinimal;
 	_searchBar.delegate = self;
-	_searchBar.tintColor = [UIColor whiteColor];
+    
+	_schDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:_searchBar contentsController:self];
+    _schDisplayController.searchResultsDelegate = self;
+    _schDisplayController.searchResultsDataSource = self;
+    _schDisplayController.delegate = self;
+    _schDisplayController.searchResultsTableView.backgroundColor = [UIColor darkGrayColor];
+    _schDisplayController.searchResultsTableView.rowHeight = 70.0f;
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.navigationController.navigationBar.translucent = NO;
+    self.searchDisplayController.searchBar.translucent = NO;
     [self.view addSubview:_searchBar];
     
     // UITableView init
 //	NSLog(@"self.view frame is %@", NSStringFromCGRect(self.view.frame) );
-    CGRect frame = CGRectMake(0, 64+44, self.view.frame.size.width, self.view.frame.size.height - 113-44); // navBar&tabBar height
+    CGRect frame = CGRectMake(0, 44, self.view.frame.size.width, self.view.frame.size.height - 113-44); // navBar&tabBar height
 //	NSLog(@"_tableView frame is %@", NSStringFromCGRect(frame) );
     _tableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
     _tableView.delegate = self;

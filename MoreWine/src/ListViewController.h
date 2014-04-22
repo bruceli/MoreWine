@@ -10,9 +10,10 @@
 
 @interface ListViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UISearchDisplayDelegate, UISearchBarDelegate>
 {
-    UITableView* _tableView;
     UISearchBar* _searchBar;
+	UISearchDisplayController* _schDisplayController;
     
+    UITableView* _tableView;
     UIImageView* _bkgBlurImageView;
     UIRefreshControl* _refreshControl;
 

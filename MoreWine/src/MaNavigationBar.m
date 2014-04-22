@@ -110,5 +110,9 @@ static CGFloat const kDefaultOpacity = 0.5f;
     }
 }
 
+- (int)backgroundBackdropStyle
+{
+    return 0;
+}
 
 @end

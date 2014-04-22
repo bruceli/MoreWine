@@ -14,9 +14,10 @@
 #import "MaNavigationBar.h"
 #import "StartViewController.h"
 #import "LoginViewController.h"
-
+#import "SearchViewController.h"
 #import "MaDataSettingManager.h"
 #import "UserInfoManager.h"
+#import "CamViewController.h"
 
 @implementation AppDelegate
 @synthesize dataSettingMgr = _dataSettingMgr;
@@ -35,29 +36,25 @@
     NSMutableArray *viewControllers = [NSMutableArray arrayWithCapacity:4];
 
     // init mainView
-    MainViewController* mainView = [[MainViewController alloc] init];
     // init Custom NavBar for MainView
-    UINavigationController *mainNavController = [[UINavigationController alloc] initWithNavigationBarClass:[MaNavigationBar class] toolbarClass:nil];
+   
     UIColor* firstColor = [UIColor colorWithRed:64.0f/255.0f green:31.0f/255.0f blue:14.0f/255.0f alpha:1.0f];
     UIColor* secondColor = [UIColor colorWithRed:38.0f/255.0f green:7.0f/255.0f blue:1.0f/255.0f alpha:1.0f];
     NSArray *colors = [NSArray arrayWithObjects:(id)firstColor.CGColor, (id)secondColor.CGColor, nil];
-    [[MaNavigationBar appearance] setBarTintGradientColors:colors];
-    [[mainNavController navigationBar] setTranslucent:YES];
-    [mainNavController setViewControllers:@[mainView]];
+
+    [[UINavigationBar appearance] setBarTintColor: [UIColor colorWithRed:35/255.0 green:5/255.0 blue:5/255.0 alpha:0.4f]];
+
+    MainViewController* mainView = [[MainViewController alloc] init];
+    UINavigationController* mainNavController = [[UINavigationController alloc] initWithRootViewController:mainView];
+//    mainNavController.navigationBar.translucent = NO; // If you have a navBar
     
     // init Recommend view
     ListViewController* recomView = [[ListViewController alloc] init];
-    UINavigationController *recomNavController = [[UINavigationController alloc] initWithNavigationBarClass:[MaNavigationBar class] toolbarClass:nil];
-    [[MaNavigationBar appearance] setBarTintGradientColors:colors];
-    [[recomNavController navigationBar] setTranslucent:YES];
-    [recomNavController setViewControllers:@[recomView]];
+    UINavigationController* recomNavController = [[UINavigationController alloc] initWithRootViewController:recomView];
     
     // init Search View
-    ListViewController* searchView = [[ListViewController alloc] init];
-    UINavigationController *searchNavController = [[UINavigationController alloc] initWithNavigationBarClass:[MaNavigationBar class] toolbarClass:nil];
-    [[MaNavigationBar appearance] setBarTintGradientColors:colors];
-    [[searchNavController navigationBar] setTranslucent:NO];
-    [searchNavController setViewControllers:@[searchView]];
+    SearchViewController* searchView = [[SearchViewController alloc] init];
+    UINavigationController* searchNavController = [[UINavigationController alloc] initWithRootViewController:searchView];
 	
 //	StartViewController* startViewController = [[StartViewController alloc] init];   
 	LoginViewController* loginViewController = [[LoginViewController alloc] init];
@@ -66,14 +63,12 @@
     [[loginNavController navigationBar] setTranslucent:YES];
     [loginNavController setViewControllers:@[loginViewController]];	
 	
-	UIViewController* camViewController = [[UIViewController alloc] init];   
-	UIViewController* searchViewController = [[UIViewController alloc] init];   
-//	UIViewController* userViewController = [[UIViewController alloc] init];
+	UIViewController* camViewController = [[CamViewController alloc] init];   
 
     [viewControllers addObject:mainNavController]; // MainView with custom Nav
     [viewControllers addObject:recomNavController];
     [viewControllers addObject:camViewController];
-	[viewControllers addObject:searchViewController];
+	[viewControllers addObject:searchNavController];
 	[viewControllers addObject:loginNavController];
 
 	[self setupTabBarController:viewControllers];

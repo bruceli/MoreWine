@@ -166,7 +166,7 @@
 	[self setupHilightImageView];
 	[_scrollView addSubview:_hilightImageView];
 	
-	_detailNameView = [[DetailNameView alloc] initWithFrame:CGRectMake(0, 218, 320, 120)];
+	_detailNameView = [[DetailNameView alloc] initWithFrame:CGRectMake(0, 154, 320, 120)];
 	[_scrollView addSubview:_detailNameView];
 	
 	[self setupAddressView];
@@ -188,7 +188,7 @@
 
 -(void)setupAddressView
 {
-	UIView* addressView = [[UIView alloc] initWithFrame:CGRectMake(0, 338, 320, 40)];
+	UIView* addressView = [[UIView alloc] initWithFrame:CGRectMake(0, 274, 320, 40)];
 	addressView.backgroundColor = [UIColor clearColor];
 	
 	UIImageView* imgView = [[UIImageView alloc] initWithFrame:CGRectMake(17, 13, 14, 14)];
@@ -224,7 +224,7 @@
 
 -(void)setupTelView
 {
-	UIView* telView = [[UIView alloc] initWithFrame:CGRectMake(0, 378, 320, 40)];
+	UIView* telView = [[UIView alloc] initWithFrame:CGRectMake(0, 314, 320, 40)];
 	telView.backgroundColor = [UIColor clearColor];
 	
 	UIImageView* imgView = [[UIImageView alloc] initWithFrame:CGRectMake(17, 13, 14, 14)];
@@ -256,7 +256,7 @@
 
 -(void)setupTagView
 {
-	UIView* tagView = [[UIView alloc] initWithFrame:CGRectMake(0, 418, 320, 108)];
+	UIView* tagView = [[UIView alloc] initWithFrame:CGRectMake(0, 354, 320, 108)];
 	tagView.backgroundColor = [UIColor clearColor];
 	
 	UIImageView* imgView = [[UIImageView alloc] initWithFrame:CGRectMake(17, 15, 14, 14)];
@@ -312,7 +312,7 @@
 //	UIView* shakeButtonView = [[UIView alloc] initWithFrame:CGRectMake(17, 537, 286, 30)];
 //	shakeButtonView.backgroundColor = [UIColor clearColor];
 	
-	UIButton *shakeButton = [[UIButton alloc] initWithFrame:CGRectMake(17, 537, 286, 40)];
+	UIButton *shakeButton = [[UIButton alloc] initWithFrame:CGRectMake(17, 473, 286, 40)];
     [shakeButton addTarget:self action:@selector(shake:) forControlEvents:UIControlEventTouchUpInside];
     [shakeButton addTarget:self action:@selector(buttonHighlight:) forControlEvents:UIControlEventTouchDown];
 	[shakeButton addTarget:self action:@selector(buttonNormal:) forControlEvents:UIControlEventTouchUpInside];
@@ -330,7 +330,7 @@
 
 -(void)setupCheckInView
 {
-	UIButton *checkIn = [[UIButton alloc] initWithFrame:CGRectMake(17, 587, 286, 40)];
+	UIButton *checkIn = [[UIButton alloc] initWithFrame:CGRectMake(17, 523, 286, 40)];
     [checkIn addTarget:self action:@selector(checkIn:) forControlEvents:UIControlEventTouchUpInside];
     [checkIn addTarget:self action:@selector(buttonHighlight:) forControlEvents:UIControlEventTouchDown];
 	[checkIn addTarget:self action:@selector(buttonNormal:) forControlEvents:UIControlEventTouchUpInside];
@@ -371,7 +371,7 @@
 			[scrItemArray addObject:item];
 		}
 	}
-	SGFocusImageFrame *imageFrame = [[SGFocusImageFrame alloc] initWithFrame:CGRectMake(0, 64, 320, 154) delegate:self focusImageItemArray:scrItemArray];
+	SGFocusImageFrame *imageFrame = [[SGFocusImageFrame alloc] initWithFrame:CGRectMake(0, 0, 320, 154) delegate:self focusImageItemArray:scrItemArray];
     _hilightImageView = imageFrame;
 }
 
