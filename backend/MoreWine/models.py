@@ -244,4 +244,16 @@ class Recommendation(Base):
         self.wine_id = wine_id
 
     def __repr__(self):
-        return '<Recommender %r recommended wine %r>' % self.recommender_id % self.wine_id
+        return '<Recommendation(recommender_id="%i", wine_id="%i")>' % (self.recommender_id, self.wine_id)
+
+class Shop_wine(Base):
+    __tablename__ = "shop_wine"
+    shop_id = Column(Integer, ForeignKey("shop.id"), primary_key=True)
+    wine_id = Column(Integer, ForeignKey("wine.id"), primary_key=True)
+
+    def __init__(self, shop_id, wine_id):
+        self.shop_id = shop_id
+        self.wine_id = wine_id
+
+    def __repr__(self):
+        return "<Shop_wine(shop_id='%i', wine_id='%i')>" % (self.shop_id, self.wine_id)

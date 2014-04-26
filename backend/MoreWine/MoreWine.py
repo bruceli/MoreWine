@@ -4,7 +4,6 @@ from database import init_db
 from models import User
 from flask import jsonify
 from flask import request
-from flask import json
 from security import requires_auth
 from flask.ext.restful import abort
 
@@ -20,6 +19,12 @@ def shutdown_session(exception=None):
 def hello_world():
     return 'Hello World!'
 
+@app.route('/city/<int:city_id>/shops', methods=['GET'])
+def get_city_shops(city_id):
+    if city_id:
+        return "[{'id': 1, 'name_en':'more cafe'}, {'id':2,'name_en':'magic bar'}]"
+    else:
+        abort(404)
 
 @app.route('/login', methods=['POST'])
 def login():
