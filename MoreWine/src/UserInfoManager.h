@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MaMoreWineHTTPClient.h"
 
-@interface UserInfoManager : NSObject
+@interface UserInfoManager : NSObject <MaMoreWineHTTPClientDelegate>
 {
 }
 

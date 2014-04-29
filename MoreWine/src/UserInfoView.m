@@ -54,10 +54,10 @@
  //    [buttonView addSubview:bottomLine];
  //    [buttonView addSubview:midLine];
 */
-    _checkInStatusButton = [self setupButtonByFrame:CGRectMake(0, 0, 160, 50) name:[self checkInButtonTitle]];
+    _checkInStatusButton = [self setupButtonByFrame:CGRectMake(0, 0, 320, 50) name:[self checkInButtonTitle]];
     [buttonView addSubview:_checkInStatusButton];
 
-    _favoritStatusButton = [self setupButtonByFrame:CGRectMake(160, 0, 160, 50) name:[self favoriteButtonTitle]];
+    _favoritStatusButton = [self setupButtonByFrame:CGRectMake(0, 50, 320, 50) name:[self favoriteButtonTitle]];
     [buttonView addSubview:_favoritStatusButton];
 
     [self addSubview:buttonView];
@@ -76,17 +76,17 @@
 -(UIButton*)setupButtonByFrame:(CGRect)theFrame name:(NSString*)name
 {
 	UIButton* theButton = [[UIButton alloc] initWithFrame:theFrame];
-	theButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
+	theButton.titleLabel.font = [UIFont systemFontOfSize:16.0f];
     theButton.layer.cornerRadius=0.0f;
     theButton.layer.masksToBounds=YES;
     theButton.layer.borderColor=[[UIColor colorWithWhite:1.0 alpha:0.3]CGColor];
     theButton.layer.borderWidth= 0.7f;
-
+    theButton.titleEdgeInsets = UIEdgeInsetsMake(5, 15, 0, 170);
 	[theButton setTitle:name forState:UIControlStateNormal];
     [theButton addTarget:self action:@selector(buttonHighlight:) forControlEvents:UIControlEventTouchDown];
 	[theButton addTarget:self action:@selector(buttonNormal:) forControlEvents:UIControlEventTouchUpInside];
 	[theButton addTarget:self action:@selector(buttonNormal:) forControlEvents:UIControlEventTouchDragOutside];
-    
+
 	return theButton;
 }
 

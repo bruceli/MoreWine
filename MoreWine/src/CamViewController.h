@@ -13,6 +13,9 @@
     UIButton* _camTakePictButton;
 	UIImageView* _imageView;
 	UIView* _overlayView;
+    UIButton* _camRollButton;
+    UIImage* _camRollLastImage;
+    
 	BOOL _newMedia;
 	BOOL _firstRun;
 	BOOL _hasMedia;

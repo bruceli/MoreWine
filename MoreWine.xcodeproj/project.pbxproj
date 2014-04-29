@@ -36,6 +36,7 @@
 		5932FBD018CEC058006C62D4 /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5932FBCF18CEC058006C62D4 /* StartViewController.m */; };
 		5937115E18E17CB300476E2D /* MaTagButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5937115D18E17CB300476E2D /* MaTagButton.m */; };
 		5947DE1718FCD67900E23AB8 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5947DE1618FCD67900E23AB8 /* SearchViewController.m */; };
+		5948BC3D19090493003C87AA /* MaMoreWineHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5948BC3C19090493003C87AA /* MaMoreWineHTTPClient.m */; };
 		594F06BA18BC9D8800338657 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 594F06B918BC9D8800338657 /* MainViewController.m */; };
 		594F06BD18BC9DB900338657 /* InfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 594F06BC18BC9DB900338657 /* InfoCell.m */; };
 		594F06C018BC9DD700338657 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 594F06BF18BC9DD700338657 /* ListViewController.m */; };
@@ -79,6 +80,10 @@
 		59A41F3518D03ABC00EA8B4C /* MaUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 59A41F3418D03ABC00EA8B4C /* MaUtility.m */; };
 		59A41F3718D03D5E00EA8B4C /* backgroundImage_586h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 59A41F3618D03D5E00EA8B4C /* backgroundImage_586h@2x.png */; };
 		59CC1BAB18F66D2A0052A030 /* UserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 59CC1BAA18F66D2A0052A030 /* UserInfoView.m */; };
+		59DBE679190B8D5000BD756E /* cam_closeButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 59DBE676190B8D5000BD756E /* cam_closeButton@2x.png */; };
+		59DBE67A190B8D5000BD756E /* cam_center@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 59DBE677190B8D5000BD756E /* cam_center@2x.png */; };
+		59DBE67B190B8D5000BD756E /* cam_captureButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 59DBE678190B8D5000BD756E /* cam_captureButton@2x.png */; };
+		59DBE67D190B8EC000BD756E /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59DBE67C190B8EC000BD756E /* AssetsLibrary.framework */; };
 		59F7D1CE18ED5F9C008430FD /* MaDropDownMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59F7D1CD18ED5F9C008430FD /* MaDropDownMenuController.m */; };
 		59FE62AC18CFFC5E00534539 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 59FE62AE18CFFC5E00534539 /* Localizable.strings */; };
 		80FC4B355FDD4D61B67BEBAE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07E3BEF05D7C4A6EB32E842A /* libPods.a */; };
@@ -139,6 +144,8 @@
 		5937115D18E17CB300476E2D /* MaTagButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MaTagButton.m; path = src/MaTagButton.m; sourceTree = "<group>"; };
 		5947DE1518FCD67900E23AB8 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchViewController.h; path = src/SearchViewController.h; sourceTree = "<group>"; };
 		5947DE1618FCD67900E23AB8 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchViewController.m; path = src/SearchViewController.m; sourceTree = "<group>"; };
+		5948BC3B19090493003C87AA /* MaMoreWineHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MaMoreWineHTTPClient.h; path = src/MaMoreWineHTTPClient.h; sourceTree = "<group>"; };
+		5948BC3C19090493003C87AA /* MaMoreWineHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MaMoreWineHTTPClient.m; path = src/MaMoreWineHTTPClient.m; sourceTree = "<group>"; };
 		594F06B818BC9D8800338657 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = src/MainViewController.h; sourceTree = "<group>"; };
 		594F06B918BC9D8800338657 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = src/MainViewController.m; sourceTree = "<group>"; };
 		594F06BB18BC9DB900338657 /* InfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InfoCell.h; path = src/InfoCell.h; sourceTree = "<group>"; };
@@ -203,6 +210,10 @@
 		59A41F3618D03D5E00EA8B4C /* backgroundImage_586h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "backgroundImage_586h@2x.png"; path = "resources/backgroundImage/backgroundImage_586h@2x.png"; sourceTree = "<group>"; };
 		59CC1BA918F66D2A0052A030 /* UserInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserInfoView.h; path = src/UserInfoView.h; sourceTree = "<group>"; };
 		59CC1BAA18F66D2A0052A030 /* UserInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserInfoView.m; path = src/UserInfoView.m; sourceTree = "<group>"; };
+		59DBE676190B8D5000BD756E /* cam_closeButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cam_closeButton@2x.png"; path = "resources/cam/cam_closeButton@2x.png"; sourceTree = "<group>"; };
+		59DBE677190B8D5000BD756E /* cam_center@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cam_center@2x.png"; path = "resources/cam/cam_center@2x.png"; sourceTree = "<group>"; };
+		59DBE678190B8D5000BD756E /* cam_captureButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cam_captureButton@2x.png"; path = "resources/cam/cam_captureButton@2x.png"; sourceTree = "<group>"; };
+		59DBE67C190B8EC000BD756E /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		59F7D1CC18ED5F9C008430FD /* MaDropDownMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MaDropDownMenuController.h; path = src/MaDropDownMenuController.h; sourceTree = "<group>"; };
 		59F7D1CD18ED5F9C008430FD /* MaDropDownMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MaDropDownMenuController.m; path = src/MaDropDownMenuController.m; sourceTree = "<group>"; };
 		59FE62AD18CFFC5E00534539 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -217,6 +228,7 @@
 				261BE06918BC0FDA00DEA46A /* UIKit.framework in Frameworks */,
 				261BE06518BC0FDA00DEA46A /* Foundation.framework in Frameworks */,
 				80FC4B355FDD4D61B67BEBAE /* libPods.a in Frameworks */,
+				59DBE67D190B8EC000BD756E /* AssetsLibrary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,6 +272,7 @@
 		261BE06318BC0FDA00DEA46A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				59DBE67C190B8EC000BD756E /* AssetsLibrary.framework */,
 				261BE06418BC0FDA00DEA46A /* Foundation.framework */,
 				261BE06618BC0FDA00DEA46A /* CoreGraphics.framework */,
 				261BE06818BC0FDA00DEA46A /* UIKit.framework */,
@@ -272,6 +285,7 @@
 		261BE06A18BC0FDA00DEA46A /* MoreWine */ = {
 			isa = PBXGroup;
 			children = (
+				5948BC3E19090499003C87AA /* Networking */,
 				261BE07318BC0FDA00DEA46A /* AppDelegate.h */,
 				261BE07418BC0FDA00DEA46A /* AppDelegate.m */,
 				59A108E818E2706000CF59DD /* UIElements */,
@@ -371,6 +385,15 @@
 				5947DE1618FCD67900E23AB8 /* SearchViewController.m */,
 			);
 			name = Search;
+			sourceTree = "<group>";
+		};
+		5948BC3E19090499003C87AA /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				5948BC3B19090493003C87AA /* MaMoreWineHTTPClient.h */,
+				5948BC3C19090493003C87AA /* MaMoreWineHTTPClient.m */,
+			);
+			name = Networking;
 			sourceTree = "<group>";
 		};
 		595EB1F618D7E85800223E20 /* SGFocus */ = {
@@ -508,11 +531,22 @@
 				59A108F418E2743F00CF59DD /* LoginView */,
 				5905D71318D1A60500FBA71F /* typeIcon */,
 				5905D6F618D166E700FBA71F /* temp */,
+				59DBE673190B80B000BD756E /* cam */,
 				59A41F2B18D039FE00EA8B4C /* backgroundImage */,
 				59FE62D718CFFE8B00534539 /* barIcon */,
 			);
 			name = Resources;
 			path = MoreWine;
+			sourceTree = "<group>";
+		};
+		59DBE673190B80B000BD756E /* cam */ = {
+			isa = PBXGroup;
+			children = (
+				59DBE676190B8D5000BD756E /* cam_closeButton@2x.png */,
+				59DBE677190B8D5000BD756E /* cam_center@2x.png */,
+				59DBE678190B8D5000BD756E /* cam_captureButton@2x.png */,
+			);
+			name = cam;
 			sourceTree = "<group>";
 		};
 		59F7D1C418E96E17008430FD /* Shake */ = {
@@ -652,6 +686,7 @@
 				59A41F2A18D039F200EA8B4C /* barIcon_UserHiLight@2x.png in Resources */,
 				59A41F2418D039F200EA8B4C /* barIcon_Search@2x.png in Resources */,
 				261BE06F18BC0FDA00DEA46A /* InfoPlist.strings in Resources */,
+				59DBE679190B8D5000BD756E /* cam_closeButton@2x.png in Resources */,
 				59A1090818E2B6C200CF59DD /* loginView_weibo_hilight@2x.png in Resources */,
 				596AA7D818F39C77008DBDE2 /* shakeView_shakeButton_hilight@2x.png in Resources */,
 				5925737118E51DC200CE3AC9 /* loginView_logo_icon@2x.png in Resources */,
@@ -668,9 +703,11 @@
 				59A41F1818D039F200EA8B4C /* barIcon_Cam@2x.png in Resources */,
 				59A41F3118D03A2A00EA8B4C /* backgroundImage@2x.png in Resources */,
 				59A41F1A18D039F200EA8B4C /* barIcon_CamHiLight@2x.png in Resources */,
+				59DBE67A190B8D5000BD756E /* cam_center@2x.png in Resources */,
 				59A1090618E2B6C200CF59DD /* loginView_wechat_hilight@2x.png in Resources */,
 				59A1090518E2B6C200CF59DD /* loginView_qq@2x.png in Resources */,
 				5905D71018D1A5FF00FBA71F /* barType_headphones@2x.png in Resources */,
+				59DBE67B190B8D5000BD756E /* cam_captureButton@2x.png in Resources */,
 				59FE62AC18CFFC5E00534539 /* Localizable.strings in Resources */,
 				59A41F1E18D039F200EA8B4C /* barIcon_HomeHiLight@2x.png in Resources */,
 				59A1090418E2B6C200CF59DD /* loginView_qq_hilight@2x.png in Resources */,
@@ -747,6 +784,7 @@
 				5920A5B718F4E63400685819 /* FXBlurView.m in Sources */,
 				5937115E18E17CB300476E2D /* MaTagButton.m in Sources */,
 				5932FBD018CEC058006C62D4 /* StartViewController.m in Sources */,
+				5948BC3D19090493003C87AA /* MaMoreWineHTTPClient.m in Sources */,
 				595EB1F518D7E85500223E20 /* SGFocusImageItem.m in Sources */,
 				59A108E718E2705700CF59DD /* LoginViewController.m in Sources */,
 				59A108F318E2729800CF59DD /* UserInfoManager.m in Sources */,
