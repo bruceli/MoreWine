@@ -95,27 +95,11 @@
 	[self setTitle:_titleString forState:UIControlStateNormal];
 }
 
-+(CGFloat)buttonWidthWithTitle:(NSString*)string
-{
-	CGFloat width;
-	if ([string isEqualToString:@"MA_ADD_TAG_BUTTON"])
-		width = 60;
-	else
-	{
-		UILabel* theLabel = [[UILabel alloc] init];
-		theLabel.font = [UIFont systemFontOfSize:10.0f];
-		theLabel.text = string;
-		[theLabel sizeToFit];
-		CGFloat gap = 18;
-		//	NSLog(@"width is %f",theLabel.frame.size.width);
-		width = theLabel.frame.size.width + gap;
-	}
-	return width;
-}
-
 -(void)setEditMode
 {
-    if ([_titleString isEqualToString:@"MA_ADD_TAG_BUTTON"])
+    _tagStatus = MA_TagButtonStatus_EditMode_Normal;
+
+  /*  if ([_titleString isEqualToString:@"MA_ADD_TAG_BUTTON"])
         return;
     CGRect finalFrame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width +MA_TagButton_editMode_Gap , self.frame.size.height);
     
@@ -140,6 +124,7 @@
                          _markView.userInteractionEnabled =YES;
                          [self sendSubviewToBack:_markView];
                      }];
+   */
 }
 
 
@@ -174,7 +159,7 @@
             [UIView animateWithDuration:0.25f delay:0.0f
                                 options: UIViewAnimationOptionCurveEaseOut
                              animations:^{
-                                 _markView.backgroundColor = [UIColor colorWithRed:1 green:0.5 blue:0.5 alpha:0.3];
+                                 self.backgroundColor = [UIColor colorWithRed:1 green:0.5 blue:0.5 alpha:0.3];
                              }
                              completion:^(BOOL finished){
                              }];
@@ -187,7 +172,7 @@
             [UIView animateWithDuration:0.25f delay:0.0f
                                 options: UIViewAnimationOptionCurveEaseOut
                              animations:^{
-                                 _markView.backgroundColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.3];
+                                 self.backgroundColor = [UIColor clearColor];
                              }
                              completion:^(BOOL finished){
                              }];
@@ -211,7 +196,7 @@
 		theLabel.font = [UIFont systemFontOfSize:10.0f];
 		theLabel.text = _titleString;
 		[theLabel sizeToFit];
-		CGFloat gap = 18;
+		CGFloat gap = 30;
 		//	NSLog(@"width is %f",theLabel.frame.size.width);
 		width = theLabel.frame.size.width + gap;
         theLabel = nil;

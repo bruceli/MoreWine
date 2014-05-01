@@ -272,66 +272,13 @@
 	telLabelView.backgroundColor = [UIColor clearColor];
 	[_tagView addSubview:telLabelView];
 
-	[self setupTagsWithArray:nil];
+//	[self setupTagsWithArray:nil];
 	
 	[_scrollView addSubview:_tagView];
 	
 	// adjust contentsize
 }
 
--(void)setupTagsWithArray:(NSArray*)tagArray
-{
-	NSArray* array = [NSArray arrayWithObjects:@"TE111",@"TE2222222", @"TEEEEEEEE555", @"TEEss6", @"the TEEEEEeeeeeeE 7",@"MA_ADD_TAG_BUTTON", nil];
-	
-	// X = 17
-	CGRect frame = CGRectMake(17, 38, 0, 22);
-	CGRect buttonFrame;
-	CGFloat maxWidth = self.view.frame.size.width - 34;
-	CGFloat xGap = 0;
-	CGFloat yGap = 26; // button hight + 4;
-//	BOOL isNewLine = YES;
-	for (NSString* string in array) {
-		CGFloat width = [MaTagButton buttonWidthWithTitle:string];
-		CGFloat buttonWidth = width + frame.origin.x + frame.size.width + xGap;
-		if ( buttonWidth > maxWidth ) // check if out of the screen
-		{
-			// out of screen 
-//			isNewLine = YES;
-			buttonFrame = CGRectMake(17, frame.origin.y + yGap, width, frame.size.height);
-		}
-		else 
-		{
-			// seems good 
-			buttonFrame = CGRectMake(frame.origin.x + frame.size.width + xGap , frame.origin.y, width, frame.size.height);
-			xGap = 4; // align first line 
-
-		/*	if (isNewLine) {
-				buttonFrame = CGRectMake(frame.origin.x , frame.origin.y, width, frame.size.height);
-				isNewLine = NO;
-			}
-			else{
-				buttonFrame = CGRectMake(frame.origin.x + frame.size.width + xGap , frame.origin.y, width, frame.size.height);
-			}*/
-		}
-//		NSLog(@"theFrame is %@", NSStringFromCGRect(buttonFrame));
-		UIButton *theButton = [[MaTagButton alloc] initWithFrame:buttonFrame title:string];
-		[theButton addTarget:self action:@selector(didTapTagButton:) forControlEvents:UIControlEventTouchUpInside];
-		[theButton addTarget:self action:@selector(buttonHighlight:) forControlEvents:UIControlEventTouchDown];
-		[theButton addTarget:self action:@selector(buttonNormal:) forControlEvents:UIControlEventTouchUpInside];
-		[theButton addTarget:self action:@selector(buttonNormal:) forControlEvents:UIControlEventTouchDragOutside];
-
-		frame = buttonFrame;
-		[_tagView addSubview:theButton];
-	}	
-	
-	CGFloat bottomLineY = frame.origin.y + frame.size.height + 15;
-	UIView* bottomLineView = [[UIView alloc] initWithFrame:CGRectMake(17, bottomLineY, 286, 1)];
-	bottomLineView.backgroundColor = [UIColor colorWithRed:250 green:250 blue:250 alpha:0.2];
-	[_tagView addSubview:bottomLineView];
-	
-	CGRect tagFrame = _tagView.frame;
-	_tagView.frame = CGRectMake(tagFrame.origin.x, tagFrame.origin.y, tagFrame.size.width, bottomLineView.frame.origin.y + bottomLineView.frame.size.height);
-}
 
 -(void)setupShakeButtonView
 {
