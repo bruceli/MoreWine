@@ -16,6 +16,8 @@
 @end
 
 @implementation MaDropDownMenuController
+@synthesize menuWidth = _menuWidth;
+@synthesize aligment = _aligment;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,6 +32,7 @@
     self = [super init];
     if(self)
     {
+        _menuWidth = 320;
         _baseViewController = viewController;
     }
     return self;
@@ -40,7 +43,7 @@
     [super viewDidLoad];
     
     _dataSourceArray = [[NSArray alloc] init];
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 160, 300)];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, _menuWidth, 300)];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.backgroundColor = [UIColor clearColor];
@@ -74,8 +77,14 @@
 
 -(void)showTableViewWithAnimationFromPoint:(CGPoint)point;
 {
-    CGRect currentFrame = CGRectMake(point.x, point.y, 160, 0);
-    CGRect toFrame = CGRectMake(point.x, point.y, 160, 300);
+    CGFloat xPoint;
+    if (_aligment == MA_DropDownMenuAlignment_Self)
+        xPoint = point.x;
+    else
+        xPoint = 0;
+    
+    CGRect currentFrame = CGRectMake(xPoint, point.y, _menuWidth, 0);
+    CGRect toFrame = CGRectMake(xPoint, point.y, _menuWidth, 300);
     _tableView.frame = currentFrame;
     [self.view addSubview:_tableView];
 
@@ -157,8 +166,14 @@
 		cell.backgroundColor = [UIColor colorWithRed:0.6f green:0.4f blue:0.2f alpha:0.7];
 		//+ (UIColor *)brownColor;      // 0.6, 0.4, 0.2 RGB 
         cell.textLabel.text = @"TEST";
-		cell.textLabel.textAlignment = NSTextAlignmentCenter;
-		[self addCheckMark:cell];
+        
+        if (_aligment == MA_DropDownMenuAlignment_Self)
+        {
+            cell.textLabel.textAlignment = NSTextAlignmentCenter;
+            [self addCheckMark:cell];
+        }
+        else
+            cell.textLabel.textAlignment = NSTextAlignmentLeft;
 		
     }
   
@@ -172,15 +187,5 @@
     checkImageView.image=[UIImage imageNamed:@"shakeView_Cell_Selected"];
     [theCell addSubview:checkImageView];
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

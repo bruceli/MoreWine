@@ -56,13 +56,16 @@
     SearchViewController* searchView = [[SearchViewController alloc] init];
     UINavigationController* searchNavController = [[UINavigationController alloc] initWithRootViewController:searchView];
 	
-//	StartViewController* startViewController = [[StartViewController alloc] init];   
+//	StartViewController* startViewController = [[StartViewController alloc] init];
+    
 	LoginViewController* loginViewController = [[LoginViewController alloc] init];
-	UINavigationController *loginNavController = [[UINavigationController alloc] initWithNavigationBarClass:[MaNavigationBar class] toolbarClass:nil];
+    UINavigationController* loginNavController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
+
+    /*	UINavigationController *loginNavController = [[UINavigationController alloc] initWithNavigationBarClass:[MaNavigationBar class] toolbarClass:nil];
     [[MaNavigationBar appearance] setBarTintGradientColors:colors];
     [[loginNavController navigationBar] setTranslucent:YES];
     [loginNavController setViewControllers:@[loginViewController]];	
-	
+*/
 	UIViewController* camViewController = [[CamViewController alloc] init];   
 
     [viewControllers addObject:mainNavController]; // MainView with custom Nav

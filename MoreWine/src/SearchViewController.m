@@ -79,7 +79,7 @@
 -(void)setupMenuView
 {
     UIView* buttonView = [[UIView alloc] initWithFrame:CGRectMake(0, 44, self.view.frame.size.width, 40)];
-    buttonView.backgroundColor = [UIColor blueColor];
+    buttonView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:buttonView];
 
     _distanceButton = [self setupButtonByFrame:CGRectMake(0, 0, 107, 40)];
@@ -132,9 +132,9 @@
     
 	CGPoint popPoint = CGPointMake(((UIButton*)sender).frame.origin.x, ((UIButton*)sender).frame.origin.y+84);// +44 pop menu from bottom of menu;
     //	NSLog(@"popPoint %@",NSStringFromCGPoint(popPoint));
-    
+    _dropDownController.menuWidth = 320;
+    _dropDownController.aligment = MA_DropDownMenuAlignment_Left;
     [_dropDownController presentPopoverFromPoint: popPoint];
-
 }
 
 -(void)dismissDropDownMenuWithSelection:(id)item

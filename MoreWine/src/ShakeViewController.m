@@ -67,36 +67,6 @@
 
 -(void)setupDropDownMenus
 {
-/*    _baseLiqButton = [self setupButtonByFrame:CGRectMake(0, 64, 160, 44)];
-	[self setupButton:_baseLiqButton title:@"基酒"];
-	[self addRightEdge:_baseLiqButton];
-	
-	_tastButton = [self setupButtonByFrame:CGRectMake(0, 108, 160, 44)];
-	[self setupButton:_tastButton title:@"口味"];
-	[self addRightEdge:_tastButton];
-
-    _tempButton = [self setupButtonByFrame:CGRectMake(0, 152, 160, 44)];
-	[self setupButton:_tempButton title:@"温度"];
-	[self addRightEdge:_tempButton];
-
-    _keyWordsButton = [self setupButtonByFrame:CGRectMake(0, 196, 160, 44)];
-	[self setupButton:_keyWordsButton title:@"关键字"];
-	[self addRightEdge:_keyWordsButton];
-	[self addBottonEdge:_keyWordsButton];
-
-    _alcoholButton = [self setupButtonByFrame:CGRectMake(160, 64, 160, 44)];
-	[self setupButton:_alcoholButton title:@"酒精度"];
-
-    _typeButton = [self setupButtonByFrame:CGRectMake(160, 108, 160, 44)];
-	[self setupButton:_typeButton title:@"类型"];
-
-	_colorButton = [self setupButtonByFrame:CGRectMake(160, 152, 160, 44)];
-	[self setupButton:_colorButton title:@"颜色"];
-	
-	_whatEverButton = [self setupButtonByFrame:CGRectMake(160, 196, 160, 44)];
-	[self setupButton:_whatEverButton title:@"随便"];
-	[self addBottonEdge:_whatEverButton];
- */
 	_baseLiqButton = [self setupButtonByFrame:CGRectMake(0, 0, 160, 44)];
 	[self setupButton:_baseLiqButton title:@"基酒"];
 	[self addRightEdge:_baseLiqButton];
@@ -153,11 +123,11 @@
 	UIView* theView = [[UIView alloc] initWithFrame:CGRectMake(0, 380, 320, 24)];
 
 	UIView* topLine = [[UIView alloc] initWithFrame:CGRectMake(17, 0, 286, 1)];
-	topLine.backgroundColor = [UIColor whiteColor];
+	topLine.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.3];
 	[theView addSubview:topLine];
 
 	UIView* bottomLine = [[UIView alloc] initWithFrame:CGRectMake(17, 24, 286, 1)];
-	bottomLine.backgroundColor = [UIColor whiteColor];
+	bottomLine.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.3];
 	[theView addSubview:bottomLine];
 
 	UILabel* theLable = [[UILabel alloc] initWithFrame:CGRectMake(17, 0, 286, 24)];
@@ -182,14 +152,14 @@
 -(void)addRightEdge:(UIButton*)theButton
 {
 	UIView* rightLine = [[UIView alloc] initWithFrame:CGRectMake(160, 0, 1, 44)];
-	rightLine.backgroundColor = [UIColor whiteColor];
+	rightLine.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.3];
 	[theButton addSubview:rightLine];
 }
 
 -(void)addBottonEdge:(UIButton*)theButton
 {
 	UIView* bottonLine = [[UIView alloc] initWithFrame:CGRectMake(0, 44, 160, 1)];
-	bottonLine.backgroundColor = [UIColor whiteColor];
+	bottonLine.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.3];
 	[theButton addSubview:bottonLine];
 }
 
@@ -197,7 +167,7 @@
 {
 	//- (void)setTitle:(NSString *)title forState:(UIControlState)state;                     // default is nil. title is assumed to be single line
 	UIView* topLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 160, 1)];
-	topLine.backgroundColor = [UIColor whiteColor];
+	topLine.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.3];
 	[theButton addSubview:topLine];
 	
 	[theButton setTitle:theTitle forState:UIControlStateNormal];
@@ -226,7 +196,8 @@
     
 	CGPoint popPoint = CGPointMake(((UIButton*)sender).frame.origin.x, ((UIButton*)sender).frame.origin.y-_scrollView.contentOffset.y+44);// +44 pop menu from bottom of menu;
 //	NSLog(@"popPoint %@",NSStringFromCGPoint(popPoint));
-
+    _dropDownController.menuWidth = 160;
+    _dropDownController.aligment = MA_DropDownMenuAlignment_Self;
     [_dropDownController presentPopoverFromPoint: popPoint];
 }
 

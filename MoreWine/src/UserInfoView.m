@@ -8,6 +8,7 @@
 
 #import "UserInfoView.h"
 #import "MaUtility.h"
+#import "LoginViewController.h"
 
 @implementation UserInfoView
 @synthesize loginController = _loginController;
@@ -27,7 +28,7 @@
 -(void)setupViews
 {
     _headerView = [[UIImageView alloc] initWithFrame:CGRectMake(112, 37, 96, 96)];
-	_headerView.backgroundColor = [MaUtility getRandomColor];
+	_headerView.backgroundColor = [UIColor clearColor];
 	CALayer *imageLayer = _headerView.layer;
     [imageLayer setCornerRadius:48];
     [imageLayer setBorderWidth:0];
@@ -36,30 +37,30 @@
     [self addSubview:_headerView];
 
     _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 150, 320, 16)];
-    _nameLabel.backgroundColor = [MaUtility getRandomColor];
+    _nameLabel.backgroundColor = [UIColor clearColor];
     _nameLabel.font = [UIFont systemFontOfSize:16.0f];
     _nameLabel.textColor = [UIColor whiteColor];
     _nameLabel.textAlignment = NSTextAlignmentCenter;
     _nameLabel.text = @"MoreCafe";
     [self addSubview:_nameLabel];
     
-    UIView* buttonView = [[UIView alloc ] initWithFrame:CGRectMake(0, 181, 320, 50)];
-/*    UIView* topLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 1)];
-    topLine.backgroundColor = [UIColor colorWithRed:250 green:250 blue:250 alpha:0.1];
-    UIView* bottomLine = [[UIView alloc] initWithFrame:CGRectMake(0, 50, 320, 1)];
-    bottomLine.backgroundColor = [UIColor colorWithRed:250 green:250 blue:250 alpha:0.1];
-    UIView* midLine = [[UIView alloc] initWithFrame:CGRectMake(160, 0, 1, 50)];
-    midLine.backgroundColor = [UIColor colorWithRed:250 green:250 blue:250 alpha:0.1];
- //    [buttonView addSubview:topLine];
- //    [buttonView addSubview:bottomLine];
- //    [buttonView addSubview:midLine];
-*/
+    UIView* buttonView = [[UIView alloc ] initWithFrame:CGRectMake(0, 181, 320, 150)];
+
     _checkInStatusButton = [self setupButtonByFrame:CGRectMake(0, 0, 320, 50) name:[self checkInButtonTitle]];
+	[_checkInStatusButton addTarget:self action:@selector(checkInDetails:) forControlEvents:UIControlEventTouchUpInside];
     [buttonView addSubview:_checkInStatusButton];
 
-    _favoritStatusButton = [self setupButtonByFrame:CGRectMake(0, 50, 320, 50) name:[self favoriteButtonTitle]];
+    _favoritStatusButton = [self setupButtonByFrame:CGRectMake(0, 49, 320, 50) name:[self favoriteButtonTitle]];
+	[_favoritStatusButton addTarget:self action:@selector(checkInDetails:) forControlEvents:UIControlEventTouchUpInside];
     [buttonView addSubview:_favoritStatusButton];
 
+	
+    _tagButton = [self setupButtonByFrame:CGRectMake(0, 99, 320, 50) name:@"我的标签"];
+	[_tagButton addTarget:self action:@selector(tagDetails:) forControlEvents:UIControlEventTouchUpInside];
+    [buttonView addSubview:_tagButton];
+
+	
+	// change buttonView frame before add buttons
     [self addSubview:buttonView];
 }
 
@@ -110,14 +111,19 @@
     theButton.layer.borderWidth= 0.7f;
 }
 
--(void)checkInDetails
+-(void)checkInDetails:(id)sender
 {
-
+	[_loginController pushCheckInDetailController];
 }
 
--(void)favoriteDetails
+-(void)favoriteDetails:(id)sender
 {
+	[_loginController pushFavoriteDetailController];
+}
 
+-(void)tagDetails:(id)sender
+{
+	[_loginController pushTagDetailController];
 }
 
 /*

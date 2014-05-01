@@ -20,5 +20,10 @@
 	
 	UILabel* _addressLabel;
 	UILabel* _telLabel;
+	UIView* _addTagView;
+	UIView* _tagView;
+	UIButton* _shakeButton;
+	UIButton* _checkInButton;
+
 }
 @end

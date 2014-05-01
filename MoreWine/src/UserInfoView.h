@@ -16,6 +16,8 @@
     UILabel* _nameLabel;
     UIButton* _checkInStatusButton;
     UIButton* _favoritStatusButton;
+	UIButton* _tagButton;
+
 }
 
 @property (nonatomic, retain) LoginViewController *loginController;

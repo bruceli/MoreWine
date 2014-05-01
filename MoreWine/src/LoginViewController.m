@@ -12,6 +12,10 @@
 #import "UserInfoView.h"
 #import "AppDelegate.h"
 #import "UserInfoManager.h"
+#import "CheckInDetailViewController.h"
+#import "FavoriteViewController.h"
+#import "TagManagerViewController.h"
+
 
 @interface LoginViewController ()
 
@@ -147,15 +151,24 @@
 
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+-(void)pushCheckInDetailController
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    CheckInDetailViewController* viewController = [[CheckInDetailViewController alloc] init];
+    [self.navigationController pushViewController: viewController animated:YES];
+
 }
-*/
+
+-(void)pushFavoriteDetailController
+{
+    FavoriteViewController* viewController = [[FavoriteViewController alloc] init];
+    [self.navigationController pushViewController: viewController animated:YES];
+}
+
+-(void)pushTagDetailController
+{
+	TagManagerViewController* viewController = [[TagManagerViewController alloc] init];
+    [self.navigationController pushViewController: viewController animated:YES];
+}
 
 @end

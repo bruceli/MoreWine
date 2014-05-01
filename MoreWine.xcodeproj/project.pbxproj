@@ -35,6 +35,8 @@
 		5925737418E522BD00CE3AC9 /* SignInView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5925737318E522BD00CE3AC9 /* SignInView.m */; };
 		5932FBD018CEC058006C62D4 /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5932FBCF18CEC058006C62D4 /* StartViewController.m */; };
 		5937115E18E17CB300476E2D /* MaTagButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5937115D18E17CB300476E2D /* MaTagButton.m */; };
+		59374B2A190F4A0A00B97011 /* TagManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59374B29190F4A0A00B97011 /* TagManagerViewController.m */; };
+		59374B2D190F964F00B97011 /* TagListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59374B2C190F964F00B97011 /* TagListViewController.m */; };
 		5947DE1718FCD67900E23AB8 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5947DE1618FCD67900E23AB8 /* SearchViewController.m */; };
 		5948BC3D19090493003C87AA /* MaMoreWineHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5948BC3C19090493003C87AA /* MaMoreWineHTTPClient.m */; };
 		594F06BA18BC9D8800338657 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 594F06B918BC9D8800338657 /* MainViewController.m */; };
@@ -142,6 +144,10 @@
 		5932FBCF18CEC058006C62D4 /* StartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StartViewController.m; path = src/StartViewController.m; sourceTree = "<group>"; };
 		5937115C18E17CB300476E2D /* MaTagButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MaTagButton.h; path = src/MaTagButton.h; sourceTree = "<group>"; };
 		5937115D18E17CB300476E2D /* MaTagButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MaTagButton.m; path = src/MaTagButton.m; sourceTree = "<group>"; };
+		59374B28190F4A0A00B97011 /* TagManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TagManagerViewController.h; path = src/TagManagerViewController.h; sourceTree = "<group>"; };
+		59374B29190F4A0A00B97011 /* TagManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TagManagerViewController.m; path = src/TagManagerViewController.m; sourceTree = "<group>"; };
+		59374B2B190F964F00B97011 /* TagListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TagListViewController.h; path = src/TagListViewController.h; sourceTree = "<group>"; };
+		59374B2C190F964F00B97011 /* TagListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TagListViewController.m; path = src/TagListViewController.m; sourceTree = "<group>"; };
 		5947DE1518FCD67900E23AB8 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchViewController.h; path = src/SearchViewController.h; sourceTree = "<group>"; };
 		5947DE1618FCD67900E23AB8 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchViewController.m; path = src/SearchViewController.m; sourceTree = "<group>"; };
 		5948BC3B19090493003C87AA /* MaMoreWineHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MaMoreWineHTTPClient.h; path = src/MaMoreWineHTTPClient.h; sourceTree = "<group>"; };
@@ -485,6 +491,8 @@
 				59751E9618F7BED500727D52 /* CheckInDetailViewController.m */,
 				59751E9818F7BEF300727D52 /* FavoriteViewController.h */,
 				59751E9918F7BEF300727D52 /* FavoriteViewController.m */,
+				59374B28190F4A0A00B97011 /* TagManagerViewController.h */,
+				59374B29190F4A0A00B97011 /* TagManagerViewController.m */,
 			);
 			name = UserInfo;
 			sourceTree = "<group>";
@@ -569,6 +577,8 @@
 				591ED1A718E1172700A9669F /* ShopDetailViewController.m */,
 				596AA7DF18F3E2AF008DBDE2 /* CheckInAndShareViewController.h */,
 				596AA7E018F3E2AF008DBDE2 /* CheckInAndShareViewController.m */,
+				59374B2B190F964F00B97011 /* TagListViewController.h */,
+				59374B2C190F964F00B97011 /* TagListViewController.m */,
 			);
 			name = "Detail & CheckIn";
 			sourceTree = "<group>";
@@ -780,9 +790,11 @@
 				59CC1BAB18F66D2A0052A030 /* UserInfoView.m in Sources */,
 				596AA7DE18F3C2C7008DBDE2 /* ShakeResultViewController.m in Sources */,
 				595EB1F418D7E85500223E20 /* SGFocusImageFrame.m in Sources */,
+				59374B2A190F4A0A00B97011 /* TagManagerViewController.m in Sources */,
 				5947DE1718FCD67900E23AB8 /* SearchViewController.m in Sources */,
 				5920A5B718F4E63400685819 /* FXBlurView.m in Sources */,
 				5937115E18E17CB300476E2D /* MaTagButton.m in Sources */,
+				59374B2D190F964F00B97011 /* TagListViewController.m in Sources */,
 				5932FBD018CEC058006C62D4 /* StartViewController.m in Sources */,
 				5948BC3D19090493003C87AA /* MaMoreWineHTTPClient.m in Sources */,
 				595EB1F518D7E85500223E20 /* SGFocusImageItem.m in Sources */,

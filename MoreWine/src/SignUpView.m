@@ -104,7 +104,6 @@
 {
 	UIButton* theButton = (UIButton*)sender;
 	theButton.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.1];
-	theButton.layer.cornerRadius=4.0f;
     theButton.layer.masksToBounds=YES;
     theButton.layer.borderColor=[[UIColor colorWithWhite:1.0 alpha:0.3]CGColor];
     theButton.layer.borderWidth= 2.0f;
@@ -114,7 +113,6 @@
 {
 	UIButton* theButton = (UIButton*)sender;
 	theButton.backgroundColor = [UIColor clearColor];
-	theButton.layer.cornerRadius=4.0f;
     theButton.layer.masksToBounds=YES;
     theButton.layer.borderColor=[[UIColor colorWithWhite:1.0 alpha:0.3]CGColor];
     theButton.layer.borderWidth= 1.0f;

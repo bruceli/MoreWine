@@ -19,6 +19,7 @@
 #import "ShakeViewController.h"
 #import "MaTagButton.h"
 #import "MaNavigationBar.h"
+#import "TagListViewController.h"
 
 @interface DetailNameView : UIView
 {
@@ -176,8 +177,7 @@
 	[self setupCheckInView];
     
 	[self fillInfo];
-	//setupShakeButtonView CGRectMake(17, 528, 286, 30)
-	_scrollView.contentSize = CGSizeMake(320,533+30+64+64);
+	_scrollView.contentSize = CGSizeMake(320, _checkInButton.frame.origin.y+ _checkInButton.frame.size.height+20+64+49);
 }
 
 - (void)didReceiveMemoryWarning
@@ -256,13 +256,13 @@
 
 -(void)setupTagView
 {
-	UIView* tagView = [[UIView alloc] initWithFrame:CGRectMake(0, 354, 320, 108)];
-	tagView.backgroundColor = [UIColor clearColor];
+	 _tagView = [[UIView alloc] initWithFrame:CGRectMake(0, 354, 320, 108)];
+	_tagView.backgroundColor = [UIColor clearColor];
 	
 	UIImageView* imgView = [[UIImageView alloc] initWithFrame:CGRectMake(17, 15, 14, 14)];
 	imgView.backgroundColor = [UIColor clearColor];
 	imgView.image = [UIImage imageNamed:@"barType_music.png"];
-	[tagView addSubview:imgView];
+	[_tagView addSubview:imgView];
 	
 	UILabel* telLabelView = [[UILabel alloc] initWithFrame:CGRectMake(35, 15, 50, 14)];
 	telLabelView.backgroundColor = [UIColor clearColor];
@@ -270,80 +270,108 @@
 	telLabelView.textColor = [UIColor whiteColor];
 	telLabelView.text = NSLocalizedString(@"MA_MoreWine_ShopDetailView_Tag", nil);
 	telLabelView.backgroundColor = [UIColor clearColor];
-	[tagView addSubview:telLabelView];
+	[_tagView addSubview:telLabelView];
 
-	[self setupTagsIn:tagView];
-    
-    UIView* bottomLineView = [[UIView alloc] initWithFrame:CGRectMake(17, 108, 286, 1)];
-	bottomLineView.backgroundColor = [UIColor colorWithRed:250 green:250 blue:250 alpha:0.2];
-	[tagView addSubview:bottomLineView];
-
+	[self setupTagsWithArray:nil];
 	
-	[_scrollView addSubview:tagView];
+	[_scrollView addSubview:_tagView];
+	
+	// adjust contentsize
 }
 
--(void)setupTagsIn:(UIView*)tagView
+-(void)setupTagsWithArray:(NSArray*)tagArray
 {
-	UILabel* tagLabel = [[UILabel alloc] initWithFrame:CGRectMake(17, 38, 68, 22)];
-	tagLabel.layer.cornerRadius = 10.0;
-	tagLabel.layer.masksToBounds = YES;
-	tagLabel.backgroundColor = [MaUtility getRandomColor];
-	[tagView addSubview:tagLabel];
+	NSArray* array = [NSArray arrayWithObjects:@"TE111",@"TE2222222", @"TEEEEEEEE555", @"TEEss6", @"the TEEEEEeeeeeeE 7",@"MA_ADD_TAG_BUTTON", nil];
 	
-	MaTagButton *tagButton = [[MaTagButton alloc] initWithFrame:CGRectMake(85, 38, 68, 28)];
-	[tagButton setTitle:@"测试按钮" forState:UIControlStateNormal];
-	tagButton.titleLabel.font = [UIFont systemFontOfSize:10.0f];
-	[tagView addSubview:tagButton];
+	// X = 17
+	CGRect frame = CGRectMake(17, 38, 0, 22);
+	CGRect buttonFrame;
+	CGFloat maxWidth = self.view.frame.size.width - 34;
+	CGFloat xGap = 0;
+	CGFloat yGap = 26; // button hight + 4;
+//	BOOL isNewLine = YES;
+	for (NSString* string in array) {
+		CGFloat width = [MaTagButton buttonWidthWithTitle:string];
+		CGFloat buttonWidth = width + frame.origin.x + frame.size.width + xGap;
+		if ( buttonWidth > maxWidth ) // check if out of the screen
+		{
+			// out of screen 
+//			isNewLine = YES;
+			buttonFrame = CGRectMake(17, frame.origin.y + yGap, width, frame.size.height);
+		}
+		else 
+		{
+			// seems good 
+			buttonFrame = CGRectMake(frame.origin.x + frame.size.width + xGap , frame.origin.y, width, frame.size.height);
+			xGap = 4; // align first line 
+
+		/*	if (isNewLine) {
+				buttonFrame = CGRectMake(frame.origin.x , frame.origin.y, width, frame.size.height);
+				isNewLine = NO;
+			}
+			else{
+				buttonFrame = CGRectMake(frame.origin.x + frame.size.width + xGap , frame.origin.y, width, frame.size.height);
+			}*/
+		}
+//		NSLog(@"theFrame is %@", NSStringFromCGRect(buttonFrame));
+		UIButton *theButton = [[MaTagButton alloc] initWithFrame:buttonFrame title:string];
+		[theButton addTarget:self action:@selector(didTapTagButton:) forControlEvents:UIControlEventTouchUpInside];
+		[theButton addTarget:self action:@selector(buttonHighlight:) forControlEvents:UIControlEventTouchDown];
+		[theButton addTarget:self action:@selector(buttonNormal:) forControlEvents:UIControlEventTouchUpInside];
+		[theButton addTarget:self action:@selector(buttonNormal:) forControlEvents:UIControlEventTouchDragOutside];
+
+		frame = buttonFrame;
+		[_tagView addSubview:theButton];
+	}	
 	
-	UIButton *testButton = [[UIButton alloc] initWithFrame:CGRectMake(153, 38, 68, 22)];
-	testButton.layer.cornerRadius=9.0f;
-    testButton.layer.masksToBounds=YES;
-    testButton.layer.borderColor=[[UIColor whiteColor]CGColor];
-    testButton.layer.borderWidth= 0.7f;
-	[testButton setTitle:@"测试按钮" forState:UIControlStateNormal];
-	testButton.titleLabel.font = [UIFont systemFontOfSize:10.0f];
-
-	[tagView addSubview:testButton];
-
+	CGFloat bottomLineY = frame.origin.y + frame.size.height + 15;
+	UIView* bottomLineView = [[UIView alloc] initWithFrame:CGRectMake(17, bottomLineY, 286, 1)];
+	bottomLineView.backgroundColor = [UIColor colorWithRed:250 green:250 blue:250 alpha:0.2];
+	[_tagView addSubview:bottomLineView];
+	
+	CGRect tagFrame = _tagView.frame;
+	_tagView.frame = CGRectMake(tagFrame.origin.x, tagFrame.origin.y, tagFrame.size.width, bottomLineView.frame.origin.y + bottomLineView.frame.size.height);
 }
 
 -(void)setupShakeButtonView
 {
 //	UIView* shakeButtonView = [[UIView alloc] initWithFrame:CGRectMake(17, 537, 286, 30)];
 //	shakeButtonView.backgroundColor = [UIColor clearColor];
-	
-	UIButton *shakeButton = [[UIButton alloc] initWithFrame:CGRectMake(17, 473, 286, 40)];
-    [shakeButton addTarget:self action:@selector(shake:) forControlEvents:UIControlEventTouchUpInside];
-    [shakeButton addTarget:self action:@selector(buttonHighlight:) forControlEvents:UIControlEventTouchDown];
-	[shakeButton addTarget:self action:@selector(buttonNormal:) forControlEvents:UIControlEventTouchUpInside];
-	[shakeButton addTarget:self action:@selector(buttonNormal:) forControlEvents:UIControlEventTouchDragOutside];
+	CGFloat y = _tagView.frame.origin.y + _tagView.frame.size.height + 15;
+	_shakeButton = [[UIButton alloc] initWithFrame:CGRectMake(17, y, 286, 40)];
+    [_shakeButton addTarget:self action:@selector(shake:) forControlEvents:UIControlEventTouchUpInside];
+    [_shakeButton addTarget:self action:@selector(buttonHighlight:) forControlEvents:UIControlEventTouchDown];
+	[_shakeButton addTarget:self action:@selector(buttonNormal:) forControlEvents:UIControlEventTouchUpInside];
+	[_shakeButton addTarget:self action:@selector(buttonNormal:) forControlEvents:UIControlEventTouchDragOutside];
 
-	shakeButton.layer.cornerRadius=4.0f;
-    shakeButton.layer.masksToBounds=YES;
-    shakeButton.layer.borderColor=[[UIColor whiteColor]CGColor];
-    shakeButton.layer.borderWidth= 0.7f;
-	[shakeButton setTitle:@"Shake!!" forState:UIControlStateNormal];
-	shakeButton.titleLabel.font = [UIFont systemFontOfSize:20.0f];
+	_shakeButton.layer.cornerRadius=4.0f;
+    _shakeButton.layer.masksToBounds=YES;
+    _shakeButton.layer.borderColor=[[UIColor colorWithWhite:1.0 alpha:0.3]CGColor];
+    _shakeButton.layer.borderWidth= 0.7f;
+	[_shakeButton setTitle:@"Shake!!" forState:UIControlStateNormal];
+	_shakeButton.titleLabel.font = [UIFont systemFontOfSize:20.0f];
     
-	[_scrollView addSubview:shakeButton];
+	[_scrollView addSubview:_shakeButton];
 }
 
 -(void)setupCheckInView
 {
-	UIButton *checkIn = [[UIButton alloc] initWithFrame:CGRectMake(17, 523, 286, 40)];
-    [checkIn addTarget:self action:@selector(checkIn:) forControlEvents:UIControlEventTouchUpInside];
-    [checkIn addTarget:self action:@selector(buttonHighlight:) forControlEvents:UIControlEventTouchDown];
-	[checkIn addTarget:self action:@selector(buttonNormal:) forControlEvents:UIControlEventTouchUpInside];
-	[checkIn addTarget:self action:@selector(buttonNormal:) forControlEvents:UIControlEventTouchDragOutside];
+	CGFloat y = _shakeButton.frame.origin.y + _shakeButton.frame.size.height + 10;
 
-	checkIn.layer.cornerRadius=4.0f;
-    checkIn.layer.masksToBounds=YES;
-    checkIn.layer.borderColor=[[UIColor whiteColor]CGColor];
-    checkIn.layer.borderWidth= 0.7f;
-	[checkIn setTitle:@"签到" forState:UIControlStateNormal];
-	checkIn.titleLabel.font = [UIFont systemFontOfSize:20.0f];
+	_checkInButton = [[UIButton alloc] initWithFrame:CGRectMake(17, y, 286, 40)];
+    [_checkInButton addTarget:self action:@selector(checkIn:) forControlEvents:UIControlEventTouchUpInside];
+    [_checkInButton addTarget:self action:@selector(buttonHighlight:) forControlEvents:UIControlEventTouchDown];
+	[_checkInButton addTarget:self action:@selector(buttonNormal:) forControlEvents:UIControlEventTouchUpInside];
+	[_checkInButton addTarget:self action:@selector(buttonNormal:) forControlEvents:UIControlEventTouchDragOutside];
+
+	_checkInButton.layer.cornerRadius=4.0f;
+    _checkInButton.layer.masksToBounds=YES;
+    _checkInButton.layer.borderColor=[[UIColor colorWithWhite:1.0 alpha:0.3]CGColor];
+    _checkInButton.layer.borderWidth= 0.7f;
+	[_checkInButton setTitle:@"签到" forState:UIControlStateNormal];
+	_checkInButton.titleLabel.font = [UIFont systemFontOfSize:20.0f];
     
-	[_scrollView addSubview:checkIn];
+	[_scrollView addSubview:_checkInButton];
 }
 
 
@@ -393,8 +421,6 @@
 	// blur style
 //	CheckInAndShareViewController* controller = [[CheckInAndShareViewController alloc] init];
 //	[controller showOnViewController:self];
-	
-
 }
 
 -(void)popCheckInView
@@ -411,24 +437,106 @@
     [self.navigationController pushViewController: viewController animated:YES];
 }
 
+-(void)didTapTagButton:(id)sender
+{
+	NSString* titleString = ((MaTagButton*)sender).titleString;
+	if ([titleString isEqualToString:@"MA_ADD_TAG_BUTTON"]) {
+		[self addTagAction:sender];
+	}
+	else
+	{
+		TagListViewController* viewController = [[TagListViewController alloc] initWithTag: titleString];
+		[self.navigationController pushViewController: viewController animated:YES];
+	}
+}
+
+-(void)addTagAction:(id)sender
+{
+	_addTagView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height*2, 320, self.view.bounds.size.height)];
+	_addTagView.backgroundColor = [MaUtility getRandomColor];
+	
+	UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissAddTagView:)];
+	singleTap.numberOfTapsRequired = 1;
+	[_addTagView setUserInteractionEnabled:YES];
+    [_addTagView addGestureRecognizer:singleTap];
+
+	UITextField* theField = [[UITextField alloc] initWithFrame:CGRectMake(17, 50, 286, 40)];
+	theField.borderStyle = UITextBorderStyleNone;
+	theField.backgroundColor = [UIColor clearColor];
+    theField.layer.cornerRadius=4.0f;
+    theField.layer.masksToBounds=YES;
+    theField.layer.borderColor=[[UIColor colorWithWhite:1.0 alpha:0.3]CGColor];
+    theField.layer.borderWidth= 1.0f;
+	UIView *namePaddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
+	theField.leftView = namePaddingView;
+	theField.leftViewMode = UITextFieldViewModeAlways;
+//	theField.delegate = self;
+    theField.textColor = [UIColor lightGrayColor];
+	theField.returnKeyType = UIReturnKeyDone;
+	theField.text = NSLocalizedString(@"新标签", nil);
+	[_addTagView addSubview:theField];
+    
+	UIButton *theButton = [[UIButton alloc] initWithFrame:CGRectMake(90, 100, 140, 40)];
+	theButton.layer.cornerRadius=4.0f;
+    theButton.layer.masksToBounds=YES;
+    theButton.layer.borderColor=[[UIColor colorWithWhite:1.0 alpha:0.3]CGColor];
+    theButton.layer.borderWidth= 1.0f;
+    theButton.titleLabel.font = [UIFont systemFontOfSize:15.0f];
+    [theButton addTarget:self action:@selector(buttonHighlight:) forControlEvents:UIControlEventTouchDown];
+	[theButton addTarget:self action:@selector(buttonNormal:) forControlEvents:UIControlEventTouchUpInside];
+	[theButton addTarget:self action:@selector(buttonNormal:) forControlEvents:UIControlEventTouchDragOutside];
+
+	[theButton setTitle:NSLocalizedString(@"增加标签", nil) forState:UIControlStateNormal];
+    [theButton addTarget:self action:@selector(addTag:) forControlEvents:UIControlEventTouchUpInside];
+	[_addTagView addSubview:theButton];
+	[self.view addSubview:_addTagView];
+
+	CGRect toFrame = CGRectMake(0, 0, 320, self.view.bounds.size.height);
+	[UIView animateWithDuration:0.25f delay:0.0f
+                        options: UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         _addTagView.frame = toFrame;
+						 _addTagView.backgroundColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:0.8];
+                     }
+                     completion:^(BOOL finished){
+                     }];	
+}
+
+-(void)dismissAddTagView:(id)sender
+{
+	CGRect toFrame = CGRectMake(0, self.view.bounds.size.height*2, 320, self.view.bounds.size.height);
+	[UIView animateWithDuration:0.3f delay:0.0f
+                        options: UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         _addTagView.frame = toFrame;
+						 _addTagView.backgroundColor = [UIColor clearColor];
+                     }
+                     completion:^(BOOL finished){
+						 [_addTagView removeFromSuperview];
+
+                     }];
+}
+
+-(void)addTag:(id)sender
+{
+	[self dismissAddTagView:nil];
+}
+
+#pragma mark - Button status helper
 -(void)buttonHighlight:(id)sender
 {
 	UIButton* theButton = (UIButton*)sender;
 	theButton.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.1];
-	theButton.layer.cornerRadius=4.0f;
     theButton.layer.masksToBounds=YES;
-    theButton.layer.borderColor=[[UIColor colorWithWhite:1.0 alpha:0.3]CGColor];
-    theButton.layer.borderWidth= 2.0f;
+    theButton.layer.borderColor=[[UIColor colorWithWhite:1.0 alpha:0.1]CGColor];
 }
 
 -(void)buttonNormal:(id)sender
 {
 	UIButton* theButton = (UIButton*)sender;
 	theButton.backgroundColor = [UIColor clearColor];
-	theButton.layer.cornerRadius=4.0f;
     theButton.layer.masksToBounds=YES;
     theButton.layer.borderColor=[[UIColor colorWithWhite:1.0 alpha:0.3]CGColor];
-    theButton.layer.borderWidth= 1.0f;
 }
 
 

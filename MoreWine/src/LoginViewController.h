@@ -19,5 +19,8 @@
 -(void)signUpCancel;
 -(void)signIn;
 -(void)signUp;
+-(void)pushCheckInDetailController;
+-(void)pushFavoriteDetailController;
+-(void)pushTagDetailController;
 
 @end
