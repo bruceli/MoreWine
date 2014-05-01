@@ -36,7 +36,10 @@
     _scrollView.alwaysBounceVertical = YES;
     [self.view addSubview:_scrollView];
     [self setupNavBarItems];
-    [self setupTags:nil];
+    //[self setupTags:nil];
+    
+    // V1.1
+    [self setupTagButtonsByTitleArray:nil];
     
     // Do any additional setup after loading the view.
 }
@@ -61,50 +64,78 @@
 	[self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:negativeSpacer, [[UIBarButtonItem alloc] initWithCustomView:button]/*this will be the button which u actually need*/, nil] animated:NO];
 }
 
-
--(void)setupTags:(NSArray*)tagArray
+-(void)setupTagButtonsByTitleArray:(NSArray*)titleArray
 {
+    NSArray* array = [NSArray arrayWithObjects:@"TE111",@"TE2222222", @"TEEEEEEEE555", @"TEEss6", @"the TEEEEEeeeeeeE 7",@"MA_ADD_TAG_BUTTON", nil];
+
     _tagButtonArray = [[NSMutableArray alloc] init];
-	NSArray* array = [NSArray arrayWithObjects:@"TE111",@"TE2222222", @"TEEEEEEEE555", @"TEEss6", @"the TEEEEEeeeeeeE 7",@"MA_ADD_TAG_BUTTON", nil];
-	
-	// X = 17
-	CGRect frame = CGRectMake(17, 38, 0, 22);
-	CGRect buttonFrame;
-	CGFloat maxWidth = self.view.frame.size.width - 34;
+    CGRect initFrame = CGRectMake(0, 0, 0, 22);
+    for (NSString* string in array) {
+        MaTagButton *theButton = [[MaTagButton alloc] initWithFrame:initFrame title:string];
+        [theButton sizeToFit];
+        [theButton addTarget:self action:@selector(didTapTagButton:) forControlEvents:UIControlEventTouchUpInside];
+
+        [_tagButtonArray addObject:theButton];
+    }
+    
+    [self arrangementTagButtons];
+
+    for (MaTagButton* theButton in _tagButtonArray) {
+        [_scrollView addSubview:theButton];
+    }
+    
+}
+
+-(void)arrangementTagButtons
+{
+    CGFloat editModeGap = 0.0f;
+    
+    CGPoint initPoint = CGPointMake(17, 38);
+    CGFloat maxX = self.view.frame.size.width - 34;
 	CGFloat xGap = 0;
 	CGFloat yGap = 26; // button hight + 4;
-    //	BOOL isNewLine = YES;
+    CGPoint buttonPoint;
+    CGRect finalFrame = CGRectMake(initPoint.x, initPoint.y, 0, 0);
+    NSMutableArray* finalButtonArray = [[NSMutableArray alloc] init];
     
-	for (NSString* string in array) {
-		CGFloat width = [MaTagButton buttonWidthWithTitle:string];
-		CGFloat buttonWidth = width + frame.origin.x + frame.size.width + xGap;
-		if ( buttonWidth > maxWidth ) // check if out of the screen
+    for (MaTagButton *theButton in _tagButtonArray) {
+		CGFloat buttonMaxX = theButton.frame.size.width + finalFrame.origin.x + finalFrame.size.width + xGap + editModeGap ;
+		if ( buttonMaxX > maxX ) // check if out of the screen
 		{
-			buttonFrame = CGRectMake(17, frame.origin.y + yGap, width, frame.size.height);
+            buttonPoint = CGPointMake(initPoint.x, finalFrame.origin.y + yGap);
 		}
 		else
 		{
-			// seems good
-			buttonFrame = CGRectMake(frame.origin.x + frame.size.width + xGap , frame.origin.y, width, frame.size.height);
+			buttonPoint = CGPointMake(finalFrame.origin.x + finalFrame.size.width + xGap + editModeGap   , finalFrame.origin.y);
+            if (_editMode)
+                editModeGap = MA_TagButton_editMode_Gap;
+
 			xGap = 4; // align first line
         }
-        //		NSLog(@"theFrame is %@", NSStringFromCGRect(buttonFrame));
-		UIButton *theButton = [[MaTagButton alloc] initWithFrame:buttonFrame title:string];
-		[theButton addTarget:self action:@selector(didTapTagButton:) forControlEvents:UIControlEventTouchUpInside];
-		[theButton addTarget:self action:@selector(buttonHighlight:) forControlEvents:UIControlEventTouchDown];
-		[theButton addTarget:self action:@selector(buttonNormal:) forControlEvents:UIControlEventTouchUpInside];
-		[theButton addTarget:self action:@selector(buttonNormal:) forControlEvents:UIControlEventTouchDragOutside];
         
-		frame = buttonFrame;
-        [_tagButtonArray addObject:theButton];
-		[_scrollView addSubview:theButton];
-	}
-	
-	CGFloat bottomLineY = frame.origin.y + frame.size.height + 15;
+        finalFrame = CGRectMake(buttonPoint.x, buttonPoint.y, theButton.frame.size.width, theButton.frame.size.height);
+        
+        if (!_editMode) {
+            theButton.frame = finalFrame;
+        }
+        else
+        [UIView animateWithDuration:0.25f delay:0.0f
+                            options: UIViewAnimationOptionCurveEaseOut
+                         animations:^{ theButton.frame = finalFrame; } completion:nil];
+        
+        [finalButtonArray addObject:theButton];
+    }
+    
+    [_tagButtonArray removeAllObjects];
+    [_tagButtonArray addObjectsFromArray:finalButtonArray];
+    [finalButtonArray removeAllObjects];
+    
+    CGFloat bottomLineY = finalFrame.origin.y + finalFrame.size.height + 15;
     CGSize theSize = CGSizeMake(_scrollView.frame.size.width, bottomLineY);
     _scrollView.contentSize = theSize;
-//	_tagView.frame = CGRectMake(tagFrame.origin.x, tagFrame.origin.y, tagFrame.size.width, bottomLineY);
+
 }
+
 
 -(void)didTapTagButton:(id)sender
 {
@@ -204,6 +235,9 @@
 -(void)deleteTags
 {
     _editMode = YES;
+    
+    [self arrangementTagButtons];
+    
     for (MaTagButton* theTag in _tagButtonArray) {
         [theTag setEditMode];
     }

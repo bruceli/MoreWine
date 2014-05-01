@@ -27,6 +27,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+//        self.showsTouchWhenHighlighted = YES;
 		_addTagButton = NO;
 		_titleString = titleString;
 		[self setupButton];
@@ -50,6 +51,44 @@
 	self.titleLabel.font = [UIFont systemFontOfSize:10.0f];
 //	[self buttonWidthWithTitle:_titleString];
 }
+
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    printf("MyButton touchesBegan\n");
+    self.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.1];
+    self.layer.masksToBounds=YES;
+    self.layer.borderColor=[[UIColor colorWithWhite:1.0 alpha:0.3]CGColor];
+    self.layer.borderWidth= 2.0f;
+    
+    [super touchesBegan:touches withEvent:event];
+//    [self.nextResponder touchesBegan:touches withEvent:event];
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+    printf("MyButton touchesEnded\n");
+    self.backgroundColor = [UIColor clearColor];
+    self.layer.masksToBounds=YES;
+    self.layer.borderColor=[[UIColor colorWithWhite:1.0 alpha:0.3]CGColor];
+    self.layer.borderWidth= 0.7f;
+
+    [super touchesEnded:touches withEvent:event];
+//    [self.nextResponder touchesEnded:touches withEvent:event];
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    
+    printf("MyButton touchesCancelled\n");
+    self.backgroundColor = [UIColor clearColor];
+    self.layer.masksToBounds=YES;
+    self.layer.borderColor=[[UIColor colorWithWhite:1.0 alpha:0.3]CGColor];
+    self.layer.borderWidth= 0.7f;
+
+    [super touchesCancelled:touches withEvent:event];
+  //  [self.nextResponder touchesCancelled:touches withEvent:event];
+
+}
+
 
 -(void)addTitle
 {
@@ -78,6 +117,7 @@
 {
     if ([_titleString isEqualToString:@"MA_ADD_TAG_BUTTON"])
         return;
+    CGRect finalFrame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width +MA_TagButton_editMode_Gap , self.frame.size.height);
     
     CGRect origFrame = CGRectMake(-22, 0, 22, 22);
     CGRect destFrame = CGRectMake(0, 0, 22, 22);
@@ -92,6 +132,8 @@
                         options: UIViewAnimationOptionCurveEaseOut
                      animations:^{
                          _markView.frame = destFrame;
+                         self.frame = finalFrame;
+                         self.titleEdgeInsets = UIEdgeInsetsMake(0, 20, 0, 0);
                          _markView.backgroundColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.3];
                      }
                      completion:^(BOOL finished){
@@ -158,68 +200,31 @@
     }
 }
 
-/*
- - (void)updateTagStatus:(MA_TagButtonStatus)status
- {
- 
- 
- // add button status change;
- 
- if ([_titleString isEqualToString:@"MA_ADD_TAG_BUTTON"])
- return;
- 
- CGRect origFrame = CGRectMake(-22, 0, 22, 22);
- CGRect destFrame = CGRectMake(0, 0, 22, 22);
- // other tags
- switch (status) {
- case MA_TagButtonStatus_None:{
- if (_markView != nil) {
- [UIView animateWithDuration:0.25f delay:0.0f
- options: UIViewAnimationOptionCurveEaseOut
- animations:^{
- _markView.frame = origFrame;
- }
- completion:^(BOOL finished){
- }];
- [_markView removeFromSuperview];
- _markView = nil;
- }
- _tagStatus = MA_TagButtonStatus_None;
- }
- 
- break;
- 
- case MA_TagButtonStatus_EditMode_Normal:
- {
- _markView = [[UIView alloc] initWithFrame:origFrame];
- [self addSubview:_markView];
- _tagStatus = MA_TagButtonStatus_EditMode_Normal;
- [UIView animateWithDuration:0.25f delay:0.0f
- options: UIViewAnimationOptionCurveEaseOut
- animations:^{
- _markView.frame = destFrame;
- _markView.backgroundColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.3];
- }
- completion:^(BOOL finished){
- _markView.userInteractionEnabled =YES;
- [self sendSubviewToBack:_markView];
- }];
- }
- break;
- 
- case MA_TagButtonStatus_EditMode_Marked:
- {
- 
- _tagStatus = MA_TagButtonStatus_EditMode_Marked;
- }
- break;
- 
- default:
- break;
- }
- }
- */
+-(CGFloat)calculateWidth
+{
+	CGFloat width;
+	if ([_titleString isEqualToString:@"MA_ADD_TAG_BUTTON"])
+		width = 60;
+	else
+	{
+		UILabel* theLabel = [[UILabel alloc] init];
+		theLabel.font = [UIFont systemFontOfSize:10.0f];
+		theLabel.text = _titleString;
+		[theLabel sizeToFit];
+		CGFloat gap = 18;
+		//	NSLog(@"width is %f",theLabel.frame.size.width);
+		width = theLabel.frame.size.width + gap;
+        theLabel = nil;
+	}
+	return width;
+}
 
+-(void)sizeToFit
+{
+    CGFloat width = [self calculateWidth];
+    CGRect frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, width, self.frame.size.height);
+    self.frame = frame;
+}
 
 @end
 /*

@@ -14,6 +14,8 @@ typedef NS_ENUM(NSInteger, MA_TagButtonStatus) {
     MA_TagButtonStatus_EditMode_Marked
 };
 
+#define MA_TagButton_editMode_Gap 20.0f
+
 @interface MaTagButton : UIButton
 {
 	NSString* _titleString;
@@ -30,6 +32,7 @@ typedef NS_ENUM(NSInteger, MA_TagButtonStatus) {
 //- (void)updateTagStatus:(MA_TagButtonStatus)status;
 - (void)reverseTagStatus;
 - (void)setEditMode;
+- (void)sizeToFit;
 @end
 
 /*
