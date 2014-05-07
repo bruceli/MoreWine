@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@class MaImageFilterViewController;
 
 @interface CamViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 {
@@ -17,9 +18,11 @@
     UIImage* _camRollLastImage;
     
 	BOOL _newMedia;
-	BOOL _firstRun;
+//	BOOL _firstRun;
 	BOOL _hasMedia;
-	UIImagePickerController *_picker;
+//    BOOL shouldHideStatusBar;
+	UIImagePickerController* _picker;
+    MaImageFilterViewController* _imgFilterController;
 }
 
 @end

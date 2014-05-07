@@ -39,6 +39,9 @@
 		59374B2D190F964F00B97011 /* TagListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59374B2C190F964F00B97011 /* TagListViewController.m */; };
 		5947DE1718FCD67900E23AB8 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5947DE1618FCD67900E23AB8 /* SearchViewController.m */; };
 		5948BC3D19090493003C87AA /* MaMoreWineHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5948BC3C19090493003C87AA /* MaMoreWineHTTPClient.m */; };
+		59492EF31918DB1D00905AA7 /* MaImageFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59492EF21918DB1D00905AA7 /* MaImageFilterViewController.m */; };
+		59492EF6191A0EDA00905AA7 /* MaTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59492EF5191A0EDA00905AA7 /* MaTabBarController.m */; };
+		59492EF9191A1C7F00905AA7 /* UIImagePickerController+StatusBarHidden.m in Sources */ = {isa = PBXBuildFile; fileRef = 59492EF8191A1C7F00905AA7 /* UIImagePickerController+StatusBarHidden.m */; };
 		594F06BA18BC9D8800338657 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 594F06B918BC9D8800338657 /* MainViewController.m */; };
 		594F06BD18BC9DB900338657 /* InfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 594F06BC18BC9DB900338657 /* InfoCell.m */; };
 		594F06C018BC9DD700338657 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 594F06BF18BC9DD700338657 /* ListViewController.m */; };
@@ -152,6 +155,12 @@
 		5947DE1618FCD67900E23AB8 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchViewController.m; path = src/SearchViewController.m; sourceTree = "<group>"; };
 		5948BC3B19090493003C87AA /* MaMoreWineHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MaMoreWineHTTPClient.h; path = src/MaMoreWineHTTPClient.h; sourceTree = "<group>"; };
 		5948BC3C19090493003C87AA /* MaMoreWineHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MaMoreWineHTTPClient.m; path = src/MaMoreWineHTTPClient.m; sourceTree = "<group>"; };
+		59492EF11918DB1D00905AA7 /* MaImageFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MaImageFilterViewController.h; path = src/MaImageFilterViewController.h; sourceTree = "<group>"; };
+		59492EF21918DB1D00905AA7 /* MaImageFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MaImageFilterViewController.m; path = src/MaImageFilterViewController.m; sourceTree = "<group>"; };
+		59492EF4191A0EDA00905AA7 /* MaTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MaTabBarController.h; path = src/MaTabBarController.h; sourceTree = "<group>"; };
+		59492EF5191A0EDA00905AA7 /* MaTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MaTabBarController.m; path = src/MaTabBarController.m; sourceTree = "<group>"; };
+		59492EF7191A1C7F00905AA7 /* UIImagePickerController+StatusBarHidden.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImagePickerController+StatusBarHidden.h"; path = "src/UIImagePickerController+StatusBarHidden.h"; sourceTree = "<group>"; };
+		59492EF8191A1C7F00905AA7 /* UIImagePickerController+StatusBarHidden.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImagePickerController+StatusBarHidden.m"; path = "src/UIImagePickerController+StatusBarHidden.m"; sourceTree = "<group>"; };
 		594F06B818BC9D8800338657 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = src/MainViewController.h; sourceTree = "<group>"; };
 		594F06B918BC9D8800338657 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = src/MainViewController.m; sourceTree = "<group>"; };
 		594F06BB18BC9DB900338657 /* InfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InfoCell.h; path = src/InfoCell.h; sourceTree = "<group>"; };
@@ -294,6 +303,8 @@
 				5948BC3E19090499003C87AA /* Networking */,
 				261BE07318BC0FDA00DEA46A /* AppDelegate.h */,
 				261BE07418BC0FDA00DEA46A /* AppDelegate.m */,
+				59492EF4191A0EDA00905AA7 /* MaTabBarController.h */,
+				59492EF5191A0EDA00905AA7 /* MaTabBarController.m */,
 				59A108E818E2706000CF59DD /* UIElements */,
 				595EB1FE18D7EC3C00223E20 /* Managers */,
 				5982208318C109F50001C564 /* Cell */,
@@ -369,8 +380,12 @@
 		590F17C8190125C500469DFA /* CamView */ = {
 			isa = PBXGroup;
 			children = (
+				59492EF7191A1C7F00905AA7 /* UIImagePickerController+StatusBarHidden.h */,
+				59492EF8191A1C7F00905AA7 /* UIImagePickerController+StatusBarHidden.m */,
 				590F17C9190125E000469DFA /* CamViewController.h */,
 				590F17CA190125E000469DFA /* CamViewController.m */,
+				59492EF11918DB1D00905AA7 /* MaImageFilterViewController.h */,
+				59492EF21918DB1D00905AA7 /* MaImageFilterViewController.m */,
 			);
 			name = CamView;
 			sourceTree = "<group>";
@@ -779,6 +794,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59492EF31918DB1D00905AA7 /* MaImageFilterViewController.m in Sources */,
 				59751E9A18F7BEF300727D52 /* FavoriteViewController.m in Sources */,
 				5910371518E2C8BD0084BC29 /* SignUpView.m in Sources */,
 				59192CF318E543AD0030810F /* ShakeViewController.m in Sources */,
@@ -791,6 +807,7 @@
 				596AA7DE18F3C2C7008DBDE2 /* ShakeResultViewController.m in Sources */,
 				595EB1F418D7E85500223E20 /* SGFocusImageFrame.m in Sources */,
 				59374B2A190F4A0A00B97011 /* TagManagerViewController.m in Sources */,
+				59492EF6191A0EDA00905AA7 /* MaTabBarController.m in Sources */,
 				5947DE1718FCD67900E23AB8 /* SearchViewController.m in Sources */,
 				5920A5B718F4E63400685819 /* FXBlurView.m in Sources */,
 				5937115E18E17CB300476E2D /* MaTagButton.m in Sources */,
@@ -804,6 +821,7 @@
 				596AA7E118F3E2AF008DBDE2 /* CheckInAndShareViewController.m in Sources */,
 				594F06C318BF464100338657 /* MaNavigationBar.m in Sources */,
 				59A41F3518D03ABC00EA8B4C /* MaUtility.m in Sources */,
+				59492EF9191A1C7F00905AA7 /* UIImagePickerController+StatusBarHidden.m in Sources */,
 				59751E9718F7BED500727D52 /* CheckInDetailViewController.m in Sources */,
 				59A108FB18E27F6600CF59DD /* MaTextField.m in Sources */,
 				595EB20118D7EC8200223E20 /* MaDataSettingManager.m in Sources */,

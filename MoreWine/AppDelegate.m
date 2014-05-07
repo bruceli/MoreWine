@@ -18,29 +18,32 @@
 #import "MaDataSettingManager.h"
 #import "UserInfoManager.h"
 #import "CamViewController.h"
+#import "MaTabBarController.h"
 
 @implementation AppDelegate
 @synthesize dataSettingMgr = _dataSettingMgr;
 @synthesize userInfoMgr = _userInfoMgr;
+@synthesize tabBarController = _tabBarController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 
     // init Mgrs
     _dataSettingMgr = [[MaDataSettingManager alloc] init];
     _userInfoMgr = [[UserInfoManager alloc] init];
     
-    _tabBarController = [[UITabBarController alloc] init];
+    _tabBarController = [[MaTabBarController alloc] init];
     NSMutableArray *viewControllers = [NSMutableArray arrayWithCapacity:4];
 
     // init mainView
     // init Custom NavBar for MainView
    
-    UIColor* firstColor = [UIColor colorWithRed:64.0f/255.0f green:31.0f/255.0f blue:14.0f/255.0f alpha:1.0f];
-    UIColor* secondColor = [UIColor colorWithRed:38.0f/255.0f green:7.0f/255.0f blue:1.0f/255.0f alpha:1.0f];
-    NSArray *colors = [NSArray arrayWithObjects:(id)firstColor.CGColor, (id)secondColor.CGColor, nil];
+//    UIColor* firstColor = [UIColor colorWithRed:64.0f/255.0f green:31.0f/255.0f blue:14.0f/255.0f alpha:1.0f];
+//    UIColor* secondColor = [UIColor colorWithRed:38.0f/255.0f green:7.0f/255.0f blue:1.0f/255.0f alpha:1.0f];
+// NSArray *colors = [NSArray arrayWithObjects:(id)firstColor.CGColor, (id)secondColor.CGColor, nil];
 
     [[UINavigationBar appearance] setBarTintColor: [UIColor colorWithRed:35/255.0 green:5/255.0 blue:5/255.0 alpha:0.4f]];
 
@@ -67,6 +70,7 @@
     [loginNavController setViewControllers:@[loginViewController]];	
 */
 	UIViewController* camViewController = [[CamViewController alloc] init];   
+ //   UINavigationController* camNavController = [[UINavigationController alloc] initWithRootViewController:camViewController];
 
     [viewControllers addObject:mainNavController]; // MainView with custom Nav
     [viewControllers addObject:recomNavController];
