@@ -56,6 +56,9 @@
 		596AA7DE18F3C2C7008DBDE2 /* ShakeResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 596AA7DD18F3C2C7008DBDE2 /* ShakeResultViewController.m */; };
 		596AA7E118F3E2AF008DBDE2 /* CheckInAndShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 596AA7E018F3E2AF008DBDE2 /* CheckInAndShareViewController.m */; };
 		596AA7EA18F3E776008DBDE2 /* navigation_Back_Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 596AA7E918F3E776008DBDE2 /* navigation_Back_Icon@2x.png */; };
+		596ABDA7191CB67F00C466CD /* lomoMap.png in Resources */ = {isa = PBXBuildFile; fileRef = 596ABDA5191CB67F00C466CD /* lomoMap.png */; };
+		596ABDA8191CB67F00C466CD /* vignetteMap.png in Resources */ = {isa = PBXBuildFile; fileRef = 596ABDA6191CB67F00C466CD /* vignetteMap.png */; };
+		596ABDAB191CB7A600C466CD /* IFLomofiFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 596ABDAA191CB7A600C466CD /* IFLomofiFilter.m */; };
 		59751E9418F7B38B00727D52 /* loginView_default_user_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 59751E9318F7B38B00727D52 /* loginView_default_user_icon@2x.png */; };
 		59751E9718F7BED500727D52 /* CheckInDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59751E9618F7BED500727D52 /* CheckInDetailViewController.m */; };
 		59751E9A18F7BEF300727D52 /* FavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59751E9918F7BEF300727D52 /* FavoriteViewController.m */; };
@@ -184,6 +187,10 @@
 		596AA7DF18F3E2AF008DBDE2 /* CheckInAndShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CheckInAndShareViewController.h; path = src/CheckInAndShareViewController.h; sourceTree = "<group>"; };
 		596AA7E018F3E2AF008DBDE2 /* CheckInAndShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CheckInAndShareViewController.m; path = src/CheckInAndShareViewController.m; sourceTree = "<group>"; };
 		596AA7E918F3E776008DBDE2 /* navigation_Back_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "navigation_Back_Icon@2x.png"; path = "resources/navigation/navigation_Back_Icon@2x.png"; sourceTree = "<group>"; };
+		596ABDA5191CB67F00C466CD /* lomoMap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lomoMap.png; path = filterResource/lomoMap.png; sourceTree = "<group>"; };
+		596ABDA6191CB67F00C466CD /* vignetteMap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = vignetteMap.png; path = filterResource/vignetteMap.png; sourceTree = "<group>"; };
+		596ABDA9191CB7A600C466CD /* IFLomofiFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IFLomofiFilter.h; path = src/filter/IFLomofiFilter.h; sourceTree = "<group>"; };
+		596ABDAA191CB7A600C466CD /* IFLomofiFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IFLomofiFilter.m; path = src/filter/IFLomofiFilter.m; sourceTree = "<group>"; };
 		59751E9318F7B38B00727D52 /* loginView_default_user_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "loginView_default_user_icon@2x.png"; path = "resources/loginVIew/loginView_default_user_icon@2x.png"; sourceTree = "<group>"; };
 		59751E9518F7BED500727D52 /* CheckInDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CheckInDetailViewController.h; path = src/CheckInDetailViewController.h; sourceTree = "<group>"; };
 		59751E9618F7BED500727D52 /* CheckInDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CheckInDetailViewController.m; path = src/CheckInDetailViewController.m; sourceTree = "<group>"; };
@@ -386,6 +393,7 @@
 				590F17CA190125E000469DFA /* CamViewController.m */,
 				59492EF11918DB1D00905AA7 /* MaImageFilterViewController.h */,
 				59492EF21918DB1D00905AA7 /* MaImageFilterViewController.m */,
+				596ABDA4191CB67300C466CD /* filter */,
 			);
 			name = CamView;
 			sourceTree = "<group>";
@@ -456,6 +464,17 @@
 				596AA7E918F3E776008DBDE2 /* navigation_Back_Icon@2x.png */,
 			);
 			name = Navigation;
+			sourceTree = "<group>";
+		};
+		596ABDA4191CB67300C466CD /* filter */ = {
+			isa = PBXGroup;
+			children = (
+				596ABDA9191CB7A600C466CD /* IFLomofiFilter.h */,
+				596ABDAA191CB7A600C466CD /* IFLomofiFilter.m */,
+				596ABDA5191CB67F00C466CD /* lomoMap.png */,
+				596ABDA6191CB67F00C466CD /* vignetteMap.png */,
+			);
+			name = filter;
 			sourceTree = "<group>";
 		};
 		5982207818C0FBCC0001C564 /* 3rd */ = {
@@ -715,6 +734,7 @@
 				59A1090818E2B6C200CF59DD /* loginView_weibo_hilight@2x.png in Resources */,
 				596AA7D818F39C77008DBDE2 /* shakeView_shakeButton_hilight@2x.png in Resources */,
 				5925737118E51DC200CE3AC9 /* loginView_logo_icon@2x.png in Resources */,
+				596ABDA7191CB67F00C466CD /* lomoMap.png in Resources */,
 				596AA7EA18F3E776008DBDE2 /* navigation_Back_Icon@2x.png in Resources */,
 				596AA7D918F39C77008DBDE2 /* shakeView_shakeButton@2x.png in Resources */,
 				596AA7D518F38F6D008DBDE2 /* shakeMenuArrow@2x.png in Resources */,
@@ -735,6 +755,7 @@
 				59DBE67B190B8D5000BD756E /* cam_captureButton@2x.png in Resources */,
 				59FE62AC18CFFC5E00534539 /* Localizable.strings in Resources */,
 				59A41F1E18D039F200EA8B4C /* barIcon_HomeHiLight@2x.png in Resources */,
+				596ABDA8191CB67F00C466CD /* vignetteMap.png in Resources */,
 				59A1090418E2B6C200CF59DD /* loginView_qq_hilight@2x.png in Resources */,
 				261BE07718BC0FDA00DEA46A /* Images.xcassets in Resources */,
 				5905D70618D167B800FBA71F /* 0headerImage@2x.png in Resources */,
@@ -796,6 +817,7 @@
 			files = (
 				59492EF31918DB1D00905AA7 /* MaImageFilterViewController.m in Sources */,
 				59751E9A18F7BEF300727D52 /* FavoriteViewController.m in Sources */,
+				596ABDAB191CB7A600C466CD /* IFLomofiFilter.m in Sources */,
 				5910371518E2C8BD0084BC29 /* SignUpView.m in Sources */,
 				59192CF318E543AD0030810F /* ShakeViewController.m in Sources */,
 				5925737418E522BD00CE3AC9 /* SignInView.m in Sources */,

@@ -5,9 +5,11 @@
 //  Created by Thunder on 14-5-6.
 //  Copyright (c) 2014年 MagicApp. All rights reserved.
 //
+#import <GPUImage/GPUImage.h>
 
 #import "MaImageFilterViewController.h"
 #import "MaUtility.h"
+#import "IFLomofiFilter.h"
 
 @interface MaImageFilterViewController () <UIGestureRecognizerDelegate>
 
@@ -89,7 +91,7 @@
     _imageView.image = _currentImage;
     _imageView.contentMode = UIViewContentModeScaleAspectFit;
 
-    NSArray *array = [NSArray arrayWithObjects:@"原图",@"EFF1",@"EFF2",@"EFF3",nil];
+    NSArray *array = [NSArray arrayWithObjects:@"原图",@"EFF1",@"EFF2",@"EFF3",@"EFF4",nil];
     _scrollerView = [[UIScrollView alloc]initWithFrame:scrollFrame];
     _scrollerView.backgroundColor = [MaUtility getRandomColor];
     _scrollerView.indicatorStyle = UIScrollViewIndicatorStyleBlack;
@@ -143,9 +145,11 @@
         UIImage *bgImage = [self changeImage:i imageView:nil];
         bgImageView.image = bgImage;
         [_scrollerView addSubview:bgImageView];
-        
+        NSLog(@"%@ thumbnail frame", NSStringFromCGRect(bgImageView.frame));
     }
-    _scrollerView.contentSize = CGSizeMake(x + 55, 80);
+    _scrollerView.contentSize = CGSizeMake(x + effImageSize , 80);
+    NSLog(@"%@ thumbnail frame", NSStringFromCGSize(_scrollerView.contentSize));
+
     [self.view addSubview:_scrollerView];
     
 	// Do any additional setup after loading the view.
@@ -156,6 +160,65 @@
     UIImage *image =   [self changeImage:sender.view.tag imageView:nil];
     [_imageView setImage:image];
 }
+
+-(UIImage*) processImage:(UIImage*)image
+{
+    GPUImagePicture *stillImageSource = [[GPUImagePicture alloc] initWithImage:image];
+    
+    // Linear downsampling
+    GPUImageBrightnessFilter *passthroughFilter = [[GPUImageBrightnessFilter alloc] init];
+    passthroughFilter.brightness = 0.5;
+//    [passthroughFilter forceProcessingAtSize:CGSizeMake(640.0, 480.0)];
+    [stillImageSource addTarget:passthroughFilter];
+    [passthroughFilter useNextFrameForImageCapture];
+    [stillImageSource processImage];
+    UIImage *nearestNeighborImage = [passthroughFilter imageFromCurrentFramebuffer];
+    return nearestNeighborImage;
+}
+
+-(UIImage*)IFFilterWithImage:(UIImage*)image
+{
+//    IFLomofiFilter* passthroughFilter = [[IFLomofiFilter alloc] init];
+    
+    GPUImageFilterGroup* passthroughFilter = [[GPUImageAmatorkaFilter alloc] init];
+    GPUImagePicture *stillImageSource = [[GPUImagePicture alloc] initWithImage:image];
+
+    [stillImageSource addTarget:passthroughFilter];
+    [passthroughFilter useNextFrameForImageCapture];
+    [stillImageSource processImage];
+    UIImage* nearestNeighborImage = [passthroughFilter imageFromCurrentFramebuffer];
+    
+    return nearestNeighborImage;
+}
+
+-(UIImage*)otherFilterWithImage:(UIImage*)image
+{
+    
+    GPUImageFilterGroup* passthroughFilter = [[GPUImageMissEtikateFilter alloc] init];
+    GPUImagePicture *stillImageSource = [[GPUImagePicture alloc] initWithImage:image];
+    
+    [stillImageSource addTarget:passthroughFilter];
+    [passthroughFilter useNextFrameForImageCapture];
+    [stillImageSource processImage];
+    UIImage* nearestNeighborImage = [passthroughFilter imageFromCurrentFramebuffer];
+    
+    return nearestNeighborImage;
+}
+
+-(UIImage*)reallyNeedThisEffect:(UIImage*)image
+{
+    
+    GPUImageFilterGroup* passthroughFilter = [[GPUImageSoftEleganceFilter alloc] init];
+    GPUImagePicture *stillImageSource = [[GPUImagePicture alloc] initWithImage:image];
+    
+    [stillImageSource addTarget:passthroughFilter];
+    [passthroughFilter useNextFrameForImageCapture];
+    [stillImageSource processImage];
+    UIImage* nearestNeighborImage = [passthroughFilter imageFromCurrentFramebuffer];
+    
+    return nearestNeighborImage;
+}
+
 
 
 -(UIImage *)changeImage:(int)index imageView:(UIImageView *)imageView
@@ -169,17 +232,23 @@
             break;
         case 1:
         {
-//            image = [ImageUtil imageWithImage:currentImage withColorMatrix:MA_IMAGE_EFF];
+            image = [self processImage:_currentImage];
         }
             break;
         case 2:
         {
-//            image = [ImageUtil imageWithImage:currentImage withColorMatrix:MA_IMAGE_EFF];
+            image = [self IFFilterWithImage:_currentImage];
+            break;
         }
             break;
         case 3:
         {
-//            image = [ImageUtil imageWithImage:currentImage withColorMatrix:MA_IMAGE_EFF];
+            image = [self otherFilterWithImage:_currentImage];
+        }
+            break;
+        case 4:
+        {
+            image = [self reallyNeedThisEffect:_currentImage];
         }
             break;
 
