@@ -201,6 +201,10 @@
 		width = theLabel.frame.size.width + gap;
         theLabel = nil;
 	}
+    
+    if (width > 286)
+        width = 286;
+    
 	return width;
 }
 

@@ -16,7 +16,6 @@
     UITableView* _tableView;
     UIImageView* _bkgBlurImageView;
     UIRefreshControl* _refreshControl;
-
 }
 
 @end

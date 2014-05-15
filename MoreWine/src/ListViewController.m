@@ -115,9 +115,9 @@
         cell.detailTextLabel.numberOfLines = 0;
         cell.accessoryType = UITableViewCellAccessoryNone;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        [cell setCellInfo:nil];
     }
-  
+    [cell setCellInfo:nil];
+
     // Configure the cell...
     
     return cell;

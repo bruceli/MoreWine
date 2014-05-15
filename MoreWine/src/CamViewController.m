@@ -15,6 +15,7 @@
 #import "CamViewController.h"
 #import "AppDelegate.h"
 #import "MaUtility.h"
+#import "MaRoundButton.h"
 
 @interface CamViewController () <UIActionSheetDelegate,MaImageFitlerProcessDelegate>
 
@@ -41,9 +42,20 @@
 
 	_hasMedia = NO;
 //	_firstRun = YES;
-	_camTakePictButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 64, 320, 320)];
-    [_camTakePictButton setImage:[UIImage imageNamed:@"cam_center.png"] forState:UIControlStateNormal];
-	[_camTakePictButton addTarget:self action:@selector(showActionSheet) forControlEvents:UIControlEventTouchUpInside];
+//	_camTakePictButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 64, 320, 320)];
+//    [_camTakePictButton setImage:[UIImage imageNamed:@"cam_center.png"] forState:UIControlStateNormal];
+//	[_camTakePictButton addTarget:self action:@selector(showActionSheet) forControlEvents:UIControlEventTouchUpInside];
+    //    UIActionSheet *popupQuery = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍摄", @"从相册中选择", nil];
+
+    CGFloat y = 340;
+    MaRoundButton* camButton = [[MaRoundButton alloc] initWithFrame:CGRectMake(17, y, 138, 40) title:@"拍摄"];
+    [self.view addSubview:camButton];
+    [camButton addTarget:self action:@selector(presentCam) forControlEvents:UIControlEventTouchUpInside];
+
+    MaRoundButton* libButton = [[MaRoundButton alloc] initWithFrame:CGRectMake(165, y, 138, 40) title:@"从相册中选择"];
+    [libButton addTarget:self action:@selector(presentLibrary) forControlEvents:UIControlEventTouchUpInside];
+
+    [self.view addSubview:libButton];
 
 	[self.view addSubview:_camTakePictButton];
 }
@@ -387,5 +399,6 @@
 {
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
 }
+
 
 @end

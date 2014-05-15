@@ -153,13 +153,16 @@
 		theImageName = @"backgroundImage_586h.png";
 	else
 		theImageName = @"backgroundImage.png";
-    
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+
 	UIImage* image = [UIImage imageNamed:theImageName];    
 	_bkgBlurImageView = [[UIImageView alloc] initWithFrame:self.view.frame];
 	_bkgBlurImageView.image = image;
     [self.view addSubview:_bkgBlurImageView];
 	
-	_scrollView = [[UIScrollView alloc] initWithFrame:self.view.frame];
+    NSLog(@"frame is %@",NSStringFromCGRect(self.view.frame));
+    
+	_scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height)];
 	_scrollView.backgroundColor = [UIColor clearColor];
 	_scrollView.alwaysBounceVertical = YES;
 	[self.view addSubview:_scrollView];
@@ -173,8 +176,9 @@
 	[self setupAddressView];
 	[self setupTelView];
 	[self setupTagView];
-	[self setupShakeButtonView];
-	[self setupCheckInView];
+	[self setupShakeButton];
+	[self setupCheckInButton];
+    [self setupFavoriteButton];
     
 	[self fillInfo];
 	_scrollView.contentSize = CGSizeMake(320, _checkInButton.frame.origin.y+ _checkInButton.frame.size.height+20+64+49);
@@ -211,11 +215,7 @@
 	[addressView addSubview:addLabelName];
 	[addressView addSubview:_addressLabel];
 
-	//UILabel* _addressLabel;
-//	UILabel* _telLabel;
-
-	
-	UIView* bottomLineView = [[UIView alloc] initWithFrame:CGRectMake(17, 40, 286, 1)];
+    UIView* bottomLineView = [[UIView alloc] initWithFrame:CGRectMake(17, 40, 286, 1)];
 	bottomLineView.backgroundColor = [UIColor colorWithRed:250 green:250 blue:250 alpha:0.2];
 	[addressView addSubview:bottomLineView];
 	
@@ -272,7 +272,7 @@
 	telLabelView.backgroundColor = [UIColor clearColor];
 	[_tagView addSubview:telLabelView];
 
-//	[self setupTagsWithArray:nil];
+	[self setupTagButtonsByTitleArray:nil];
 	
 	[_scrollView addSubview:_tagView];
 	
@@ -280,7 +280,87 @@
 }
 
 
--(void)setupShakeButtonView
+-(void)setupTagButtonsByTitleArray:(NSArray*)titleArray
+{
+    NSArray* array = [NSArray arrayWithObjects:@"T",@"TE2222222", @"TEEEEEEEE555",@"TE111",@"TE2222222", @"TEEEEEEEE555", @"TEEss6", @"the TEEEEEeeeeeeE 7",@"MA_ADD_TAG_BUTTON",@"TE111",@"TE2222222", @"TEEEEEEEE555",@"TE111",@"TE2222222", @"TEEEEEEEE555TEEEEEEEE555TEEEEEEEE555TEEEEEEEE555", @"TEEss6", @"the TEEEEEeeeeeeE 7", nil];
+    
+    _tagButtonArray = [[NSMutableArray alloc] init];
+    CGRect initFrame = CGRectMake(0, 0, 0, 28); //button hight only
+    for (NSString* string in array) {
+        MaTagButton *theButton = [[MaTagButton alloc] initWithFrame:initFrame title:string];
+        [theButton sizeToFit];
+        [theButton addTarget:self action:@selector(didTapTagButton:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [_tagButtonArray addObject:theButton];
+    }
+    
+    [self arrangementTagButtons];
+    
+    for (MaTagButton* theButton in _tagButtonArray) {
+        [_tagView addSubview:theButton];
+    }
+    
+    UIView* bottomLineView = [[UIView alloc] initWithFrame:CGRectMake(17, _tagView.frame.size.height, 286, 1)];
+	bottomLineView.backgroundColor = [UIColor colorWithRed:250 green:250 blue:250 alpha:0.2];
+	[_tagView addSubview:bottomLineView];
+
+}
+
+-(void)arrangementTagButtons
+{
+    CGFloat editModeGap = 0.0f;
+    
+    CGPoint initPoint = CGPointMake(17, 38);
+    CGFloat maxX = self.view.frame.size.width - 34;
+	CGFloat xGap = 0;
+	CGFloat yGap = 32; // button hight + 4;
+    CGPoint buttonPoint;
+    CGRect finalFrame = CGRectMake(initPoint.x, initPoint.y, 0, 0);
+    NSMutableArray* finalButtonArray = [[NSMutableArray alloc] init];
+    
+    for (MaTagButton *theButton in _tagButtonArray) {
+		CGFloat buttonMaxX = theButton.frame.size.width + finalFrame.origin.x + finalFrame.size.width + xGap + editModeGap ;
+		if ( buttonMaxX > maxX ) // check if out of the screen
+		{
+            buttonPoint = CGPointMake(initPoint.x, finalFrame.origin.y + yGap);
+		}
+		else
+		{
+			buttonPoint = CGPointMake(finalFrame.origin.x + finalFrame.size.width + xGap + editModeGap   , finalFrame.origin.y);
+//            if (_editMode)
+//                editModeGap = MA_TagButton_editMode_Gap;
+            
+			xGap = 4; // align first line
+        }
+        
+        finalFrame = CGRectMake(buttonPoint.x, buttonPoint.y, theButton.frame.size.width, theButton.frame.size.height);
+        
+//        if (!_editMode) {
+            theButton.frame = finalFrame;
+//        }
+//        else
+        [UIView animateWithDuration:0.25f delay:0.0f
+                                options: UIViewAnimationOptionCurveEaseOut
+                             animations:^{ theButton.frame = finalFrame; } completion:nil];
+        
+        [finalButtonArray addObject:theButton];
+    }
+    
+    [_tagButtonArray removeAllObjects];
+    [_tagButtonArray addObjectsFromArray:finalButtonArray];
+    [finalButtonArray removeAllObjects];
+    
+    CGFloat bottomLineY = finalFrame.origin.y + finalFrame.size.height + 15;
+    _tagView.frame = CGRectMake(_tagView.frame.origin.x, _tagView.frame.origin.y, _tagView.frame.size.width, bottomLineY);
+    
+//    CGSize theSize = CGSizeMake(_scrollView.frame.size.width, bottomLineY);
+//    _scrollView.contentSize = theSize;
+    
+}
+
+
+
+-(void)setupShakeButton
 {
 //	UIView* shakeButtonView = [[UIView alloc] initWithFrame:CGRectMake(17, 537, 286, 30)];
 //	shakeButtonView.backgroundColor = [UIColor clearColor];
@@ -301,11 +381,11 @@
 	[_scrollView addSubview:_shakeButton];
 }
 
--(void)setupCheckInView
+-(void)setupCheckInButton
 {
 	CGFloat y = _shakeButton.frame.origin.y + _shakeButton.frame.size.height + 10;
 
-	_checkInButton = [[UIButton alloc] initWithFrame:CGRectMake(17, y, 286, 40)];
+	_checkInButton = [[UIButton alloc] initWithFrame:CGRectMake(17, y, 138, 40)];
     [_checkInButton addTarget:self action:@selector(checkIn:) forControlEvents:UIControlEventTouchUpInside];
     [_checkInButton addTarget:self action:@selector(buttonHighlight:) forControlEvents:UIControlEventTouchDown];
 	[_checkInButton addTarget:self action:@selector(buttonNormal:) forControlEvents:UIControlEventTouchUpInside];
@@ -320,6 +400,28 @@
     
 	[_scrollView addSubview:_checkInButton];
 }
+
+
+-(void)setupFavoriteButton
+{
+	CGFloat y = _shakeButton.frame.origin.y + _shakeButton.frame.size.height + 10;
+    
+	_favoriteInButton = [[UIButton alloc] initWithFrame:CGRectMake(165, y, 138, 40)];
+    [_favoriteInButton addTarget:self action:@selector(favorite:) forControlEvents:UIControlEventTouchUpInside];
+    [_favoriteInButton addTarget:self action:@selector(buttonHighlight:) forControlEvents:UIControlEventTouchDown];
+	[_favoriteInButton addTarget:self action:@selector(buttonNormal:) forControlEvents:UIControlEventTouchUpInside];
+	[_favoriteInButton addTarget:self action:@selector(buttonNormal:) forControlEvents:UIControlEventTouchDragOutside];
+    
+	_favoriteInButton.layer.cornerRadius=4.0f;
+    _favoriteInButton.layer.masksToBounds=YES;
+    _favoriteInButton.layer.borderColor=[[UIColor colorWithWhite:1.0 alpha:0.3]CGColor];
+    _favoriteInButton.layer.borderWidth= 0.7f;
+	[_favoriteInButton setTitle:@"收藏" forState:UIControlStateNormal];
+	_favoriteInButton.titleLabel.font = [UIFont systemFontOfSize:20.0f];
+    
+	[_scrollView addSubview:_favoriteInButton];
+}
+
 
 
 -(void)setupHilightImageView
@@ -355,6 +457,11 @@
 	[_detailNameView setDiscriptions:nil];
 	_addressLabel.text = @"解放路77号";
 	_telLabel.text = @"029-99999999";
+}
+
+-(void)favorite:(id)sender
+{
+
 }
 
 -(void)checkIn:(id)sender
@@ -492,7 +599,6 @@
 {
     NSLog(@"%@ ", @"FocusImage tap");
     //    NSString* urlString = [item.targetURL URLDecodedString ];
-    
     //    [self.navigationController pushViewController: bbsViewController animated:YES];
 }
 

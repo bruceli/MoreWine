@@ -46,8 +46,6 @@
     isStatusBarHidden = YES;
     [self setNeedsStatusBarAppearanceUpdate];
 //    AppDelegate* app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-
-
 }
 
 /*

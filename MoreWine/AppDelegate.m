@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "MaUtility.h"
+#import <ShareSDK/ShareSDK.h>
 
 #import "MainViewController.h"
 #import "ListViewController.h"
@@ -37,6 +38,7 @@
     
     _tabBarController = [[MaTabBarController alloc] init];
     NSMutableArray *viewControllers = [NSMutableArray arrayWithCapacity:4];
+    [ShareSDK registerApp:@"22dc96bc434"];
 
     // init mainView
     // init Custom NavBar for MainView

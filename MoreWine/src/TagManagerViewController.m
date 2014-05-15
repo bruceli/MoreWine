@@ -53,11 +53,15 @@
 
 -(void)setupNavBarItems
 {
-    UIImage *backImage = [UIImage imageNamed:@"navigation_Back_Icon"];
-	UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(40.0f, 0.0f, backImage.size.width, backImage.size.height)];
-	button.backgroundColor = [MaUtility getRandomColor];
-	[button addTarget:self action:@selector(deleteTags) forControlEvents:UIControlEventTouchUpInside];
-	[button setBackgroundImage:backImage forState:UIControlStateNormal];
+//    UIImage *backImage = [UIImage imageNamed:@"navigation_Back_Icon"];
+//	UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(40.0f, 0.0f, backImage.size.width, backImage.size.height)];
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(40.0f, 0.0f, 80,40)];
+	button.backgroundColor = [UIColor clearColor];
+	[button addTarget:self action:@selector(deleteTags:) forControlEvents:UIControlEventTouchUpInside];
+    [button setTitle:@"删除标签" forState:UIControlStateNormal];
+    [button.titleLabel setFont:[UIFont systemFontOfSize:13]];
+    
+//	[button setBackgroundImage:backImage forState:UIControlStateNormal];
 	//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
 	UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
 	negativeSpacer.width = -16;// it was -6 in iOS 6
@@ -69,7 +73,7 @@
     NSArray* array = [NSArray arrayWithObjects:@"TE111",@"TE2222222", @"TEEEEEEEE555", @"TEEss6", @"the TEEEEEeeeeeeE 7",@"MA_ADD_TAG_BUTTON", nil];
 
     _tagButtonArray = [[NSMutableArray alloc] init];
-    CGRect initFrame = CGRectMake(0, 0, 0, 22);
+    CGRect initFrame = CGRectMake(0, 0, 0, 28); //button hight only
     for (NSString* string in array) {
         MaTagButton *theButton = [[MaTagButton alloc] initWithFrame:initFrame title:string];
         [theButton sizeToFit];
@@ -83,7 +87,6 @@
     for (MaTagButton* theButton in _tagButtonArray) {
         [_scrollView addSubview:theButton];
     }
-    
 }
 
 -(void)arrangementTagButtons
@@ -93,7 +96,7 @@
     CGPoint initPoint = CGPointMake(17, 38);
     CGFloat maxX = self.view.frame.size.width - 34;
 	CGFloat xGap = 0;
-	CGFloat yGap = 26; // button hight + 4;
+	CGFloat yGap = 32; // button hight + 4;
     CGPoint buttonPoint;
     CGRect finalFrame = CGRectMake(initPoint.x, initPoint.y, 0, 0);
     NSMutableArray* finalButtonArray = [[NSMutableArray alloc] init];
@@ -232,11 +235,17 @@
 }
 
 #pragma mark - delete Tags
--(void)deleteTags
+-(void)deleteTags:(id)sender
 {
-    _editMode = YES;
+    UIButton *theButton = (UIButton*)sender;
+
+    if (!_editMode) {
+        [theButton setTitle:@"删除" forState:UIControlStateNormal];
+        [theButton removeTarget:self action:@selector(deleteTags:) forControlEvents:UIControlEventTouchUpInside];
+        [theButton addTarget:self action:@selector(delete:) forControlEvents:UIControlEventTouchUpInside];
+    }
     
-    [self arrangementTagButtons];
+    _editMode = YES;
     
     for (MaTagButton* theTag in _tagButtonArray) {
         [theTag setEditMode];
@@ -245,6 +254,41 @@
     MaTagButton* addbutton =[_tagButtonArray lastObject];
     addbutton.enabled=NO;
     addbutton.titleLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.3];
+}
+
+-(void)delete:(id)sender
+{
+    _editMode = NO;
+    UIButton *theButton = (UIButton*)sender;
+
+    [theButton setTitle:@"删除标签" forState:UIControlStateNormal];
+    [theButton removeTarget:self action:@selector(delete:) forControlEvents:UIControlEventTouchUpInside];
+    [theButton addTarget:self action:@selector(deleteTags:) forControlEvents:UIControlEventTouchUpInside];
+
+    NSMutableArray* markedArray = [[NSMutableArray alloc] init];
+    for (MaTagButton *tagButton in _tagButtonArray) {
+        if (tagButton.tagStatus == MA_TagButtonStatus_EditMode_Marked) {
+            [markedArray addObject:tagButton];
+        }
+    }
+    
+    [UIView animateWithDuration:0.3f delay:0.0f
+                        options: UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         for (MaTagButton* tagButton in markedArray) {
+                             [tagButton removeFromSuperview];
+                         }
+                     }
+                     completion:^(BOOL finished){
+                         [_tagButtonArray removeObjectsInArray:markedArray];
+                         [self arrangementTagButtons];
+                         
+                         MaTagButton* addbutton =[_tagButtonArray lastObject];
+                         addbutton.enabled=YES;
+                         addbutton.titleLabel.textColor = [UIColor colorWithWhite:1.0 alpha:1.0];
+
+                     }];
+    
 }
 
 

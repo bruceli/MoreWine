@@ -24,6 +24,9 @@
 	UIView* _tagView;
 	UIButton* _shakeButton;
 	UIButton* _checkInButton;
+	UIButton* _favoriteInButton;
+    
+    NSMutableArray* _tagButtonArray;
 
 }
 @end

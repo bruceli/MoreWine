@@ -51,7 +51,7 @@
     [buttonView addSubview:_checkInStatusButton];
 
     _favoritStatusButton = [self setupButtonByFrame:CGRectMake(0, 49, 320, 50) name:[self favoriteButtonTitle]];
-	[_favoritStatusButton addTarget:self action:@selector(checkInDetails:) forControlEvents:UIControlEventTouchUpInside];
+	[_favoritStatusButton addTarget:self action:@selector(favoriteDetails:) forControlEvents:UIControlEventTouchUpInside];
     [buttonView addSubview:_favoritStatusButton];
 
 	

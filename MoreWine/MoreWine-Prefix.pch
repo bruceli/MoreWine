@@ -13,4 +13,10 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+//    #import "UIView+Common.h" // shareSDK
 #endif
+
+#define BUNDLE_NAME @"Resource"     // shareSDK
+#define IMAGE_NAME @"sharesdk_img"  // shareSDK
+#define IMAGE_EXT @"jpg"            // shareSDK
+
