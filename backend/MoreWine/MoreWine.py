@@ -19,9 +19,9 @@ def shutdown_session(exception=None):
 def hello_world():
     return 'Hello World!'
 
-@app.route('/city/<int:city_id>/shops', methods=['GET'])
-def get_city_shops(city_id):
-    if city_id:
+@app.route('/city/<int:id>/shops', methods=['GET'])
+def get_city_shops(id):
+    if id:
         return "[{'id': 1, 'name_en':'more cafe'}, {'id':2,'name_en':'magic bar'}]"
     else:
         abort(404)
@@ -39,7 +39,6 @@ def init_my_db():
     return 'done creating db.'
 
 
-# You can insert entries into the database like this:
 @app.route('/user', methods=['POST'])
 @requires_auth
 def add_user():
@@ -59,7 +58,6 @@ def add_user():
     return 'user added: ' + user.name
 
 
-# Querying is simple as well:
 @app.route('/user', methods=['GET'])
 @requires_auth
 def query_user():
@@ -71,19 +69,24 @@ def query_user():
         return jsonify(username=admin_user.name, email=admin_user.email)
     else:
         abort(404)
-    # return admin_user.getName()
 
 
-@app.route('/user', methods=['DELETE'])
+@app.route('/user/<int:id>', methods=['DELETE'])
 @requires_auth
 def remove_user():
-    User.query.all()
-    admin_user = User.query.filter(User.name == 'admin').first()
-    db_session.delete(admin_user)
-    db_session.commit()
+    if id:
+        User.query.all()
+        user = User.query.filter(User.id == id).first()
+        db_session.delete(user)
+        db_session.commit()
 
-    return 'deleted'
+    return 'user deleted'
 
+@app.route('/province/<int:id>/cities', methods=['GET'])
+def get_province_cities():
+    if id:
+        return 'found one'
+    return 'nothing found'
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

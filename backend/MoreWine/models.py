@@ -63,7 +63,7 @@ class Shop(Base):
         self.location = location
 
     def __repr__(self):
-        return '<Shop %r>' % (self.name_cn)
+        return '<Shop %s>' % (self.name_cn)
 
 class Wine(Base):
     __tablename__ = "wine"
@@ -80,7 +80,7 @@ class Wine(Base):
         self.image_urls = image_urls
 
     def __repr__(self):
-        return '<Wine %r>' % self.name_cn
+        return '<Wine %s>' % self.name_cn
 
 class Tag(Base):
     __tablename__ = "tag"
@@ -91,7 +91,7 @@ class Tag(Base):
         self.tag = tag
 
     def __repr__(self):
-        return '<Tag %r>' % self.tag
+        return '<Tag %s>' % self.tag
 
 class Shop_tags(Base):
     __tablename__ = "shop_tags"
@@ -105,7 +105,7 @@ class Shop_tags(Base):
         self.user_id = user_id
 
     def __repr__(self):
-        return '<Shop %r has Tag %r>' % self.shop_id % self.tag_id
+        return '<Shop_tags(shop_id="%i", tag_id="%i")>' % (self.shop_id, self.tag_id)
 
 class Wine_tags(Base):
     __tablename__ = "wine_tags"
@@ -117,7 +117,7 @@ class Wine_tags(Base):
         self.tag_id = tag_id
 
     def __repr__(self):
-        return '<Wine %r has tag %r>' % self.wine_id % self.tag_id
+        return '<Wine_tags(wine_id="%i", tag_id="%i")>' % (self.wine_id, self.tag_id)
 
 class Material(Base):
     __tablename__ = "material"
@@ -134,7 +134,7 @@ class Material(Base):
         self.image_urls = image_urls
 
     def __repr__(self):
-        return '<Material %r>' % self.name_cn
+        return '<Material %s>' % self.name_cn
 
 class Cocktail(Base):
     __tablename__ = "cocktail"
@@ -153,7 +153,7 @@ class Cocktail(Base):
         self.material_ids = material_ids
 
     def __repr__(self):
-        return '<Cocktail %r>' % self.name_cn
+        return '<Cocktail %s>' % self.name_cn
 
 class User_fav_shops(Base):
     __tablename__ = "user_fav_shops"
@@ -165,7 +165,7 @@ class User_fav_shops(Base):
         self.shop_id = shop_id
 
     def __repr__(self):
-        return '<User %r favorited shop %r>' % self.user_id % self.shop_id
+        return '<User_fav_shop(user_id="%i", shop_id="%i")>' % (self.user_id, self.shop_id)
 
 class User_fav_wines(Base):
     __tablename__ = "user_fav_wines"
@@ -179,7 +179,7 @@ class User_fav_wines(Base):
         self.shop_id = shop_id
 
     def __repr__(self):
-        return '<User %r favorited wine %r>' % self.user_id % self.wine_id
+        return '<User_fav_wines(user_id="%i", wine_id="%i")>' % (self.user_id, self.wine_id)
 
 class City(Base):
     __tablename__ = "city"
@@ -192,7 +192,7 @@ class City(Base):
         self.name_en = name_en
 
     def __repr__(self):
-        return '<City %r>' % self.name_cn
+        return '<City %s>' % self.name_cn
 
 class Province(Base):
     __tablename__ = "province"
@@ -205,7 +205,7 @@ class Province(Base):
         self.name_en = name_en
 
     def __repr__(self):
-        return '<Province %r>' % self.name_cn
+        return '<Province %s>' % self.name_cn
 
 class Province_city(Base):
     __tablename__ = "province_city"
@@ -217,7 +217,7 @@ class Province_city(Base):
         self.city_id = city_id
 
     def __repr__(self):
-        return '<Province %r has city %r>' % self.province_id % self.city_id
+        return '<Province_city(province_id="%i", city_id="%i")>' % (self.province_id, self.city_id)
 
 class Recommender(Base):
     __tablename__ = "recommender"
@@ -232,7 +232,7 @@ class Recommender(Base):
         self.image_urls = image_urls
 
     def __repr__(self):
-        return '<Recommender %r>' % self.name
+        return '<Recommender %s>' % self.name
 
 class Recommendation(Base):
     __tablename__ = "recommendation"
