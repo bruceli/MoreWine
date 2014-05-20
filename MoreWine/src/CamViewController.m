@@ -10,6 +10,7 @@
 #import <AssetsLibrary/ALAssetsGroup.h>
 #import <AssetsLibrary/ALAsset.h>
 
+#import "CheckInAndShareViewController.h"
 #import "MaImageFilterViewController.h"
 #import "MaTabBarController.h"
 #import "CamViewController.h"
@@ -62,14 +63,14 @@
 
 -(void)viewWillDisappear:(BOOL)animated
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super viewWillDisappear:animated];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self setALAssetsLibraryNotification];
+//    [self setALAssetsLibraryNotification];
 }
 
 
@@ -302,6 +303,7 @@
 
 - (void)updateLastPhotoThumbnail
 {
+    // for custom layout use only
     ALAssetsLibrary* assetsLibrary = [[ALAssetsLibrary alloc] init];
 
     [assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
@@ -323,6 +325,7 @@
 
 -(void)setALAssetsLibraryNotification
 {
+    // for custom layout use only
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateLastPhotoThumbnail) name:ALAssetsLibraryChangedNotification object:nil];
 }
 
@@ -360,10 +363,16 @@
     }
 }
 
+#pragma mark -
+#pragma mark MaImageFilterView Delegate
 
 - (void)imageFitlerProcessDone:(UIImage *)image
 {
-
+    CheckInAndShareViewController* controller = [[CheckInAndShareViewController alloc] init];
+    UINavigationController *navController = [[UINavigationController alloc] initWithNavigationBarClass:[UINavigationBar class] toolbarClass:nil];
+	[navController setViewControllers:@[controller]];
+    
+	[self presentViewController:navController animated:YES completion:^{[controller attachImage:image];}];
 }
 
 - (void)dismissImageFilter;
@@ -388,13 +397,6 @@
                      }];
 }
 
-
-/*
--(BOOL)prefersStatusBarHidden
-{
-    return shouldHideStatusBar;
-}
-*/
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     [[UIApplication sharedApplication] setStatusBarHidden:YES];

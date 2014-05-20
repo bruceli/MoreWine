@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "MaUtility.h"
 #import <ShareSDK/ShareSDK.h>
+#import "WXApi.h"
 
 #import "MainViewController.h"
 #import "ListViewController.h"
@@ -20,6 +21,13 @@
 #import "UserInfoManager.h"
 #import "CamViewController.h"
 #import "MaTabBarController.h"
+
+
+#define kAppKey             @"3992296272"
+#define kAppSecret          @"802805e44f92ee0859f6dd188d4ec0e9"
+#define kAppRedirectURL     @"http://www.55haitao.com"
+
+
 
 @implementation AppDelegate
 @synthesize dataSettingMgr = _dataSettingMgr;
@@ -38,8 +46,8 @@
     
     _tabBarController = [[MaTabBarController alloc] init];
     NSMutableArray *viewControllers = [NSMutableArray arrayWithCapacity:4];
-    [ShareSDK registerApp:@"22dc96bc434"];
-
+    
+    [self setupShareSDK];
     // init mainView
     // init Custom NavBar for MainView
    
@@ -128,6 +136,17 @@
 }
 
 
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    return [ShareSDK handleOpenURL:url wxDelegate:self];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    return [ShareSDK handleOpenURL:url sourceApplication:sourceApplication annotation:annotation wxDelegate:self];
+}
+
 typedef NS_ENUM(NSInteger, MWTabBarType) {
     MWTabBar_Home = 0,
 	MWTabBar_Recommend,    
@@ -185,6 +204,13 @@ typedef NS_ENUM(NSInteger, MWTabBarType) {
 	// background image 
 	UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tabBG.png"]];
     [tabBar insertSubview:imageView atIndex:1];
+}
+
+-(void)setupShareSDK
+{
+    [ShareSDK registerApp:@"22dc96bc434"];
+    [ShareSDK connectWeChatWithAppId:@"wx2c762fd31eefcb73" wechatCls:[WXApi class]];
+    [ShareSDK connectSinaWeiboWithAppKey:kAppKey appSecret:kAppSecret redirectUri:kAppRedirectURL];
 }
 
 @end

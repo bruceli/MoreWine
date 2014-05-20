@@ -152,6 +152,7 @@
 		59A41F3518D03ABC00EA8B4C /* MaUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 59A41F3418D03ABC00EA8B4C /* MaUtility.m */; };
 		59A41F3718D03D5E00EA8B4C /* backgroundImage_586h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 59A41F3618D03D5E00EA8B4C /* backgroundImage_586h@2x.png */; };
 		59CC1BAB18F66D2A0052A030 /* UserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 59CC1BAA18F66D2A0052A030 /* UserInfoView.m */; };
+		59CD1C971929C5B40098C5A0 /* MaScaleImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 59CD1C961929C5B40098C5A0 /* MaScaleImageView.m */; };
 		59CFAFE2192210C7006C7D2E /* FavoriteListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59CFAFE1192210C7006C7D2E /* FavoriteListTableViewController.m */; };
 		59CFAFE6192223C7006C7D2E /* MaRoundButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 59CFAFE5192223C7006C7D2E /* MaRoundButton.m */; };
 		59CFB2701925241E006C7D2E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59CFB26F1925241E006C7D2E /* QuartzCore.framework */; };
@@ -372,6 +373,8 @@
 		59A41F3618D03D5E00EA8B4C /* backgroundImage_586h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "backgroundImage_586h@2x.png"; path = "resources/backgroundImage/backgroundImage_586h@2x.png"; sourceTree = "<group>"; };
 		59CC1BA918F66D2A0052A030 /* UserInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserInfoView.h; path = src/UserInfoView.h; sourceTree = "<group>"; };
 		59CC1BAA18F66D2A0052A030 /* UserInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserInfoView.m; path = src/UserInfoView.m; sourceTree = "<group>"; };
+		59CD1C951929C5B40098C5A0 /* MaScaleImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MaScaleImageView.h; path = src/MaScaleImageView.h; sourceTree = "<group>"; };
+		59CD1C961929C5B40098C5A0 /* MaScaleImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MaScaleImageView.m; path = src/MaScaleImageView.m; sourceTree = "<group>"; };
 		59CFAFE0192210C7006C7D2E /* FavoriteListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoriteListTableViewController.h; path = src/FavoriteListTableViewController.h; sourceTree = "<group>"; };
 		59CFAFE1192210C7006C7D2E /* FavoriteListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FavoriteListTableViewController.m; path = src/FavoriteListTableViewController.m; sourceTree = "<group>"; };
 		59CFAFE4192223C7006C7D2E /* MaRoundButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MaRoundButton.h; path = src/MaRoundButton.h; sourceTree = "<group>"; };
@@ -1000,6 +1003,8 @@
 		59F7D1C818ED3E2F008430FD /* Detail & CheckIn */ = {
 			isa = PBXGroup;
 			children = (
+				59CD1C951929C5B40098C5A0 /* MaScaleImageView.h */,
+				59CD1C961929C5B40098C5A0 /* MaScaleImageView.m */,
 				591ED1A618E1172700A9669F /* ShopDetailViewController.h */,
 				591ED1A718E1172700A9669F /* ShopDetailViewController.m */,
 				596AA7DF18F3E2AF008DBDE2 /* CheckInAndShareViewController.h */,
@@ -1240,6 +1245,7 @@
 				59CFAFE2192210C7006C7D2E /* FavoriteListTableViewController.m in Sources */,
 				59374B2A190F4A0A00B97011 /* TagManagerViewController.m in Sources */,
 				59492EF6191A0EDA00905AA7 /* MaTabBarController.m in Sources */,
+				59CD1C971929C5B40098C5A0 /* MaScaleImageView.m in Sources */,
 				5947DE1718FCD67900E23AB8 /* SearchViewController.m in Sources */,
 				5920A5B718F4E63400685819 /* FXBlurView.m in Sources */,
 				5937115E18E17CB300476E2D /* MaTagButton.m in Sources */,
