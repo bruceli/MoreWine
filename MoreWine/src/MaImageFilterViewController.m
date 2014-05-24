@@ -145,10 +145,10 @@
         UIImage *bgImage = [self changeImage:i imageView:nil];
         bgImageView.image = bgImage;
         [_scrollerView addSubview:bgImageView];
-        NSLog(@"%@ thumbnail frame", NSStringFromCGRect(bgImageView.frame));
+//        NSLog(@"%@ thumbnail frame", NSStringFromCGRect(bgImageView.frame));
     }
     _scrollerView.contentSize = CGSizeMake(x + effImageSize , 80);
-    NSLog(@"%@ thumbnail frame", NSStringFromCGSize(_scrollerView.contentSize));
+//    NSLog(@"%@ thumbnail frame", NSStringFromCGSize(_scrollerView.contentSize));
 
     [self.view addSubview:_scrollerView];
     
