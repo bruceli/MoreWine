@@ -45,13 +45,17 @@
 	_scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.view.frame.origin.y, 320, self.view.frame.size.height)];
 	_scrollView.backgroundColor = [UIColor clearColor];
 	_scrollView.alwaysBounceVertical = YES;
-	_scrollView.contentSize = CGSizeMake(320, 455);
+//	_scrollView.contentSize = CGSizeMake(320, 455);
 	[self.view addSubview:_scrollView];
 	
     [self setupHeaderViews];
     [self setupDropDownMenus];
 	[self setupShakeButtonView];
-	[self setupRecommedTitleView];
+	
+    // set scrollview contentSize in this function
+    [self setupRecommedTitleView];
+    
+    
     // Do any additional setup after loading the view.
 }
 
@@ -138,6 +142,9 @@
 	[theView addSubview:theLable];
 	
 	[_scrollView addSubview:theView];
+    
+    _scrollView.contentSize = CGSizeMake(320, 455);
+
 }
 
 -(UIButton*)setupButtonByFrame:(CGRect)frame

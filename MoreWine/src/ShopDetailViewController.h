@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SGFocusImageFrame.h"
-@class DetailNameView;
+@class DetailNameView,MaTagButton;
 
 @interface ShopDetailViewController : UIViewController <SGFocusImageFrameDelegate>
 {
@@ -25,6 +25,7 @@
 	UIButton* _shakeButton;
 	UIButton* _checkInButton;
 	UIButton* _favoriteInButton;
+    MaTagButton* _editTagButton;
     
     NSMutableArray* _tagButtonArray;
 

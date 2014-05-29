@@ -50,23 +50,34 @@
 //    self.hidesBottomBarWhenPushed = YES;
     
     CGFloat topButtonY;
+    NSString* theImageName;
+
     if ([MaUtility hasFourInchDisplay]) {
         topButtonY = 20;
+        theImageName = @"backgroundImage_586h.png";
     }
     else{
         topButtonY = 10;
+        theImageName = @"backgroundImage.png";
+
     }
+	UIImage* image = [UIImage imageNamed:theImageName];
+	UIImageView* backGndImageView = [[UIImageView alloc] initWithFrame:self.view.frame];
+	backGndImageView.image = image;
+    [self.view addSubview:backGndImageView];
+
+    
     UIButton *leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [leftBtn setImage:[UIImage imageNamed:@"btn_back.png"] forState:UIControlStateNormal];
+    [leftBtn setImage:[UIImage imageNamed:@"cam_cancelButton"] forState:UIControlStateNormal];
     [leftBtn setFrame:CGRectMake(20, topButtonY, 40, 40)];
-    [leftBtn setBackgroundColor:[UIColor redColor]];
+    [leftBtn setBackgroundColor:[UIColor clearColor]];
     [leftBtn addTarget:self action:@selector(cancleFilter:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:leftBtn];
     
     UIButton *rightBtn =[UIButton buttonWithType:UIButtonTypeCustom];
-    [rightBtn setImage:[UIImage imageNamed:@"camera_btn_ok.png"] forState:UIControlStateNormal];
+    [rightBtn setImage:[UIImage imageNamed:@"cam_doneButton"] forState:UIControlStateNormal];
     [rightBtn setFrame:CGRectMake(260, topButtonY, 40, 40)];
-    [rightBtn setBackgroundColor:[UIColor greenColor]];
+    [rightBtn setBackgroundColor:[UIColor clearColor]];
     [rightBtn addTarget:self action:@selector(fitlerDone:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:rightBtn];
     
@@ -87,13 +98,13 @@
     }
     
     _imageView.frame = imgViewFrame;
-    [_imageView setBackgroundColor:[UIColor darkGrayColor]];
+    [_imageView setBackgroundColor:[UIColor clearColor]];
     _imageView.image = _currentImage;
     _imageView.contentMode = UIViewContentModeScaleAspectFit;
 
     NSArray *array = [NSArray arrayWithObjects:@"原图",@"EFF1",@"EFF2",@"EFF3",@"EFF4",nil];
     _scrollerView = [[UIScrollView alloc]initWithFrame:scrollFrame];
-    _scrollerView.backgroundColor = [MaUtility getRandomColor];
+    _scrollerView.backgroundColor = [UIColor clearColor];
     _scrollerView.indicatorStyle = UIScrollViewIndicatorStyleBlack;
     _scrollerView.showsHorizontalScrollIndicator = NO;
     _scrollerView.showsVerticalScrollIndicator = NO;
@@ -124,7 +135,7 @@
         recognizer.delegate = self;
         
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(x, effLabelY, effLabelWidth, 23)];
-        [label setBackgroundColor:[MaUtility getRandomColor]];
+        [label setBackgroundColor:[UIColor clearColor]];
         [label setText:[array objectAtIndex:i]];
         [label setTextAlignment:NSTextAlignmentCenter];
         [label setFont:[UIFont systemFontOfSize:13.0f]];
@@ -139,9 +150,15 @@
         [bgImageView setTag:i];
         bgImageView.contentMode = UIViewContentModeScaleAspectFit;
 
-        bgImageView.backgroundColor = [MaUtility getRandomColor];
+        bgImageView.backgroundColor = [UIColor clearColor];
         [bgImageView addGestureRecognizer:recognizer];
         [bgImageView setUserInteractionEnabled:YES];
+        bgImageView.layer.cornerRadius=0.0f;
+        bgImageView.layer.masksToBounds=YES;
+        bgImageView.layer.borderColor=[[UIColor colorWithWhite:1.0 alpha:0.3]CGColor];
+        bgImageView.layer.borderWidth= 0.7f;
+
+        
         UIImage *bgImage = [self changeImage:i imageView:nil];
         bgImageView.image = bgImage;
         [_scrollerView addSubview:bgImageView];

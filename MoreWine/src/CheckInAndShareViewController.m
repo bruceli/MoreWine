@@ -221,10 +221,16 @@
 
     CGRect frame = CGRectMake(self.view.bounds.size.width-44-17, 8, 44, 44);
     _shareImageButton = [[UIButton alloc] initWithFrame:frame];
-    _shareImageButton.backgroundColor = [MaUtility getRandomColor];
+    _shareImageButton.backgroundColor = [UIColor clearColor];
+    _shareImageButton.layer.cornerRadius=0.0f;
+    _shareImageButton.layer.masksToBounds=YES;
+    _shareImageButton.layer.borderColor=[[UIColor colorWithWhite:1.0 alpha:0.3]CGColor];
+    _shareImageButton.layer.borderWidth= 0.7f;
     [_shareImageButton addTarget:self action:@selector(showActionSheet) forControlEvents:UIControlEventTouchUpInside];
     [[_shareImageButton imageView] setContentMode: UIViewContentModeScaleAspectFit];
 
+    
+    
     [_toolBarView addSubview:_shareImageButton];
 
     [_baseView addSubview:_toolBarView];

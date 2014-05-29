@@ -110,6 +110,8 @@
 		594F06BD18BC9DB900338657 /* InfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 594F06BC18BC9DB900338657 /* InfoCell.m */; };
 		594F06C018BC9DD700338657 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 594F06BF18BC9DD700338657 /* ListViewController.m */; };
 		594F06C318BF464100338657 /* MaNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 594F06C218BF464100338657 /* MaNavigationBar.m */; };
+		594FC0A71936310E00637B7E /* cam_cancelButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 594FC0A51936310E00637B7E /* cam_cancelButton@2x.png */; };
+		594FC0A81936310E00637B7E /* cam_doneButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 594FC0A61936310E00637B7E /* cam_doneButton@2x.png */; };
 		595EB1F418D7E85500223E20 /* SGFocusImageFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 595EB1F118D7E85500223E20 /* SGFocusImageFrame.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		595EB1F518D7E85500223E20 /* SGFocusImageItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 595EB1F318D7E85500223E20 /* SGFocusImageItem.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		595EB20118D7EC8200223E20 /* MaDataSettingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 595EB20018D7EC8200223E20 /* MaDataSettingManager.m */; };
@@ -313,6 +315,8 @@
 		594F06BF18BC9DD700338657 /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListViewController.m; path = src/ListViewController.m; sourceTree = "<group>"; };
 		594F06C118BF464100338657 /* MaNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MaNavigationBar.h; path = src/MaNavigationBar.h; sourceTree = "<group>"; };
 		594F06C218BF464100338657 /* MaNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MaNavigationBar.m; path = src/MaNavigationBar.m; sourceTree = "<group>"; };
+		594FC0A51936310E00637B7E /* cam_cancelButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cam_cancelButton@2x.png"; path = "resources/cam/cam_cancelButton@2x.png"; sourceTree = "<group>"; };
+		594FC0A61936310E00637B7E /* cam_doneButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cam_doneButton@2x.png"; path = "resources/cam/cam_doneButton@2x.png"; sourceTree = "<group>"; };
 		595EB1F018D7E85500223E20 /* SGFocusImageFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGFocusImageFrame.h; path = MoreWine/src/3rd/SGFocus/SGFocusImageFrame.h; sourceTree = "<group>"; };
 		595EB1F118D7E85500223E20 /* SGFocusImageFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGFocusImageFrame.m; path = MoreWine/src/3rd/SGFocus/SGFocusImageFrame.m; sourceTree = "<group>"; };
 		595EB1F218D7E85500223E20 /* SGFocusImageItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGFocusImageItem.h; path = MoreWine/src/3rd/SGFocus/SGFocusImageItem.h; sourceTree = "<group>"; };
@@ -980,6 +984,8 @@
 		59DBE673190B80B000BD756E /* cam */ = {
 			isa = PBXGroup;
 			children = (
+				594FC0A51936310E00637B7E /* cam_cancelButton@2x.png */,
+				594FC0A61936310E00637B7E /* cam_doneButton@2x.png */,
 				59DBE676190B8D5000BD756E /* cam_closeButton@2x.png */,
 				59DBE677190B8D5000BD756E /* cam_center@2x.png */,
 				59DBE678190B8D5000BD756E /* cam_captureButton@2x.png */,
@@ -1147,6 +1153,7 @@
 				59A41F2018D039F200EA8B4C /* barIcon_Recommend@2x.png in Resources */,
 				59A1090918E2B6C200CF59DD /* loginView_weibo@2x.png in Resources */,
 				5905D70218D166F000FBA71F /* 3headerImage@2x.png in Resources */,
+				594FC0A71936310E00637B7E /* cam_cancelButton@2x.png in Resources */,
 				59A41F1C18D039F200EA8B4C /* barIcon_Home@2x.png in Resources */,
 				59A41F1818D039F200EA8B4C /* barIcon_Cam@2x.png in Resources */,
 				592C98EB192534B800DCCE0E /* InstapaperResource.bundle in Resources */,
@@ -1154,6 +1161,7 @@
 				592C98DF192534B800DCCE0E /* img2.png in Resources */,
 				59A41F1A18D039F200EA8B4C /* barIcon_CamHiLight@2x.png in Resources */,
 				59DBE67A190B8D5000BD756E /* cam_center@2x.png in Resources */,
+				594FC0A81936310E00637B7E /* cam_doneButton@2x.png in Resources */,
 				59A1090618E2B6C200CF59DD /* loginView_wechat_hilight@2x.png in Resources */,
 				592C98D3192534B800DCCE0E /* Comment.bundle in Resources */,
 				59A1090518E2B6C200CF59DD /* loginView_qq@2x.png in Resources */,

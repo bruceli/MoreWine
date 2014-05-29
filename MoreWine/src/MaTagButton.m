@@ -31,11 +31,11 @@
 		_addTagButton = NO;
 		_titleString = titleString;
 		[self setupButton];
-		if ([titleString isEqualToString:@"MA_ADD_TAG_BUTTON"]) {
+/*		if ([titleString isEqualToString:@"MA_ADD_TAG_BUTTON"]) {
 			_addTagButton = YES;
 			[self setTitle:@"添加标签" forState:UIControlStateNormal];
 		}
-		else
+		else*/
 			[self addTitle];
 
     }
@@ -130,8 +130,8 @@
 
 -(void)setNormalMode
 {
-    if ([_titleString isEqualToString:@"MA_ADD_TAG_BUTTON"])
-        return;
+//    if ([_titleString isEqualToString:@"MA_ADD_TAG_BUTTON"])
+//        return;
     
     CGRect origFrame = CGRectMake(-22, 0, 22, 22);
 //    CGRect destFrame = CGRectMake(0, 0, 22, 22);
@@ -188,10 +188,10 @@
 -(CGFloat)calculateWidth
 {
 	CGFloat width;
-	if ([_titleString isEqualToString:@"MA_ADD_TAG_BUTTON"])
-		width = 60;
-	else
-	{
+//	if ([_titleString isEqualToString:@"MA_ADD_TAG_BUTTON"])
+//		width = 60;
+//	else
+//	{
 		UILabel* theLabel = [[UILabel alloc] init];
 		theLabel.font = [UIFont systemFontOfSize:10.0f];
 		theLabel.text = _titleString;
@@ -200,7 +200,7 @@
 		//	NSLog(@"width is %f",theLabel.frame.size.width);
 		width = theLabel.frame.size.width + gap;
         theLabel = nil;
-	}
+//	}
     
     if (width > 286)
         width = 286;
