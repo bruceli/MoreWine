@@ -84,10 +84,11 @@ def remove_user():
 @requires_auth
 def get_province_cities(id):
     if id:
-        subq = db_session.query(Province_city).filter(Province_city.province_id == id).subquery()
-        city_names = db_session.query(City).\
-            join(subq, City.id == subq.c.city_id).all()
-        return jsonify(cities = [e.serialize() for e in city_names])
+        # subq = db_session.query(Province_city).filter(Province_city.province_id == id).subquery()
+        # cities = db_session.query(City).\
+        #     join(subq, City.id == subq.c.city_id).all()
+        cities = db_session.query(City).join(Province_city, Province_city.province_id == id).all()
+        return jsonify(cities = [city.serialize() for city in cities])
     return 'nothing found'
 
 if __name__ == '__main__':
