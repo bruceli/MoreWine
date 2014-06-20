@@ -206,6 +206,12 @@ class City(Base):
     def __repr__(self):
         return '<City %s>' % self.name_cn
 
+    def serialize(self):
+        return {
+            'id': self.id,
+            'name_en': self.name_en,
+            'name_cn': self.name_cn,
+        }
 
 class Province(Base):
     __tablename__ = "province"

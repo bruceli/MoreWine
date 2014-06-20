@@ -85,9 +85,9 @@ def remove_user():
 def get_province_cities(id):
     if id:
         subq = db_session.query(Province_city).filter(Province_city.province_id == id).subquery()
-        city_names = db_session.query(City.name_cn).\
+        city_names = db_session.query(City).\
             join(subq, City.id == subq.c.city_id).all()
-        return jsonify(cities = city_names)
+        return jsonify(cities = [e.serialize() for e in city_names])
     return 'nothing found'
 
 if __name__ == '__main__':
