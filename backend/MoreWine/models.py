@@ -48,8 +48,9 @@ class Shop(Base):
     city = Column(String(100), unique=False)
     province = Column(String(200), unique=False)
     location = Column(String(200), unique=False)
+    attributes = Column(String(300), unique=False)
 
-    def __init__(self, name_cn, address, phone, description, city, province, location, name_en=None, wechat_id=None, weibo_id=None, image_urls=None):
+    def __init__(self, name_cn, address, phone, description, city, province, location, name_en=None, wechat_id=None, weibo_id=None, image_urls=None, attributes=None):
         self.name_en = name_en
         self.name_cn = name_cn
         self.address = address
@@ -61,6 +62,7 @@ class Shop(Base):
         self.city = city
         self.province = province
         self.location = location
+        self.attributes = attributes
 
     def __repr__(self):
         return '<Shop %s>' % (self.name_cn)
