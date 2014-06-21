@@ -52,12 +52,7 @@ class Shop(Base):
     location = Column(String(200), unique=False)
     attributes = Column(String(300), unique=False)
 
-<<<<<<< HEAD
     def __init__(self, name_cn, address, phone, description, city, province, location, name_en=None, wechat_id=None, weibo_id=None, image_urls=None, attributes=None):
-=======
-    def __init__(self, name_cn, address, phone, description, city, province, location, name_en=None, wechat_id=None,
-                 weibo_id=None, image_urls=None):
->>>>>>> FETCH_HEAD
         self.name_en = name_en
         self.name_cn = name_cn
         self.address = address
