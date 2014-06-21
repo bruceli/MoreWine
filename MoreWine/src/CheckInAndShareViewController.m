@@ -221,10 +221,16 @@
 
     CGRect frame = CGRectMake(self.view.bounds.size.width-44-17, 8, 44, 44);
     _shareImageButton = [[UIButton alloc] initWithFrame:frame];
-    _shareImageButton.backgroundColor = [MaUtility getRandomColor];
+    _shareImageButton.backgroundColor = [UIColor clearColor];
+    _shareImageButton.layer.cornerRadius=0.0f;
+    _shareImageButton.layer.masksToBounds=YES;
+    _shareImageButton.layer.borderColor=[[UIColor colorWithWhite:1.0 alpha:0.3]CGColor];
+    _shareImageButton.layer.borderWidth= 0.7f;
     [_shareImageButton addTarget:self action:@selector(showActionSheet) forControlEvents:UIControlEventTouchUpInside];
     [[_shareImageButton imageView] setContentMode: UIViewContentModeScaleAspectFit];
 
+    
+    
     [_toolBarView addSubview:_shareImageButton];
 
     [_baseView addSubview:_toolBarView];
@@ -257,7 +263,7 @@
                          _infoTextView.frame = destTextRect;
                          _infoTextView.contentSize = CGSizeMake(_infoTextView.frame.size.width - _infoTextView.contentInset.left - _infoTextView.contentInset.right, _infoTextView.frame.size.height - _infoTextView.contentInset.top - _infoTextView.contentInset.bottom);
                          _toolBarView.frame = toolbarRect;
-                         NSLog(@"contentsize %@",NSStringFromCGSize(_infoTextView.contentSize));
+//                         NSLog(@"contentsize %@",NSStringFromCGSize(_infoTextView.contentSize));
 
                      }
                      completion:^(BOOL finished){}];
@@ -595,8 +601,6 @@
 
 -(void)share
 {
-    __block BOOL weiboStatus = NO,weChatStatus = NO;
-    
     id<ISSContent> publishContent = [ShareSDK content:_infoTextView.text
                                        defaultContent:@""
                                                 image:[ShareSDK jpegImageWithImage:_image quality:0.7f]
@@ -616,18 +620,181 @@
                                          fileData:nil
                                      emoticonData:nil];
     
+    weiboDone = NO;
+    weChatDone = NO;
+    __block BOOL weiboStatus = NO;
+    __block BOOL weChatStatus = NO;
+    dispatch_group_t group = dispatch_group_create();
+    if (isWeChatShareSelected)
+        dispatch_group_async(group,dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        // block1
+        NSLog(@"ShareTypeWeixiTimeline");
+        [ShareSDK shareContent:publishContent
+                          type:ShareTypeWeixiTimeline
+                   authOptions:nil
+                 statusBarTips:YES
+                        result:^(ShareType type, SSResponseState state, id<ISSPlatformShareInfo> statusInfo, id<ICMErrorInfo> error, BOOL end) {
+                            weChatDone = YES;
+
+                            if (state == SSPublishContentStateSuccess)
+                            {
+                                weChatStatus =YES;
+                                NSLog(NSLocalizedString(@"TEXT_SHARE_SUC", @"分享成功"));
+                            }
+                            else if (state == SSPublishContentStateFail)
+                            {
+                                NSLog(NSLocalizedString(@"TEXT_SHARE_FAI", @"分享失败,错误码:%d,错误描述:%@"), [error errorCode], [error errorDescription]);
+                            }
+                        }];
+        NSLog(@"ShareTypeWeixiTimeline End");
+    });
+    else
+        weChatDone = YES;
     
-    if (isWeiboShareSelected) {
-        [self shareWeChat:publishContent];
-    }
+    if (isWeiboShareSelected)
+        dispatch_group_async(group,dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^ {
+        // block2
+        NSLog(@"ShareTypeSinaWeibo");
+        [ShareSDK shareContent:publishContent
+                          type:ShareTypeSinaWeibo
+                   authOptions:nil
+                 statusBarTips:YES
+                        result:^(ShareType type, SSResponseState state, id<ISSPlatformShareInfo> statusInfo, id<ICMErrorInfo> error, BOOL end) {
+                            weiboDone = YES;
+
+                            if (state == SSPublishContentStateSuccess)
+                            {
+                                weiboStatus = YES;
+                                NSLog(NSLocalizedString(@"TEXT_SHARE_SUC", @"分享成功"));
+                            }
+                            else if (state == SSPublishContentStateFail)
+                            {
+                                NSLog(NSLocalizedString(@"TEXT_SHARE_FAI", @"分享失败,错误码:%d,错误描述:%@"), [error errorCode], [error errorDescription]);
+                            }
+                        }];
+        NSLog(@"ShareTypeSinaWeibo End");
+    });
+    else
+        weiboDone = YES;
     
-    if (isWeChatShareSelected) {
-        [self shareWeibo:publishContent];
-    }
+    dispatch_group_notify(group,dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^ {
+        
+        while(true)
+        {
+            if (weiboDone && weChatDone)
+                break;
+        }
+        
+        if (!(weiboStatus && weChatStatus)) { // failed
+
+        if (!weiboStatus) {
+                NSLog(@"%@",@"weibo Failed");
+            }
+            else
+            {   // success, disable it
+                isWeiboShareSelected = NO;
+                [_weiboButton setBackgroundImage:[UIImage imageNamed:@"loginView_weibo"] forState:UIControlStateNormal];
+            }
+            
+            if (!weChatStatus) {
+                NSLog(@"%@",@"wechat Failed");
+            }
+            else
+            {
+                isWeChatShareSelected = NO;
+                [_weChatButton setBackgroundImage:[UIImage imageNamed:@"loginView_wechat"] forState:UIControlStateNormal];
+            }
+        }
+       else // Success.
+           [self cancel];
+        NSLog(@"Block3");
+    });
+    
+
+    
+    /*
+    dispatch_queue_t queue = dispatch_get_main_queue();
+//    dispatch_group_t group = dispatch_group_create();
+    if (isWeChatShareSelected)
+        dispatch_sync(queue, ^{[ShareSDK shareContent:publishContent
+                                                          type:ShareTypeWeixiTimeline
+                                                   authOptions:nil
+                                                 statusBarTips:YES
+                                                        result:^(ShareType type, SSResponseState state, id<ISSPlatformShareInfo> statusInfo, id<ICMErrorInfo> error, BOOL end) {
+                                                            if (state == SSPublishContentStateSuccess)
+                                                            {
+                                                                NSLog(NSLocalizedString(@"TEXT_SHARE_SUC", @"分享成功"));
+                                                                weChatStatus = YES;
+                                                            }
+                                                            else if (state == SSPublishContentStateFail)
+                                                            {
+                                                                NSLog(NSLocalizedString(@"TEXT_SHARE_FAI", @"分享失败,错误码:%d,错误描述:%@"), [error errorCode], [error errorDescription]);
+                                                            }
+                                                        }];}
+                         );
+    else
+        weChatStatus = YES;
+    
+    if (isWeiboShareSelected)
+        dispatch_sync(queue, ^{[ShareSDK shareContent:publishContent
+                                                          type:ShareTypeSinaWeibo
+                                                   authOptions:nil
+                                                 statusBarTips:YES
+                                                        result:^(ShareType type, SSResponseState state, id<ISSPlatformShareInfo> statusInfo, id<ICMErrorInfo> error, BOOL end) {
+                                                            if (state == SSPublishContentStateSuccess)
+                                                            {
+                                                                NSLog(NSLocalizedString(@"TEXT_SHARE_SUC", @"分享成功"));
+                                                                weiboStatus = YES;
+                                                            }
+                                                            else if (state == SSPublishContentStateFail)
+                                                            {
+                                                                NSLog(NSLocalizedString(@"TEXT_SHARE_FAI", @"分享失败,错误码:%d,错误描述:%@"), [error errorCode], [error errorDescription]);
+                                                            }
+                                                        }];}
+                         );
+    else
+        weiboStatus = YES;
+
+    
+    
+//    dispatch_group_notify(group, queue, ^{
+        if (!(weiboStatus && weChatStatus)) { // failed
+            if (!weiboStatus) {
+                NSLog(@"%@",@"weibo Failed");
+            }
+            else
+            {   // success, disable it
+                isWeiboShareSelected = NO;
+                [_weiboButton setBackgroundImage:[UIImage imageNamed:@"loginView_weibo"] forState:UIControlStateNormal];
+            }
+            
+            if (!weChatStatus) {
+                NSLog(@"%@",@"wechat Failed");
+            }
+            else
+            {
+                isWeChatShareSelected = NO;
+                [_weChatButton setBackgroundImage:[UIImage imageNamed:@"loginView_wechat"] forState:UIControlStateNormal];
+            }
+        }
+        else // Success.
+            [self cancel];
+
+//    }
+//);
+ */
 }
 
--(void)shareWeChat:(id)content
+
+-(void)workingThread
 {
+    
+}
+
+-(BOOL)shareWeChat:(id)content
+{
+    __block BOOL status = NO;
+
     [ShareSDK shareContent:content
                       type:ShareTypeWeixiTimeline
                authOptions:nil
@@ -636,17 +803,20 @@
                         if (state == SSPublishContentStateSuccess)
                         {
                             NSLog(NSLocalizedString(@"TEXT_SHARE_SUC", @"分享成功"));
-                            weChatStatus = YES;
+                            status = YES;
                         }
                         else if (state == SSPublishContentStateFail)
                         {
                             NSLog(NSLocalizedString(@"TEXT_SHARE_FAI", @"分享失败,错误码:%d,错误描述:%@"), [error errorCode], [error errorDescription]);
                         }
-                    }]
+                    }];
+    return status;
 }
 
--(void)shareWeibo:(id)content
+-(BOOL)shareWeibo:(id)content
 {
+    __block BOOL status = NO;
+
     [ShareSDK shareContent:content
                       type:ShareTypeSinaWeibo
                authOptions:nil
@@ -655,13 +825,14 @@
                         if (state == SSPublishContentStateSuccess)
                         {
                             NSLog(NSLocalizedString(@"TEXT_SHARE_SUC", @"分享成功"));
-                            weiboStatus = YES;
+                            status = YES;
                         }
                         else if (state == SSPublishContentStateFail)
                         {
                             NSLog(NSLocalizedString(@"TEXT_SHARE_FAI", @"分享失败,错误码:%d,错误描述:%@"), [error errorCode], [error errorDescription]);
                         }
-                    }]
+                    }];
+    return status;
 }
 
 

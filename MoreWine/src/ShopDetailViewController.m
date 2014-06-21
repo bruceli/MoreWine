@@ -20,6 +20,7 @@
 #import "MaTagButton.h"
 #import "MaNavigationBar.h"
 #import "TagListViewController.h"
+#import "TagManagerViewController.h"
 
 @interface DetailNameView : UIView
 {
@@ -153,6 +154,7 @@
 		theImageName = @"backgroundImage_586h.png";
 	else
 		theImageName = @"backgroundImage.png";
+    
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
 	UIImage* image = [UIImage imageNamed:theImageName];    
@@ -271,9 +273,13 @@
 	telLabelView.text = NSLocalizedString(@"MA_MoreWine_ShopDetailView_Tag", nil);
 	telLabelView.backgroundColor = [UIColor clearColor];
 	[_tagView addSubview:telLabelView];
+    
+    _editTagButton = [[MaTagButton alloc] initWithFrame:CGRectMake(250, 15, 55, 18) title:@"编辑标签"];
+    [_editTagButton addTarget:self action:@selector(editAllTags:) forControlEvents:UIControlEventTouchUpInside];
 
-	[self setupTagButtonsByTitleArray:nil];
-	
+	[_tagView addSubview:_editTagButton];
+    
+    [self setupTagButtonsByTitleArray:nil];
 	[_scrollView addSubview:_tagView];
 	
 	// adjust contentsize
@@ -282,7 +288,7 @@
 
 -(void)setupTagButtonsByTitleArray:(NSArray*)titleArray
 {
-    NSArray* array = [NSArray arrayWithObjects:@"T",@"TE2222222", @"TEEEEEEEE555",@"TE111",@"TE2222222", @"TEEEEEEEE555", @"TEEss6", @"the TEEEEEeeeeeeE 7",@"MA_ADD_TAG_BUTTON",@"TE111",@"TE2222222", @"TEEEEEEEE555",@"TE111",@"TE2222222", @"TEEEEEEEE555TEEEEEEEE555TEEEEEEEE555TEEEEEEEE555", @"TEEss6", @"the TEEEEEeeeeeeE 7", nil];
+    NSArray* array = [NSArray arrayWithObjects:@"T",@"TE2222222", @"TEEEEEEEE555",@"TE111",@"TE2222222", @"TEEEEEEEE555", @"TEEss6", @"the TEEEEEeeeeeeE 7",@"TE111",@"TE2222222", @"TEEEEEEEE555",@"TE111",@"TE2222222", @"TEEEEEEEE555TEEEEEEEE555TEEEEEEEE555TEEEEEEEE555", @"TEEss6", @"the TEEEEEeeeeeeE 7", nil];
     
     _tagButtonArray = [[NSMutableArray alloc] init];
     CGRect initFrame = CGRectMake(0, 0, 0, 28); //button hight only
@@ -494,18 +500,25 @@
 -(void)didTapTagButton:(id)sender
 {
 	NSString* titleString = ((MaTagButton*)sender).titleString;
-	if ([titleString isEqualToString:@"MA_ADD_TAG_BUTTON"]) {
+/*	if ([titleString isEqualToString:@"MA_ADD_TAG_BUTTON"]) {
 		[self addTagAction:sender];
 	}
-	else
-	{
+	else*/
+//	{
 		TagListViewController* viewController = [[TagListViewController alloc] initWithTag: titleString];
 		[self.navigationController pushViewController: viewController animated:YES];
-	}
+//	}
+}
+
+-(void)editAllTags:(id)sender
+{
+    TagManagerViewController* viewController = [[TagManagerViewController alloc] init];
+    [self.navigationController pushViewController: viewController animated:YES];
 }
 
 -(void)addTagAction:(id)sender
 {
+    NSLog(@"detail view add tag height is %f ", self.view.bounds.size.height);
 	_addTagView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height*2, 320, self.view.bounds.size.height)];
 	_addTagView.backgroundColor = [MaUtility getRandomColor];
 	

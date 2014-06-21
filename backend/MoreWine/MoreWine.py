@@ -1,11 +1,9 @@
-from flask import Flask
-from database import db_session
-from database import init_db
-from models import User
-from flask import jsonify
-from flask import request
+from flask import Flask, jsonify, request, Response
+from database import db_session, init_db
 from security import requires_auth
 from flask.ext.restful import abort
+from models import *
+import json
 
 app = Flask(__name__)
 
@@ -83,10 +81,15 @@ def remove_user():
     return 'user deleted'
 
 @app.route('/province/<int:id>/cities', methods=['GET'])
-def get_province_cities():
+@requires_auth
+def get_province_cities(id):
     if id:
-        return 'found one'
+        # subq = db_session.query(Province_city).filter(Province_city.province_id == id).subquery()
+        # cities = db_session.query(City).\
+        #     join(subq, City.id == subq.c.city_id).all()
+        cities = db_session.query(City).join(Province_city, Province_city.province_id == id).all()
+        return jsonify(cities = [city.serialize() for city in cities])
     return 'nothing found'
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(host='0.0.0.0', debug=True, port=5555)

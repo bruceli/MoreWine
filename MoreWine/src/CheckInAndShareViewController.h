@@ -34,6 +34,9 @@
     
     BOOL isWeChatShareSelected;
     BOOL isWeiboShareSelected;
+    
+    __block BOOL weChatDone;
+    __block BOOL weiboDone;
 }
 @property (nonatomic, retain) FXBlurView *blurView;
 - (void)showOnViewController:(UIViewController *)vc;

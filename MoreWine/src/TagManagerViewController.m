@@ -34,10 +34,26 @@
     _scrollView = [[UIScrollView alloc] initWithFrame:self.view.frame];
     _scrollView.backgroundColor = [MaUtility getRandomColor];
     _scrollView.alwaysBounceVertical = YES;
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+
     [self.view addSubview:_scrollView];
     [self setupNavBarItems];
     //[self setupTags:nil];
     
+    _addTagButton = [[UIButton alloc] initWithFrame:CGRectMake(17, 17, 286, 32)];
+    [_addTagButton addTarget:self action:@selector(addTagAction:) forControlEvents:UIControlEventTouchUpInside];
+    [_addTagButton addTarget:self action:@selector(buttonHighlight:) forControlEvents:UIControlEventTouchDown];
+	[_addTagButton addTarget:self action:@selector(buttonNormal:) forControlEvents:UIControlEventTouchUpInside];
+	[_addTagButton addTarget:self action:@selector(buttonNormal:) forControlEvents:UIControlEventTouchDragOutside];
+    
+	_addTagButton.layer.cornerRadius=4.0f;
+    _addTagButton.layer.masksToBounds=YES;
+    _addTagButton.layer.borderColor=[[UIColor colorWithWhite:1.0 alpha:0.3]CGColor];
+    _addTagButton.layer.borderWidth= 0.7f;
+	[_addTagButton setTitle:@"添加标签" forState:UIControlStateNormal];
+	_addTagButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
+    [_scrollView addSubview:_addTagButton];
+
     // V1.1
     [self setupTagButtonsByTitleArray:nil];
     
@@ -70,7 +86,7 @@
 
 -(void)setupTagButtonsByTitleArray:(NSArray*)titleArray
 {
-    NSArray* array = [NSArray arrayWithObjects:@"TE111",@"TE2222222", @"TEEEEEEEE555", @"TEEss6", @"the TEEEEEeeeeeeE 7",@"MA_ADD_TAG_BUTTON", nil];
+    NSArray* array = [NSArray arrayWithObjects:@"TE111",@"TE2222222", @"TEEEEEEEE555", @"TEEss6", @"the TEEEEEeeeeeeE 7", nil];
 
     _tagButtonArray = [[NSMutableArray alloc] init];
     CGRect initFrame = CGRectMake(0, 0, 0, 28); //button hight only
@@ -93,7 +109,7 @@
 {
     CGFloat editModeGap = 0.0f;
     
-    CGPoint initPoint = CGPointMake(17, 38);
+    CGPoint initPoint = CGPointMake(17, 58);
     CGFloat maxX = self.view.frame.size.width - 34;
 	CGFloat xGap = 0;
 	CGFloat yGap = 32; // button hight + 4;
@@ -145,10 +161,10 @@
     if (!_editMode)
     {
         NSString* titleString = ((MaTagButton*)sender).titleString;
-        if ([titleString isEqualToString:@"MA_ADD_TAG_BUTTON"]) {
+  /*      if ([titleString isEqualToString:@"MA_ADD_TAG_BUTTON"]) {
             [self addTagAction:sender];
         }
-        else
+        else*/
         {
             TagListViewController* viewController = [[TagListViewController alloc] initWithTag: titleString];
             [self.navigationController pushViewController: viewController animated:YES];
@@ -164,6 +180,8 @@
 
 -(void)addTagAction:(id)sender
 {
+    NSLog(@"tagMgr add tag height is %f ", self.view.bounds.size.height);
+
 	_addTagView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height*2, self.view.bounds.size.width, self.view.bounds.size.height)];
 	_addTagView.backgroundColor = [MaUtility getRandomColor];
 	
@@ -203,7 +221,7 @@
 	[_addTagView addSubview:theButton];
 	[self.view addSubview:_addTagView];
     
-	CGRect toFrame = CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height);
+	CGRect toFrame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
 	[UIView animateWithDuration:0.25f delay:0.0f
                         options: UIViewAnimationOptionCurveEaseOut
                      animations:^{
@@ -251,9 +269,8 @@
         [theTag setEditMode];
     }
     
-    MaTagButton* addbutton =[_tagButtonArray lastObject];
-    addbutton.enabled=NO;
-    addbutton.titleLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.3];
+    _addTagButton.enabled=NO;
+    _addTagButton.titleLabel.textColor = [UIColor colorWithWhite:1.0 alpha:0.3];
 }
 
 -(void)delete:(id)sender
@@ -283,9 +300,8 @@
                          [_tagButtonArray removeObjectsInArray:markedArray];
                          [self arrangementTagButtons];
                          
-                         MaTagButton* addbutton =[_tagButtonArray lastObject];
-                         addbutton.enabled=YES;
-                         addbutton.titleLabel.textColor = [UIColor colorWithWhite:1.0 alpha:1.0];
+                         _addTagButton.enabled=YES;
+                         _addTagButton.titleLabel.textColor = [UIColor colorWithWhite:1.0 alpha:1.0];
 
                      }];
     

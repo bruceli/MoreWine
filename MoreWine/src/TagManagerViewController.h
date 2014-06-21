@@ -13,6 +13,8 @@
     UIScrollView* _scrollView;
     UIView* _addTagView;
     NSMutableArray* _tagButtonArray;
+    UIButton* _addTagButton;
+
     
     BOOL _editMode;
 }
